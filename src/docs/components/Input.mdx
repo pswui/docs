@@ -1,6 +1,6 @@
 import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
-import { LoadedCode, GITHUB } from "@/components/LoadedCode";
+import { LoadedCode, GITHUB_COMP, GITHUB_COMP_PREVIEW, GITHUB_STORY } from "@/components/LoadedCode";
 import { InputDemo } from "./InputBlocks/Preview";
 import { InputFrameDemo } from "./InputFrameBlocks/Preview";
 import InputExamples from "./InputBlocks/Examples";
@@ -19,7 +19,7 @@ Element that captures user's input.
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/InputBlocks/Preview.tsx`} />
+        <LoadedCode from={GITHUB_COMP_PREVIEW("Input")} />
     </TabContent>
 </TabProvider>
 
@@ -28,7 +28,7 @@ Element that captures user's input.
 1. Create a new file `Input.tsx` in your component folder.
 2. Copy and paste the following code into the file.
 
-<LoadedCode from={`${GITHUB}/packages/react/components/Input.tsx`} />
+<LoadedCode from={GITHUB_COMP("Input")} />
 
 ## Usage
 
@@ -64,7 +64,7 @@ import { Input } from "@components/Input";
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/InputBlocks/Examples/Invalid.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Input", "Invalid")} />
     </TabContent>
 </TabProvider>
 
@@ -81,7 +81,7 @@ import { Input } from "@components/Input";
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/InputBlocks/Examples/Disabled.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Input", "Disabled")} />
     </TabContent>
 </TabProvider>
 
@@ -99,7 +99,7 @@ Label with input's style.
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/InputFrameBlocks/Preview.tsx`} />
+        <LoadedCode from={GITHUB_COMP_PREVIEW("InputFrame")} />
     </TabContent>
 </TabProvider>
 

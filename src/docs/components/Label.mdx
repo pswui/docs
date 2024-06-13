@@ -2,7 +2,7 @@ import {
     TabProvider, TabTrigger, TabContent, TabList
 } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
-import { LoadedCode, GITHUB } from "@/components/LoadedCode";
+import { LoadedCode, GITHUB_STORY, GITHUB_COMP, GITHUB_COMP_PREVIEW } from "@/components/LoadedCode";
 import { LabelDemo } from "./LabelBlocks/Preview";
 import Examples from "./LabelBlocks/Examples"
 
@@ -20,7 +20,7 @@ A wrapper that used to tag and describe form elements clearly and accessibly.
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/LabelBlocks/Preview.tsx`} />
+        <LoadedCode from={GITHUB_COMP_PREVIEW("Label")} />
     </TabContent>
 </TabProvider>
 
@@ -29,7 +29,7 @@ A wrapper that used to tag and describe form elements clearly and accessibly.
 1. Create a new file `Label.tsx` in your component folder.
 2. Copy and paste the following code into the file.
 
-<LoadedCode from={`${GITHUB}/packages/react/components/Label.tsx`} />
+<LoadedCode from={GITHUB_COMP("Label")} />
 
 ## Usage
 
@@ -69,7 +69,7 @@ import { Label } from "@components/Label"
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/LabelBlocks/Examples/Vertical.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Label", "Vertical")} />
     </TabContent>
 </TabProvider>
 
@@ -86,7 +86,7 @@ import { Label } from "@components/Label"
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/LabelBlocks/Examples/Horizontal.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Label", "Horizontal")} />
     </TabContent>
 </TabProvider>
 
@@ -103,7 +103,7 @@ import { Label } from "@components/Label"
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/LabelBlocks/Examples/Invalid.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Label", "Invalid")} />
     </TabContent>
 </TabProvider>
 
@@ -120,6 +120,6 @@ import { Label } from "@components/Label"
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/LabelBlocks/Examples/Disabled.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Label", "Disabled")} />
     </TabContent>
 </TabProvider>

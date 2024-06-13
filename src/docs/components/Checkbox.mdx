@@ -1,6 +1,6 @@
 import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
-import { LoadedCode, GITHUB } from "@/components/LoadedCode";
+import { LoadedCode, GITHUB_COMP, GITHUB_COMP_PREVIEW, GITHUB_STORY } from "@/components/LoadedCode";
 import { CheckboxDemo } from "./CheckboxBlocks/Preview";
 import Examples from "./CheckboxBlocks/Examples";
 
@@ -18,7 +18,7 @@ A control that allows the user to toggle between checked and not checked.
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/CheckboxBlocks/Preview.tsx`} />
+        <LoadedCode from={GITHUB_COMP_PREVIEW("Checkbox")} />
     </TabContent>
 </TabProvider>
 
@@ -27,7 +27,7 @@ A control that allows the user to toggle between checked and not checked.
 1. Create a new file `Checkbox.mdx` in your component folder.
 2. Copy and paste the following code into the file.
 
-<LoadedCode from={`${GITHUB}/packages/react/components/Checkbox.tsx`} />
+<LoadedCode from={GITHUB_COMP("Checkbox")} />
 
 ## Usage
 
@@ -62,7 +62,7 @@ import { Checkbox } from "@components/Checkbox";
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/CheckboxBlocks/Examples/Text.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Checkbox", "Text")} />
     </TabContent>
 </TabProvider>
 
@@ -79,6 +79,6 @@ import { Checkbox } from "@components/Checkbox";
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/CheckboxBlocks/Examples/Disabled.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Checkbox", "Disabled")} />
     </TabContent>
 </TabProvider>

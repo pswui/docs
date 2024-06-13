@@ -1,6 +1,6 @@
 import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
-import { LoadedCode, GITHUB } from "@/components/LoadedCode";
+import { LoadedCode, GITHUB_STORY, GITHUB_COMP, GITHUB_COMP_PREVIEW } from "@/components/LoadedCode";
 import { TooltipDemo } from "./TooltipBlocks/Preview";
 import Examples from "./TooltipBlocks/Examples";
 
@@ -18,7 +18,7 @@ A brief helper for providing contextual information or guiding user interactions
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/TooltipBlocks/Preview.tsx`} />
+        <LoadedCode from={GITHUB_COMP_PREVIEW("Tooltip")} />
     </TabContent>
 </TabProvider>
 
@@ -27,7 +27,7 @@ A brief helper for providing contextual information or guiding user interactions
 1. Create a new file `Tooltip.tsx` in your component folder.
 2. Copy and paste the following code into the file.
 
-<LoadedCode from={`${GITHUB}/packages/react/components/Tooltip.tsx`} />
+<LoadedCode from={GITHUB_COMP("Tooltip")} />
 
 ## Usage
 
@@ -82,7 +82,7 @@ import { Tooltip, TooltipContent } from "@components/Tooltip";
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/TooltipBlocks/Examples/Top.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Tooltip", "Top")} />
     </TabContent>
 </TabProvider>
 
@@ -99,7 +99,7 @@ import { Tooltip, TooltipContent } from "@components/Tooltip";
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/TooltipBlocks/Examples/Bottom.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Tooltip", "Bottom")} />
     </TabContent>
 </TabProvider>
 
@@ -116,7 +116,7 @@ import { Tooltip, TooltipContent } from "@components/Tooltip";
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/TooltipBlocks/Examples/Left.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Tooltip", "Left")} />
     </TabContent>
 </TabProvider>
 
@@ -133,7 +133,7 @@ import { Tooltip, TooltipContent } from "@components/Tooltip";
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/TooltipBlocks/Examples/Right.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Tooltip", "Right")} />
     </TabContent>
 </TabProvider>
 
@@ -150,7 +150,7 @@ import { Tooltip, TooltipContent } from "@components/Tooltip";
     </Story>
   </TabContent>
   <TabContent name="code">
-    <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/TooltipBlocks/Examples/NoDelay.tsx`} />
+    <LoadedCode from={GITHUB_STORY("Tooltip", "NoDelay")} />
   </TabContent>
 </TabProvider>
 
@@ -167,7 +167,7 @@ import { Tooltip, TooltipContent } from "@components/Tooltip";
     </Story>
   </TabContent>
   <TabContent name="code">
-    <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/TooltipBlocks/Examples/EarlyDelay.tsx`} />
+    <LoadedCode from={GITHUB_STORY("Tooltip", "EarlyDelay")} />
   </TabContent>
 </TabProvider>
 
@@ -184,7 +184,7 @@ import { Tooltip, TooltipContent } from "@components/Tooltip";
     </Story>
   </TabContent>
   <TabContent name="code">
-    <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/TooltipBlocks/Examples/LateDelay.tsx`} />
+    <LoadedCode from={GITHUB_STORY("Tooltip", "LateDelay")} />
   </TabContent>
 </TabProvider>
 
@@ -201,6 +201,6 @@ import { Tooltip, TooltipContent } from "@components/Tooltip";
     </Story>
   </TabContent>
   <TabContent name={"code"}>
-    <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/TooltipBlocks/Examples/Controlled.tsx`} />
+    <LoadedCode from={GITHUB_STORY("Tooltip", "Controlled")} />
   </TabContent>
 </TabProvider>

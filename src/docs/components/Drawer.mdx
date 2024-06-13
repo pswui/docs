@@ -1,6 +1,6 @@
 import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
-import { LoadedCode, GITHUB } from '@/components/LoadedCode';
+import { LoadedCode, GITHUB_COMP, GITHUB_COMP_PREVIEW, GITHUB_STORY } from '@/components/LoadedCode';
 import { DrawerDemo } from "./DrawerBlocks/Preview";
 import Examples from "./DrawerBlocks/Examples";
 
@@ -18,7 +18,7 @@ Displays a panel that slides out from the edge of the screen, typically used for
     </Story>
   </TabContent>
   <TabContent name="code">
-    <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/DrawerBlocks/Preview.tsx`} />
+    <LoadedCode from={GITHUB_COMP_PREVIEW("Drawer")} />
   </TabContent>
 </TabProvider>
 
@@ -27,7 +27,7 @@ Displays a panel that slides out from the edge of the screen, typically used for
 1. Create a new file `Drawer.tsx` in your component folder.
 2. Copy and paste the following code into the file.
 
-<LoadedCode from={`${GITHUB}/packages/react/components/Drawer.tsx`} />
+<LoadedCode from={GITHUB_COMP("Drawer")} />
 
 ## Usage
 
@@ -147,7 +147,7 @@ import {
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/DrawerBlocks/Examples/Left.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Drawer", "Left")} />
     </TabContent>
 </TabProvider>
 
@@ -164,7 +164,7 @@ import {
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/DrawerBlocks/Examples/Right.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Drawer", "Right")} />
     </TabContent>
 </TabProvider>
 
@@ -181,7 +181,7 @@ import {
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/DrawerBlocks/Examples/Top.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Drawer", "Top")} />
     </TabContent>
 </TabProvider>
 
@@ -198,6 +198,6 @@ import {
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/DrawerBlocks/Examples/Bottom.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Drawer", "Bottom")} />
     </TabContent>
 </TabProvider>

@@ -1,6 +1,6 @@
 import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
-import { LoadedCode, GITHUB } from "@/components/LoadedCode";
+import { LoadedCode, GITHUB_COMP, GITHUB_COMP_PREVIEW, GITHUB_STORY } from "@/components/LoadedCode";
 import { DialogDemo } from "./DialogBlocks/Preview";
 import Examples from "./DialogBlocks/Examples";
 
@@ -18,7 +18,7 @@ A modal window that prompts the user to take an action or provides critical info
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/DialogBlocks/Preview.tsx`} />
+        <LoadedCode from={GITHUB_COMP_PREVIEW("Dialog")} />
     </TabContent>
 </TabProvider>
 
@@ -27,7 +27,7 @@ A modal window that prompts the user to take an action or provides critical info
 1. Create a new file `Dialog.tsx` in your component folder.
 2. Copy and paste the following code into the file.
 
-<LoadedCode from={`${GITHUB}/packages/react/components/Dialog.tsx`} />
+<LoadedCode from={GITHUB_COMP("Dialog")} />
 
 ## Usage
 
@@ -154,7 +154,7 @@ import {
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/DialogBlocks/Examples/BasicInformationalDialog.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Dialog", "BasicInformationalDialog")} />
     </TabContent>
 </TabProvider>
 
@@ -171,7 +171,7 @@ import {
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/DialogBlocks/Examples/DeletingItem.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Dialog", "DeletingItem")} />
     </TabContent>
 </TabProvider>
 

@@ -1,6 +1,6 @@
 import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs"
 import { Story } from "@/components/Story";
-import { LoadedCode, GITHUB } from "@/components/LoadedCode";
+import { LoadedCode, GITHUB_STORY, GITHUB_COMP, GITHUB_COMP_PREVIEW } from "@/components/LoadedCode";
 import { ToastDemo } from "./ToastBlocks/Preview";
 import Examples from "./ToastBlocks/Examples";
 
@@ -18,7 +18,7 @@ A brief message alert to inform users about events or actions.
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/ToastBlocks/Preview.tsx`} />
+        <LoadedCode from={GITHUB_COMP_PREVIEW("Toast")} />
     </TabContent>
 </TabProvider>
 
@@ -27,7 +27,7 @@ A brief message alert to inform users about events or actions.
 1. Create a new file `Toast.tsx` in your component folder.
 2. Copy and paste the following code into the file.
 
-<LoadedCode from={`${GITHUB}/packages/react/components/Toast.tsx`} />
+<LoadedCode from={GITHUB_COMP("Toast")} />
 
 ## Usage
 
@@ -92,7 +92,7 @@ const defaultToastOption: ToastOption = {
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/ToastBlocks/Preview.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Toast", "Normal")} />
     </TabContent>
 </TabProvider>
 
@@ -109,7 +109,7 @@ const defaultToastOption: ToastOption = {
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/ToastBlocks/Preview.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Toast", "Success")} />
     </TabContent>
 </TabProvider>
 
@@ -126,7 +126,7 @@ const defaultToastOption: ToastOption = {
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/ToastBlocks/Preview.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Toast", "Error")} />
     </TabContent>
 </TabProvider>
 
@@ -143,7 +143,7 @@ const defaultToastOption: ToastOption = {
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/ToastBlocks/Preview.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Toast", "Warning")} />
     </TabContent>
 </TabProvider>
 
@@ -160,7 +160,7 @@ const defaultToastOption: ToastOption = {
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/ToastBlocks/Preview.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Toast", "PendingFail")} />
     </TabContent>
 </TabProvider>
 
@@ -177,6 +177,6 @@ const defaultToastOption: ToastOption = {
         </Story>
     </TabContent>
     <TabContent name="code">
-        <LoadedCode from={`${GITHUB}/packages/react/src/docs/components/ToastBlocks/Preview.tsx`} />
+        <LoadedCode from={GITHUB_STORY("Toast", "PendingSuccess")} />
     </TabContent>
 </TabProvider>
