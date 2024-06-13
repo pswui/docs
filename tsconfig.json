@@ -23,7 +23,7 @@
     /* Path */
     "baseUrl": "./",
     "paths": {
-      "@pswui/*": ["src/pswui/*"],
+      "@pswui/*": ["src/pswui/components/*"],
       "@/*": ["src/*"],
       "@pswui-lib": ["src/pswui/lib.tsx"]
     }
