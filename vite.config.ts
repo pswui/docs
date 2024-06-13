@@ -31,4 +31,5 @@ export default defineConfig({
       "@pswui-lib": resolve(__dirname, "./src/pswui/lib.tsx"),
     },
   },
+  cacheDir: './.vite'
 });
