@@ -1,5 +1,5 @@
-import { Label } from "@components/Label";
-import { Checkbox } from "@components/Checkbox";
+import { Label } from "@pswui/Label";
+import { Checkbox } from "@pswui/Checkbox";
 
 export function Horizontal() {
   return (

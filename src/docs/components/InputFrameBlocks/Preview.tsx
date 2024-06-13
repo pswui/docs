@@ -1,5 +1,5 @@
-import { Button } from "@components/Button";
-import { Input, InputFrame } from "@components/Input";
+import { Button } from "@pswui/Button";
+import { Input, InputFrame } from "@pswui/Input";
 
 export function InputFrameDemo() {
   return (

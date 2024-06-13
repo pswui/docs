@@ -1,5 +1,5 @@
-import { Button } from "@components/Button";
-import { Toaster, useToast } from "@components/Toast";
+import { Button } from "@pswui/Button";
+import { Toaster, useToast } from "@pswui/Toast";
 
 function Children() {
   const { toast } = useToast();

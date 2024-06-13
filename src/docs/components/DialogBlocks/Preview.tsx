@@ -8,8 +8,8 @@ import {
   DialogSubtitle,
   DialogFooter,
   DialogClose,
-} from "@components/Dialog";
-import { Button } from "@components/Button";
+} from "@pswui/Dialog";
+import { Button } from "@pswui/Button";
 
 export function DialogDemo() {
   return (

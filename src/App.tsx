@@ -10,7 +10,7 @@ import Home from "./Home";
 import DocsLayout from "./DocsLayout";
 import ErrorBoundary from "./ErrorHandler";
 import DynamicLayout from "./DynamicLayout";
-import { Code } from "./components/LoadedCode";
+import { Code } from "@/components/LoadedCode";
 
 import DocsIntroduction, {
   tableOfContents as docsIntroductionToc,
@@ -31,7 +31,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Tooltip, TooltipContent } from "@components/Tooltip.tsx";
+import { Tooltip, TooltipContent } from "@pswui/Tooltip";
 
 function buildThresholdList() {
   const thresholds: number[] = [];

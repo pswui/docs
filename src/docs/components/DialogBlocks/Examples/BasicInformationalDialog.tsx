@@ -1,4 +1,4 @@
-import { Button } from "@components/Button";
+import { Button } from "@pswui/Button";
 import {
   DialogRoot,
   DialogTrigger,
@@ -9,7 +9,7 @@ import {
   DialogSubtitle,
   DialogFooter,
   DialogClose,
-} from "@components/Dialog";
+} from "@pswui/Dialog";
 
 export function BasicInformationalDialog() {
   return (

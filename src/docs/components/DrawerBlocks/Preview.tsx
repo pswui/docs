@@ -1,4 +1,4 @@
-import { Button } from "@components/Button";
+import { Button } from "@pswui/Button";
 import {
   DrawerRoot,
   DrawerTrigger,
@@ -8,7 +8,7 @@ import {
   DrawerHeader,
   DrawerBody,
   DrawerFooter,
-} from "@components/Drawer";
+} from "@pswui/Drawer";
 
 export const DrawerDemo = () => {
   return (

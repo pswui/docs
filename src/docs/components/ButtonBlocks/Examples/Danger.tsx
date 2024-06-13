@@ -1,4 +1,4 @@
-import { Button } from "@components/Button";
+import { Button } from "@pswui/Button";
 
 export const Danger = () => {
   return <Button preset="danger">Danger</Button>;

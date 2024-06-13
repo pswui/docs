@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { Button } from "../components/Button";
+import { Button } from "@pswui/Button";
 import RouteObject from "./RouteObject";
-import { Toaster } from "@components/Toast";
-import { Popover, PopoverContent, PopoverTrigger } from "@components/Popover";
+import { Toaster } from "@pswui/Toast";
+import { Popover, PopoverContent, PopoverTrigger } from "@pswui/Popover";
 import {
   DrawerClose,
   DrawerContent,
   DrawerOverlay,
   DrawerRoot,
   DrawerTrigger,
-} from "@components/Drawer";
+} from "@pswui/Drawer";
 
 type Theme = "light" | "dark" | "system";
 

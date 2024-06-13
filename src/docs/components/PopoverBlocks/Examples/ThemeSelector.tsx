@@ -1,5 +1,5 @@
-import { Popover, PopoverTrigger, PopoverContent } from "@components/Popover.tsx";
-import { Button } from "@components/Button.tsx";
+import { Popover, PopoverTrigger, PopoverContent } from "@pswui/Popover.tsx";
+import { Button } from "@pswui/Button.tsx";
 import { useState } from "react";
 
 const DarkIcon = () => {

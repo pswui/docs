@@ -1,8 +1,8 @@
 import { forwardRef, useEffect, useState } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { gruvboxDark } from "react-syntax-highlighter/dist/cjs/styles/hljs";
-import { Button } from "@components/Button";
-import { useToast } from "@components/Toast";
+import { Button } from "@pswui/Button";
+import { useToast } from "@pswui/Toast";
 import { twMerge } from "tailwind-merge";
 
 export const GITHUB = "https://raw.githubusercontent.com/p-sw/ui/main";

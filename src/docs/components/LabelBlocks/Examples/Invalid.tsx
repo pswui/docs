@@ -1,5 +1,5 @@
-import { Label } from "@components/Label";
-import { Input } from "@components/Input";
+import { Label } from "@pswui/Label";
+import { Input } from "@pswui/Input";
 
 export function Invalid() {
   return (

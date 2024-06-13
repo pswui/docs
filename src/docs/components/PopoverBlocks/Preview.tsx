@@ -1,5 +1,5 @@
-import { Button } from "@components/Button";
-import { Popover, PopoverContent, PopoverTrigger } from "@components/Popover";
+import { Button } from "@pswui/Button";
+import { Popover, PopoverContent, PopoverTrigger } from "@pswui/Popover";
 
 export function PopoverDemo() {
   return (

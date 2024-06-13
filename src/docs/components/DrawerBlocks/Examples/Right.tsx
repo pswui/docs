@@ -7,8 +7,8 @@ import {
   DrawerBody,
   DrawerFooter,
   DrawerClose,
-} from "@components/Drawer";
-import { Button } from "@components/Button";
+} from "@pswui/Drawer";
+import { Button } from "@pswui/Button";
 
 export const Right = () => {
   return (

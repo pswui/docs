@@ -2,9 +2,9 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-} from "@components/Popover.tsx";
-import { Button } from "@components/Button.tsx";
-import { useToast } from "@components/Toast.tsx";
+} from "@pswui/Popover.tsx";
+import { Button } from "@pswui/Button.tsx";
+import { useToast } from "@pswui/Toast.tsx";
 import {
   createContext,
   Dispatch,
@@ -14,8 +14,8 @@ import {
   useState,
   useTransition,
 } from "react";
-import { Label } from "@components/Label.tsx";
-import { Input } from "@components/Input.tsx";
+import { Label } from "@pswui/Label.tsx";
+import { Input } from "@pswui/Input.tsx";
 
 interface UserControlState {
   signIn: boolean;

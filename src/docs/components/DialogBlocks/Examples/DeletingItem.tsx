@@ -8,9 +8,9 @@ import {
   DialogSubtitle,
   DialogFooter,
   DialogClose,
-} from "@components/Dialog";
-import { Button } from "@components/Button";
-import { useToast } from "@components/Toast";
+} from "@pswui/Dialog";
+import { Button } from "@pswui/Button";
+import { useToast } from "@pswui/Toast";
 
 export function DeletingItem() {
   const { toast } = useToast();

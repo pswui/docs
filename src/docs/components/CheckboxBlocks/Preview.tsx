@@ -1,5 +1,5 @@
-import { Checkbox } from "@components/Checkbox";
-import { Label } from "@components/Label";
+import { Checkbox } from "@pswui/Checkbox";
+import { Label } from "@pswui/Label";
 
 export function CheckboxDemo() {
   return (

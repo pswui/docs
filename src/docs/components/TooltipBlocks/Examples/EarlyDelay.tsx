@@ -1,5 +1,5 @@
-import { Button } from "@components/Button";
-import { Tooltip, TooltipContent } from "@components/Tooltip";
+import { Button } from "@pswui/Button";
+import { Tooltip, TooltipContent } from "@pswui/Tooltip";
 
 export function EarlyDelay() {
   return (
