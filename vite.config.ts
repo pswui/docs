@@ -26,9 +26,9 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@components": resolve(__dirname, "./components"),
+      "@pswui": resolve(__dirname, "./src/pswui/components"),
       "@": resolve(__dirname, "./src"),
-      "@pswui-lib": resolve(__dirname, "./lib.tsx"),
+      "@pswui-lib": resolve(__dirname, "./src/pswui/lib.tsx"),
     },
   },
 });
