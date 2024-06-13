@@ -1,0 +1,37 @@
+@import url("https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --dark-bg-color: #000;
+    --dark-text-color: #fff;
+    --dark-btn-bg-color: #2f2f2f;
+    --dark-btn-text-color: #fff;
+    --dark-code-bg-color: #1f1f1f;
+    --font-wanted: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  }
+
+  html {
+    font-family: var(--font-wanted);
+  }
+
+  body {
+    @apply bg-white dark:bg-[var(--dark-bg-color)] text-black dark:text-[var(--dark-text-color)] transition-colors duration-300;
+  }
+
+  html,body,div#root {
+    height: auto;
+    min-height: 100vh;
+  }
+  div#root {
+    display: flex;
+    flex-direction: column;
+  }
+
+  * {
+    @apply transition-colors;
+  }
+}
+
