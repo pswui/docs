@@ -5,7 +5,11 @@ import { Button } from "@pswui/Button";
 import { useToast } from "@pswui/Toast";
 import { twMerge } from "tailwind-merge";
 
-export const GITHUB = "https://raw.githubusercontent.com/p-sw/ui/main";
+export const GITHUB_UI = "https://raw.githubusercontent.com/pswui/ui/main";
+export const GITHUB_DOCS = "https://raw.githubusercontent.com/pswui/docs/main";
+export const GITHUB_COMP = (componentName: string) => `${GITHUB_UI}/packages/react/components/${componentName}.tsx`
+export const GITHUB_COMP_PREVIEW = (componentName: string) => `${GITHUB_DOCS}/src/docs/components/${componentName}Blocks/Preview.tsx`
+export const GITHUB_STORY = (componentName: string, storyName: string) => `${GITHUB_DOCS}/src/docs/components/${componentName}Blocks/Examples/${storyName}.tsx`;
 
 export const LoadedCode = ({
   from,
