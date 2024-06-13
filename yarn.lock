@@ -6311,6 +6311,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tailwind-scrollbar@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "tailwind-scrollbar@npm:3.1.0"
+  peerDependencies:
+    tailwindcss: 3.x
+  checksum: 10c0/dad4d5dcc37f09806cb1b5380d7908d113d139638ac606644ba0c689dffb2d72250f6997c0091c2ba596346390b31742859a20933c2d8543f8103e2ddfc3fb82
+  languageName: node
+  linkType: hard
+
 "tailwindcss@npm:^3.4.4":
   version: 3.4.4
   resolution: "tailwindcss@npm:3.4.4"
@@ -6535,6 +6544,7 @@ __metadata:
     rehype-slug: "npm:^6.0.0"
     remark-gfm: "npm:^4.0.0"
     tailwind-merge: "npm:^2.3.0"
+    tailwind-scrollbar: "npm:^3.1.0"
     tailwindcss: "npm:^3.4.4"
     typescript: "npm:^5.4.5"
     vite: "npm:^5.3.0"

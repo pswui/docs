@@ -54,6 +54,7 @@ const RAW_RUNTIME_STATE =
           ["rehype-slug", "npm:6.0.0"],\
           ["remark-gfm", "npm:4.0.0"],\
           ["tailwind-merge", "npm:2.3.0"],\
+          ["tailwind-scrollbar", "virtual:d91c6bfa7dcfd1b9a8580c15d33606403db124a04c4c02f2693553b32a543e896068cbcc9fefc855c746f9420cbaa77f06fbac8699a83cd72809230f7ec0a88a#npm:3.1.0"],\
           ["tailwindcss", "npm:3.4.4"],\
           ["typescript", "patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"],\
           ["vite", "virtual:d91c6bfa7dcfd1b9a8580c15d33606403db124a04c4c02f2693553b32a543e896068cbcc9fefc855c746f9420cbaa77f06fbac8699a83cd72809230f7ec0a88a#npm:5.3.0"],\
@@ -7375,6 +7376,28 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["tailwind-scrollbar", [\
+      ["npm:3.1.0", {\
+        "packageLocation": "../../home/codespace/.yarn/berry/cache/tailwind-scrollbar-npm-3.1.0-cda5221d11-10c0.zip/node_modules/tailwind-scrollbar/",\
+        "packageDependencies": [\
+          ["tailwind-scrollbar", "npm:3.1.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:d91c6bfa7dcfd1b9a8580c15d33606403db124a04c4c02f2693553b32a543e896068cbcc9fefc855c746f9420cbaa77f06fbac8699a83cd72809230f7ec0a88a#npm:3.1.0", {\
+        "packageLocation": "./.yarn/__virtual__/tailwind-scrollbar-virtual-d1a794f870/3/home/codespace/.yarn/berry/cache/tailwind-scrollbar-npm-3.1.0-cda5221d11-10c0.zip/node_modules/tailwind-scrollbar/",\
+        "packageDependencies": [\
+          ["tailwind-scrollbar", "virtual:d91c6bfa7dcfd1b9a8580c15d33606403db124a04c4c02f2693553b32a543e896068cbcc9fefc855c746f9420cbaa77f06fbac8699a83cd72809230f7ec0a88a#npm:3.1.0"],\
+          ["@types/tailwindcss", null],\
+          ["tailwindcss", "npm:3.4.4"]\
+        ],\
+        "packagePeers": [\
+          "@types/tailwindcss",\
+          "tailwindcss"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["tailwindcss", [\
       ["npm:3.4.4", {\
         "packageLocation": "../../home/codespace/.yarn/berry/cache/tailwindcss-npm-3.4.4-18aba64742-10c0.zip/node_modules/tailwindcss/",\
@@ -7637,6 +7660,7 @@ const RAW_RUNTIME_STATE =
           ["rehype-slug", "npm:6.0.0"],\
           ["remark-gfm", "npm:4.0.0"],\
           ["tailwind-merge", "npm:2.3.0"],\
+          ["tailwind-scrollbar", "virtual:d91c6bfa7dcfd1b9a8580c15d33606403db124a04c4c02f2693553b32a543e896068cbcc9fefc855c746f9420cbaa77f06fbac8699a83cd72809230f7ec0a88a#npm:3.1.0"],\
           ["tailwindcss", "npm:3.4.4"],\
           ["typescript", "patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"],\
           ["vite", "virtual:d91c6bfa7dcfd1b9a8580c15d33606403db124a04c4c02f2693553b32a543e896068cbcc9fefc855c746f9420cbaa77f06fbac8699a83cd72809230f7ec0a88a#npm:5.3.0"],\
