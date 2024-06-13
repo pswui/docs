@@ -7,3 +7,7 @@
 !.yarn/versions
 
 dist/
+
+.vscode/*
+.idea
+.DS_Store
