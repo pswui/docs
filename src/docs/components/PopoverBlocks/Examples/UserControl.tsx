@@ -4,7 +4,7 @@ import {
   PopoverContent,
 } from "@pswui/Popover.tsx";
 import { Button } from "@pswui/Button.tsx";
-import { useToast } from "@pswui/Toast.tsx";
+import { useToast } from "@pswui/Toast";
 import {
   createContext,
   Dispatch,
