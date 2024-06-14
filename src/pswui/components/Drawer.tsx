@@ -49,13 +49,15 @@ const DrawerRoot = ({ children, closeThreshold, opened }: DrawerRootProps) => {
     opened: opened ?? DrawerContextInitial.opened,
     closeThreshold: closeThreshold ?? DrawerContextInitial.closeThreshold,
   });
+  const setState = state[1];
 
   useEffect(() => {
-    state[1]((prev) => ({
+    setState((prev) => ({
       ...prev,
       opened: opened ?? prev.opened,
       closeThreshold: closeThreshold ?? prev.closeThreshold,
     }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [closeThreshold, opened]);
 
   return (
@@ -300,7 +302,8 @@ const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
         window.removeEventListener("touchmove", onMouseMove);
         window.removeEventListener("touchend", onMouseUp);
       };
-    }, [state, dragState]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state, dragState, position]);
 
     return (
       <div
@@ -346,7 +349,7 @@ const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
             transitionDuration: dragState.isDragging ? "0s" : undefined,
             userSelect: dragState.isDragging ? "none" : undefined,
           }}
-          ref={(el) => {
+          ref={(el: HTMLDivElement | null) => {
             internalRef.current = el;
             if (typeof ref === "function") {
               ref(el);
@@ -404,8 +407,11 @@ const DrawerHeader = forwardRef<HTMLDivElement, DrawerHeaderProps>(
     const [variantProps, restPropsCompressed] =
       resolveDrawerHeaderVariantProps(props);
     const { asChild, ...restPropsExtracted } = restPropsCompressed;
+
+    const Comp = asChild ? Slot : "div";
+
     return (
-      <div
+      <Comp
         {...restPropsExtracted}
         className={drawerHeaderVariant(variantProps)}
         ref={ref}
@@ -429,8 +435,11 @@ const DrawerBody = forwardRef<HTMLDivElement, DrawerBodyProps>((props, ref) => {
   const [variantProps, restPropsCompressed] =
     resolveDrawerBodyVariantProps(props);
   const { asChild, ...restPropsExtracted } = restPropsCompressed;
+
+  const Comp = asChild ? Slot : "div";
+
   return (
-    <div
+    <Comp
       {...restPropsExtracted}
       className={drawerBodyVariant(variantProps)}
       ref={ref}
@@ -454,8 +463,11 @@ const DrawerFooter = forwardRef<HTMLDivElement, DrawerFooterProps>(
     const [variantProps, restPropsCompressed] =
       resolveDrawerFooterVariantProps(props);
     const { asChild, ...restPropsExtracted } = restPropsCompressed;
+
+    const Comp = asChild ? Slot : "div";
+
     return (
-      <div
+      <Comp
         {...restPropsExtracted}
         className={drawerFooterVariant(variantProps)}
         ref={ref}
