@@ -1,6 +1,6 @@
 import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs"
 import { Story } from "@/components/Story";
-import { LoadedCode, GITHUB_STORY, GITHUB_COMP, GITHUB_COMP_PREVIEW } from "@/components/LoadedCode";
+import { LoadedCode, GITHUB_STORY, GITHUB_DIR_COMP, GITHUB_COMP_PREVIEW } from "@/components/LoadedCode";
 import { ToastDemo } from "./ToastBlocks/Preview";
 import Examples from "./ToastBlocks/Examples";
 
@@ -24,10 +24,18 @@ A brief message alert to inform users about events or actions.
 
 ## Installation
 
-1. Create a new file `Toast.tsx` in your component folder.
-2. Copy and paste the following code into the file.
-
-<LoadedCode from={GITHUB_COMP("Toast")} />
+1. Create a new directory named `Toast` in your component folder.
+2. Create following files in the folder, and paste the code into the file.
+  * `index.ts`
+    <LoadedCode from={GITHUB_DIR_COMP("Toast", "index.ts")} />
+  * `Variant.ts`
+    <LoadedCode from={GITHUB_DIR_COMP("Toast", "Variant.ts")} />
+  * `Store.ts`
+    <LoadedCode from={GITHUB_DIR_COMP("Toast", "Store.ts")} />
+  * `Component.tsx`
+    <LoadedCode from={GITHUB_DIR_COMP("Toast", "Component.tsx")} />
+  * `Hook.ts`
+    <LoadedCode from={GITHUB_DIR_COMP("Toast", "Hook.ts")} />
 
 ## Usage
 

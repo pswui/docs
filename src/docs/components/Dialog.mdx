@@ -1,6 +1,6 @@
 import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
-import { LoadedCode, GITHUB_COMP, GITHUB_COMP_PREVIEW, GITHUB_STORY } from "@/components/LoadedCode";
+import { LoadedCode, GITHUB_DIR_COMP, GITHUB_COMP_PREVIEW, GITHUB_STORY } from "@/components/LoadedCode";
 import { DialogDemo } from "./DialogBlocks/Preview";
 import Examples from "./DialogBlocks/Examples";
 
@@ -24,10 +24,14 @@ A modal window that prompts the user to take an action or provides critical info
 
 ## Installation
 
-1. Create a new file `Dialog.tsx` in your component folder.
-2. Copy and paste the following code into the file.
-
-<LoadedCode from={GITHUB_COMP("Dialog")} />
+1. Create a new directory named `Dialog` in your component folder.
+2. Create following files in the folder, and paste the code into the file.
+  * `index.ts`
+    <LoadedCode from={GITHUB_DIR_COMP("Dialog", "index.ts")} />
+  * `Context.ts`
+    <LoadedCode from={GITHUB_DIR_COMP("Dialog", "Context.ts")} />
+  * `Component.tsx`
+    <LoadedCode from={GITHUB_DIR_COMP("Dialog", "Component.tsx")} />
 
 ## Usage
 
