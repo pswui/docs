@@ -25,7 +25,7 @@
     "paths": {
       "@pswui/*": ["src/pswui/components/*"],
       "@/*": ["src/*"],
-      "@pswui-lib": ["src/pswui/lib.tsx"]
+      "@pswui-lib": ["src/pswui/lib"]
     }
   },
   "include": ["src"],

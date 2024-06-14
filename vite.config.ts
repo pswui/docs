@@ -28,7 +28,7 @@ export default defineConfig({
     alias: {
       "@pswui": resolve(__dirname, "./src/pswui/components"),
       "@": resolve(__dirname, "./src"),
-      "@pswui-lib": resolve(__dirname, "./src/pswui/lib.tsx"),
+      "@pswui-lib": resolve(__dirname, "./src/pswui/lib"),
     },
   },
   cacheDir: './.vite'
