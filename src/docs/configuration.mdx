@@ -12,7 +12,7 @@ If you want to follow our rule, you can add a path to your `tsconfig.json`.
 {
   "compilerOptions": {
     "paths": {
-      "@pswui-lib": ["./pswui/lib.tsx"]
+      "@pswui-lib": ["./pswui/lib"]
     }
   }
 }
@@ -32,7 +32,7 @@ export interface Config {
    */
   paths?: {
     components?: 'src/pswui/components' | string
-    lib?: 'src/pswui/lib.tsx' | string
+    lib?: 'src/pswui/lib' | string
   }
   /**
    * Absolute path that will used for import in component
