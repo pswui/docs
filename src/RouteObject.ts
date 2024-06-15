@@ -13,7 +13,7 @@ const mainNav = [
     eq: (pathname: string) => pathname.startsWith("/docs/components"),
   },
   {
-    path: "https://github.com/p-sw/ui",
+    path: "https://github.com/pswui/ui",
     name: "Github",
     eq: () => false,
   },
