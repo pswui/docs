@@ -146,7 +146,7 @@ const drawerContentColors = {
 };
 
 const [drawerContentVariant, resolveDrawerContentVariantProps] = vcn({
-  base: `fixed ${drawerContentColors.background} ${drawerContentColors.border} transition-all p-4 flex flex-col justify-between gap-8`,
+  base: `fixed ${drawerContentColors.background} ${drawerContentColors.border} transition-all p-4 flex flex-col justify-between gap-8 overflow-auto`,
   variants: {
     position: {
       top: "top-0 inset-x-0 w-full max-w-screen rounded-t-lg border-b-2",
@@ -155,7 +155,7 @@ const [drawerContentVariant, resolveDrawerContentVariantProps] = vcn({
       right: "right-0 inset-y-0 h-screen rounded-r-lg border-l-2",
     },
     opened: {
-      true: "touch-none",
+      true: "",
       false:
         "[&.top-0]:-translate-y-full [&.bottom-0]:translate-y-full [&.left-0]:-translate-x-full [&.right-0]:translate-x-full",
     },
