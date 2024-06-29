@@ -10,9 +10,10 @@
   "packageManager": "yarn@4.3.0+sha512.1606bef7c84bc7d83b8576063de2fd08f7d69f9939015bed800f9585a002390268ecc777e9feeba7e26e9556aef6beaad4806968db2182ab5dd3e955ab3b9a0b",
   "type": "module",
   "scripts": {
+    "postinstall": "lefthook install",
     "dev": "vite",
     "build": "tsc && vite build && cp ./404.html ./dist",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "biome check --write --no-errors-on-unmatched",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -28,6 +29,7 @@
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.8.3",
     "@mdx-js/rollup": "^3.0.1",
     "@psw-ui/cli": "^0.5.0",
     "@tailwindcss/typography": "^0.5.13",
@@ -44,6 +46,7 @@
     "eslint": "^9.4.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "lefthook": "^1.6.18",
     "postcss": "^8.4.38",
     "tailwind-scrollbar": "^3.1.0",
     "tailwindcss": "^3.4.4",
