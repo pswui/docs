@@ -1,9 +1,9 @@
 import { Danger } from "./Danger";
-import { Warning } from "./Warning";
-import { Success } from "./Success";
-import { Link } from "./Link";
-import { Ghost } from "./Ghost";
 import { Default } from "./Default";
+import { Ghost } from "./Ghost";
+import { Link } from "./Link";
+import { Success } from "./Success";
+import { Warning } from "./Warning";
 
 export default {
   Danger,
@@ -13,4 +13,3 @@ export default {
   Ghost,
   Default,
 };
-

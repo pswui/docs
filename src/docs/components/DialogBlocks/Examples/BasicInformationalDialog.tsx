@@ -1,14 +1,14 @@
 import { Button } from "@pswui/Button";
 import {
-  DialogRoot,
-  DialogTrigger,
-  DialogOverlay,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogSubtitle,
-  DialogFooter,
   DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogRoot,
+  DialogSubtitle,
+  DialogTitle,
+  DialogTrigger,
 } from "@pswui/Dialog";
 
 export function BasicInformationalDialog() {

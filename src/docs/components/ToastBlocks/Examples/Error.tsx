@@ -19,7 +19,8 @@ function Children() {
   );
 }
 
-export function Error() {
+/* not shadowing global Error (lol) */
+export function _Error() {
   return (
     <>
       <Toaster />

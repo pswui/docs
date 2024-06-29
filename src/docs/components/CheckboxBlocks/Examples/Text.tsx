@@ -1,5 +1,5 @@
-import { Label } from "@pswui/Label";
 import { Checkbox } from "@pswui/Checkbox";
+import { Label } from "@pswui/Label";
 
 export function Text() {
   return (

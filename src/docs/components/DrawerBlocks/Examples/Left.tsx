@@ -1,14 +1,14 @@
+import { Button } from "@pswui/Button";
 import {
+  DrawerBody,
+  DrawerClose,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
   DrawerRoot,
   DrawerTrigger,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerHeader,
-  DrawerBody,
-  DrawerFooter,
-  DrawerClose,
 } from "@pswui/Drawer";
-import { Button } from "@pswui/Button";
 
 export const Left = () => {
   return (
@@ -17,7 +17,10 @@ export const Left = () => {
         <Button>Open Drawer</Button>
       </DrawerTrigger>
       <DrawerOverlay className="z-[99]">
-        <DrawerContent position="left" className="max-w-[320px]">
+        <DrawerContent
+          position="left"
+          className="max-w-[320px]"
+        >
           <DrawerHeader>
             <h1 className="text-2xl font-bold">Drawer</h1>
           </DrawerHeader>

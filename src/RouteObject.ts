@@ -43,15 +43,15 @@ const sideNav: Record<
   Components: [],
 };
 
-Object.keys(docsModules).forEach((path) => {
+for (const path of Object.keys(docsModules)) {
   const name = (path.split("/").pop() ?? "").replace(".mdx", "");
-  sideNav["Components"].push({
+  sideNav.Components.push({
     path: path.replace("./docs", "/docs").replace(".mdx", ""),
     name: name.charAt(0).toUpperCase() + name.slice(1),
     eq: (pathname: string) =>
       pathname === path.replace("./docs", "/docs").replace(".mdx", ""),
   });
-});
+}
 
 export default {
   mainNav,

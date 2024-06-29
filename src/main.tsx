@@ -3,8 +3,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+const ROOT = document.getElementById("root");
+
+if (!ROOT) throw new Error("root is not found");
+
+ReactDOM.createRoot(ROOT).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

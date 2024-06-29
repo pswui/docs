@@ -1,7 +1,7 @@
-import { Vertical } from "./Vertical";
+import { Disabled } from "./Disabled";
 import { Horizontal } from "./Horizontal";
 import { Invalid } from "./Invalid";
-import { Disabled } from "./Disabled";
+import { Vertical } from "./Vertical";
 
 export default {
   Vertical,
@@ -9,4 +9,3 @@ export default {
   Invalid,
   Disabled,
 };
-

@@ -1,4 +1,4 @@
-import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
+import { TabContent, TabList, TabProvider, TabTrigger } from "@pswui/Tabs";
 
 export function TabsDemo() {
   return (

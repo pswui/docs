@@ -6,7 +6,11 @@ export function Controlled() {
   const [opened, setOpened] = useState(false);
 
   return (
-    <Tooltip position="top" controlled opened={opened}>
+    <Tooltip
+      position="top"
+      controlled
+      opened={opened}
+    >
       <TooltipContent delay={"early"}>
         <p>Tooltip!</p>
       </TooltipContent>

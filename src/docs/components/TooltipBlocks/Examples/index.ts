@@ -1,11 +1,11 @@
 import { Bottom } from "./Bottom";
-import { Left } from "./Left";
-import { Right } from "./Right";
-import { Top } from "./Top";
-import { NoDelay } from "./NoDelay";
+import { Controlled } from "./Controlled";
 import { EarlyDelay } from "./EarlyDelay";
 import { LateDelay } from "./LateDelay";
-import { Controlled } from "./Controlled";
+import { Left } from "./Left";
+import { NoDelay } from "./NoDelay";
+import { Right } from "./Right";
+import { Top } from "./Top";
 
 export default {
   Bottom,

@@ -1,15 +1,15 @@
-import {
-  DialogRoot,
-  DialogTrigger,
-  DialogOverlay,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogSubtitle,
-  DialogFooter,
-  DialogClose,
-} from "@pswui/Dialog";
 import { Button } from "@pswui/Button";
+import {
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogRoot,
+  DialogSubtitle,
+  DialogTitle,
+  DialogTrigger,
+} from "@pswui/Dialog";
 import { useToast } from "@pswui/Toast";
 
 export function DeletingItem() {

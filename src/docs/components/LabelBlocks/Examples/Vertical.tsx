@@ -1,5 +1,5 @@
-import { Label } from "@pswui/Label";
 import { Input } from "@pswui/Input";
+import { Label } from "@pswui/Label";
 
 export function Vertical() {
   return (

@@ -1,13 +1,13 @@
 import { Button } from "@pswui/Button";
 import {
+  DrawerBody,
+  DrawerClose,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
   DrawerRoot,
   DrawerTrigger,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerClose,
-  DrawerHeader,
-  DrawerBody,
-  DrawerFooter,
 } from "@pswui/Drawer";
 
 export const DrawerDemo = () => {

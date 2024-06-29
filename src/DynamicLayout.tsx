@@ -1,5 +1,5 @@
-import { ReactNode, Fragment, useState, useContext } from "react";
-import { type Toc } from "@stefanprobst/rehype-extract-toc";
+import type { Toc } from "@stefanprobst/rehype-extract-toc";
+import { Fragment, type ReactNode, useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { HeadingContext } from "./HeadingContext";
 
@@ -21,8 +21,8 @@ function RecursivelyToc({ toc }: { toc: Toc }) {
                 activeHeadings.includes(tocEntry.id ?? "")
                   ? true
                   : location.hash.length > 0
-                  ? location.hash === `#${tocEntry.id}`
-                  : false
+                    ? location.hash === `#${tocEntry.id}`
+                    : false
               }
             >
               <a href={`#${tocEntry.id}`}>{tocEntry.value}</a>

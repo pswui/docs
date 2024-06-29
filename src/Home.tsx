@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import { Button } from "@pswui/Button";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -15,10 +15,16 @@ function Home() {
           </p>
         </header>
         <div className="flex flex-row justify-center items-center gap-2">
-          <Button asChild preset="default">
+          <Button
+            asChild
+            preset="default"
+          >
             <Link to="/docs">Get Started</Link>
           </Button>
-          <Button asChild preset="ghost">
+          <Button
+            asChild
+            preset="ghost"
+          >
             <Link to="/docs/components">Components</Link>
           </Button>
         </div>

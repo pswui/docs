@@ -1,21 +1,17 @@
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@pswui/Popover.tsx";
 import { Button } from "@pswui/Button.tsx";
+import { Input } from "@pswui/Input.tsx";
+import { Label } from "@pswui/Label.tsx";
+import { Popover, PopoverContent, PopoverTrigger } from "@pswui/Popover.tsx";
 import { useToast } from "@pswui/Toast";
 import {
+  type Dispatch,
+  type SVGProps,
+  type SetStateAction,
   createContext,
-  Dispatch,
-  SetStateAction,
-  SVGProps,
   useContext,
   useState,
   useTransition,
 } from "react";
-import { Label } from "@pswui/Label.tsx";
-import { Input } from "@pswui/Input.tsx";
 
 interface UserControlState {
   signIn: boolean;
@@ -44,10 +40,11 @@ function MdiLoading(props: SVGProps<SVGSVGElement>) {
       viewBox="0 0 24 24"
       {...props}
     >
+      <title>Loading</title>
       <path
         fill="currentColor"
         d="M12 4V2A10 10 0 0 0 2 12h2a8 8 0 0 1 8-8"
-      ></path>
+      />
     </svg>
   );
 }
@@ -79,7 +76,10 @@ const SignInForm = () => {
   }
 
   return (
-    <PopoverContent anchor={"bottomLeft"} className={"p-4 space-y-3"}>
+    <PopoverContent
+      anchor={"bottomLeft"}
+      className={"p-4 space-y-3"}
+    >
       <Label>
         <span>Username</span>
         <Input type={"text"} />
@@ -89,7 +89,10 @@ const SignInForm = () => {
         <Input type={"password"} />
       </Label>
       <div className={"flex flex-row justify-end"}>
-        <Button preset={"success"} onClick={startSignIn}>
+        <Button
+          preset={"success"}
+          onClick={startSignIn}
+        >
           {isSigningIn ? <MdiLoading className={"animate-spin"} /> : "Sign In"}
         </Button>
       </div>
@@ -126,7 +129,10 @@ const UserControlContent = () => {
   return (
     <PopoverContent anchor={"bottomLeft"}>
       <Button preset={"ghost"}>Dashboard</Button>
-      <Button preset={"ghost"} onClick={startSignOut}>
+      <Button
+        preset={"ghost"}
+        onClick={startSignOut}
+      >
         {isSigningOut ? <MdiLoading className={"animate-spin"} /> : "Sign Out"}
       </Button>
     </PopoverContent>

@@ -1,9 +1,4 @@
-import { useEffect, useState } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
 import { Button } from "@pswui/Button";
-import RouteObject from "./RouteObject";
-import { Toaster } from "@pswui/Toast";
-import { Popover, PopoverContent, PopoverTrigger } from "@pswui/Popover";
 import {
   DrawerClose,
   DrawerContent,
@@ -11,12 +6,17 @@ import {
   DrawerRoot,
   DrawerTrigger,
 } from "@pswui/Drawer";
+import { Popover, PopoverContent, PopoverTrigger } from "@pswui/Popover";
+import { Toaster } from "@pswui/Toast";
+import { useEffect, useState } from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import RouteObject from "./RouteObject";
 
 type Theme = "light" | "dark" | "system";
 
 function ThemeButton() {
   const [theme, setTheme] = useState<Theme>(
-    (localStorage.getItem("theme") as Theme) || "system"
+    (localStorage.getItem("theme") as Theme) || "system",
   );
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
@@ -27,7 +27,10 @@ function ThemeButton() {
   return (
     <Popover>
       <PopoverTrigger>
-        <Button preset="ghost" size="icon">
+        <Button
+          preset="ghost"
+          size="icon"
+        >
           {/* material-symbols:light-mode */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -36,6 +39,7 @@ function ThemeButton() {
             viewBox="0 0 24 24"
             className="dark:hidden"
           >
+            <title>Sun</title>
             <path
               fill="currentColor"
               d="M12 17q-2.075 0-3.537-1.463T7 12t1.463-3.537T12 7t3.538 1.463T17 12t-1.463 3.538T12 17m-7-4H1v-2h4zm18 0h-4v-2h4zM11 5V1h2v4zm0 18v-4h2v4zM6.4 7.75L3.875 5.325L5.3 3.85l2.4 2.5zm12.3 12.4l-2.425-2.525L17.6 16.25l2.525 2.425zM16.25 6.4l2.425-2.525L20.15 5.3l-2.5 2.4zM3.85 18.7l2.525-2.425L7.75 17.6l-2.425 2.525z"
@@ -49,6 +53,7 @@ function ThemeButton() {
             viewBox="0 0 24 24"
             className="hidden dark:block"
           >
+            <title>Moon</title>
             <path
               fill="currentColor"
               d="M12 21q-3.75 0-6.375-2.625T3 12t2.625-6.375T12 3q.35 0 .688.025t.662.075q-1.025.725-1.638 1.888T11.1 7.5q0 2.25 1.575 3.825T16.5 12.9q1.375 0 2.525-.613T20.9 10.65q.05.325.075.662T21 12q0 3.75-2.625 6.375T12 21"
@@ -56,7 +61,10 @@ function ThemeButton() {
           </svg>
         </Button>
       </PopoverTrigger>
-      <PopoverContent anchor="bottomLeft" className="w-32">
+      <PopoverContent
+        anchor="bottomLeft"
+        className="w-32"
+      >
         <Button
           preset="ghost"
           onClick={() => setTheme("light")}
@@ -97,7 +105,10 @@ function TopNav() {
             data-role="links"
             className="hidden md:flex flex-row items-center gap-3"
           >
-            <Link to="/" className="font-bold">
+            <Link
+              to="/"
+              className="font-bold"
+            >
               PSW/UI
             </Link>
             {RouteObject.mainNav.map((link) => {
@@ -113,10 +124,16 @@ function TopNav() {
               );
             })}
           </div>
-          <div data-role="mobile-links" className="flex md:hidden">
+          <div
+            data-role="mobile-links"
+            className="flex md:hidden"
+          >
             <DrawerRoot>
               <DrawerTrigger>
-                <Button preset="ghost" size="icon">
+                <Button
+                  preset="ghost"
+                  size="icon"
+                >
                   {/* mdi:menu */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -124,6 +141,7 @@ function TopNav() {
                     height="1.2em"
                     viewBox="0 0 24 24"
                   >
+                    <title>Menu</title>
                     <path
                       fill="currentColor"
                       d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"
@@ -134,7 +152,10 @@ function TopNav() {
               <DrawerOverlay className="z-[99]">
                 <DrawerContent className="w-[300px] overflow-auto">
                   <DrawerClose className="absolute top-4 right-4">
-                    <Button preset="ghost" size="icon">
+                    <Button
+                      preset="ghost"
+                      size="icon"
+                    >
                       {/* mdi:close */}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -142,6 +163,7 @@ function TopNav() {
                         height="1.2em"
                         viewBox="0 0 24 24"
                       >
+                        <title>Close</title>
                         <path
                           fill="currentColor"
                           d="M19 6.41L17.59 5 12 9.27 6.41 5 5 6.41 9.27 11 5 17.59 6.41 19 12 14.73 17.59 19 19 17.59 13.41 12 19 6.41"
@@ -152,7 +174,10 @@ function TopNav() {
                   <div className="flex flex-col justify-start items-start gap-6 text-lg">
                     <div className="flex flex-col justify-start items-start gap-3">
                       <DrawerClose>
-                        <Link to="/" className="font-extrabold">
+                        <Link
+                          to="/"
+                          className="font-extrabold"
+                        >
                           PSW/UI
                         </Link>
                       </DrawerClose>
@@ -186,14 +211,17 @@ function TopNav() {
                             })}
                           </div>
                         );
-                      }
+                      },
                     )}
                   </div>
                 </DrawerContent>
               </DrawerOverlay>
             </DrawerRoot>
           </div>
-          <div data-role="controls" className="flex flex-row items-center">
+          <div
+            data-role="controls"
+            className="flex flex-row items-center"
+          >
             <ThemeButton />
           </div>
         </div>

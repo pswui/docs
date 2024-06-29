@@ -1,6 +1,6 @@
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";
-import UnexpectedError from "./errors/Unexpected";
 import PageNotFound from "./errors/PageNotFound";
+import UnexpectedError from "./errors/Unexpected";
 
 function ErrorBoundary() {
   const error = useRouteError();
@@ -8,12 +8,10 @@ function ErrorBoundary() {
   if (isRouteErrorResponse(error)) {
     if (error.status === 404) {
       return <PageNotFound />;
-    } else {
-      return <UnexpectedError />;
     }
-  } else {
-    return <UnexpectedError />;
   }
+
+  return <UnexpectedError />;
 }
 
 export default ErrorBoundary;

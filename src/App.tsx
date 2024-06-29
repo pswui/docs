@@ -1,37 +1,37 @@
+import { Code } from "@/components/LoadedCode";
 import {
   Route,
+  RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-  RouterProvider,
   redirect,
 } from "react-router-dom";
-import MainLayout from "./MainLayout";
-import Home from "./Home";
 import DocsLayout from "./DocsLayout";
-import ErrorBoundary from "./ErrorHandler";
 import DynamicLayout from "./DynamicLayout";
-import { Code } from "@/components/LoadedCode";
+import ErrorBoundary from "./ErrorHandler";
+import Home from "./Home";
+import MainLayout from "./MainLayout";
 
-import DocsIntroduction, {
-  tableOfContents as docsIntroductionToc,
-} from "./docs/introduction.mdx";
-import DocsInstallation, {
-  tableOfContents as docsInstallationToc,
-} from "./docs/installation.mdx";
 import DocsConfiguration, {
   tableOfContents as docsConfigurationToc,
 } from "./docs/configuration.mdx";
+import DocsInstallation, {
+  tableOfContents as docsInstallationToc,
+} from "./docs/installation.mdx";
+import DocsIntroduction, {
+  tableOfContents as docsIntroductionToc,
+} from "./docs/introduction.mdx";
 
-import { HeadingContext } from "./HeadingContext";
+import { Tooltip, TooltipContent } from "@pswui/Tooltip";
 import React, {
-  ForwardedRef,
+  type ForwardedRef,
   forwardRef,
   useContext,
   useEffect,
   useRef,
   useState,
 } from "react";
-import { Tooltip, TooltipContent } from "@pswui/Tooltip";
+import { HeadingContext } from "./HeadingContext";
 
 function buildThresholdList() {
   const thresholds: number[] = [];
@@ -46,8 +46,10 @@ function buildThresholdList() {
   return thresholds;
 }
 
+type HashedHeaderProps = React.ComponentPropsWithoutRef<"h1">;
+
 function HashedHeaders(Level: `h${1 | 2 | 3 | 4 | 5 | 6}`) {
-  return (prop: any, ref: ForwardedRef<HTMLHeadingElement>) => {
+  return (prop: HashedHeaderProps, ref: ForwardedRef<HTMLHeadingElement>) => {
     const internalRef = useRef<HTMLHeadingElement | null>(null);
     const [_, setActiveHeadings] = useContext(HeadingContext);
 
@@ -74,7 +76,7 @@ function HashedHeaders(Level: `h${1 | 2 | 3 | 4 | 5 | 6}`) {
       return () => {
         observer.disconnect();
       };
-    }, [internalRef.current]);
+    }, [setActiveHeadings]);
 
     const [status, setStatus] = useState<"normal" | "error" | "success">(
       "normal",
@@ -97,7 +99,10 @@ function HashedHeaders(Level: `h${1 | 2 | 3 | 4 | 5 | 6}`) {
     }, [status]);
 
     return (
-      <Tooltip asChild position={"right"}>
+      <Tooltip
+        asChild
+        position={"right"}
+      >
         <Level
           ref={(el) => {
             internalRef.current = el;
@@ -111,7 +116,7 @@ function HashedHeaders(Level: `h${1 | 2 | 3 | 4 | 5 | 6}`) {
           onClick={async (e) => {
             try {
               await navigator.clipboard.writeText(
-                window.location.href.split("#")[0] + "#" + e.currentTarget.id,
+                `${window.location.href.split("#")[0]}#${e.currentTarget.id}`,
               );
               setStatus("success");
             } catch (e) {
@@ -121,7 +126,11 @@ function HashedHeaders(Level: `h${1 | 2 | 3 | 4 | 5 | 6}`) {
           {...restProp}
         >
           {children}
-          <TooltipContent status={status} offset={"lg"} delay={"early"}>
+          <TooltipContent
+            status={status}
+            offset={"lg"}
+            delay={"early"}
+          >
             <p className={"text-base font-normal whitespace-nowrap not-prose"}>
               {messages[status]}
             </p>
@@ -133,36 +142,51 @@ function HashedHeaders(Level: `h${1 | 2 | 3 | 4 | 5 | 6}`) {
 }
 
 const overrideComponents = {
-  pre: (props: any) => {
-    const {
-      props: { children, className },
-    } = React.cloneElement(React.Children.only(props.children));
+  pre: (props: React.ComponentPropsWithoutRef<"pre">) => {
+    if (!React.isValidElement(props.children)) {
+      return null;
+    }
 
-    const language =
-      (!className || !className.includes("language-")
-        ? "typescript"
-        : /language-([a-z]+)/.exec(className)![1]) ?? "typescript";
+    const { props: clonedProps } = React.cloneElement(
+      React.Children.only(props.children),
+    );
+
+    const { children, className } = clonedProps as {
+      children: React.ReactNode;
+      className?: string;
+    };
+
+    let language = "typescript";
+
+    if (className) {
+      const detectedLanguage = /language-([a-z]+)/.exec(className);
+      if (detectedLanguage) language = detectedLanguage[1];
+    }
 
     return <Code language={language}>{children as string}</Code>;
   },
-  code: forwardRef<HTMLElement, any>((props: any, ref) => (
+  code: forwardRef<HTMLElement, { className?: string }>((props, ref) => (
     <code
       ref={ref}
       {...props}
       className={`${props.className} rounded-md bg-neutral-800 text-orange-500 font-light p-1 before:content-none after:content-none`}
     />
   )),
-  table: forwardRef<HTMLTableElement, any>((props: any, ref) => (
+  table: forwardRef<HTMLTableElement, { className?: string }>((props, ref) => (
     <div className="overflow-auto">
-      <table ref={ref} {...props} className={`${props.className}`} />
+      <table
+        ref={ref}
+        {...props}
+        className={`${props.className}`}
+      />
     </div>
   )),
-  h1: forwardRef<HTMLHeadingElement, any>(HashedHeaders("h1")),
-  h2: forwardRef<HTMLHeadingElement, any>(HashedHeaders("h2")),
-  h3: forwardRef<HTMLHeadingElement, any>(HashedHeaders("h3")),
-  h4: forwardRef<HTMLHeadingElement, any>(HashedHeaders("h4")),
-  h5: forwardRef<HTMLHeadingElement, any>(HashedHeaders("h5")),
-  h6: forwardRef<HTMLHeadingElement, any>(HashedHeaders("h6")),
+  h1: forwardRef<HTMLHeadingElement, HashedHeaderProps>(HashedHeaders("h1")),
+  h2: forwardRef<HTMLHeadingElement, HashedHeaderProps>(HashedHeaders("h2")),
+  h3: forwardRef<HTMLHeadingElement, HashedHeaderProps>(HashedHeaders("h3")),
+  h4: forwardRef<HTMLHeadingElement, HashedHeaderProps>(HashedHeaders("h4")),
+  h5: forwardRef<HTMLHeadingElement, HashedHeaderProps>(HashedHeaders("h5")),
+  h6: forwardRef<HTMLHeadingElement, HashedHeaderProps>(HashedHeaders("h6")),
 };
 
 const docsModules = import.meta.glob("./docs/components/*.mdx");
@@ -194,7 +218,11 @@ const REDIRECTED_404 = /^\?(\/([a-zA-Z0-9\-_]+\/?)+)(&.*)*$/;
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<MainLayout />} errorElement={<ErrorBoundary />}>
+    <Route
+      path="/"
+      element={<MainLayout />}
+      errorElement={<ErrorBoundary />}
+    >
       <Route
         index
         loader={() =>
@@ -204,8 +232,14 @@ const router = createBrowserRouter(
         }
         element={<Home />}
       />
-      <Route path="docs" element={<DocsLayout />}>
-        <Route index loader={() => redirect("/docs/introduction")} />
+      <Route
+        path="docs"
+        element={<DocsLayout />}
+      >
+        <Route
+          index
+          loader={() => redirect("/docs/introduction")}
+        />
         <Route
           path="introduction"
           element={

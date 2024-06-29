@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import { Button } from "@pswui/Button";
+import { Link } from "react-router-dom";
 
 function PageNotFound() {
   return (
@@ -11,7 +11,10 @@ function PageNotFound() {
         </p>
       </section>
       <section className="flex flex-row justify-center items-center text-center gap-2">
-        <Button asChild preset="default">
+        <Button
+          asChild
+          preset="default"
+        >
           <Link to="/">Go home</Link>
         </Button>
       </section>
