@@ -62,7 +62,8 @@ function ThemeButton() {
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        anchor="bottomLeft"
+        anchor={"end"}
+        align={"end"}
         className="w-32"
       >
         <Button

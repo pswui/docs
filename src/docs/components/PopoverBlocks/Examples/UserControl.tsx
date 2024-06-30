@@ -77,7 +77,8 @@ const SignInForm = () => {
 
   return (
     <PopoverContent
-      anchor={"bottomLeft"}
+      anchor={"end"}
+      align={"end"}
       className={"p-4 space-y-3"}
     >
       <Label>
@@ -127,7 +128,10 @@ const UserControlContent = () => {
   }
 
   return (
-    <PopoverContent anchor={"bottomLeft"}>
+    <PopoverContent
+      anchor={"end"}
+      align={"end"}
+    >
       <Button preset={"ghost"}>Dashboard</Button>
       <Button
         preset={"ghost"}
