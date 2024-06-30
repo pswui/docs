@@ -43,7 +43,7 @@ import { Popover, PopoverTrigger, PopoverContent } from "@components/popover"
   <PopoverContent>
     {/* content of popover */}
   </PopoverContent>
-</Popover
+</Popover>
 ```
 
 > Note:
@@ -69,10 +69,13 @@ import { Popover, PopoverTrigger, PopoverContent } from "@components/popover"
 
 #### Variants
 
-| Prop     | Type                                                                     | Default          | Description                     |
-|:---------|:-------------------------------------------------------------------------|:-----------------|:--------------------------------|
-| `anchor` | `` `${"top" \| "middle" \| "bottom"}${"Left" \| "Center" \| "Right"}` `` | `"bottomCenter"` | Position of Popover content     |
-| `offset` | `"sm" \| "md" \| "lg"`                                                   | `"md"`           | Gap between trigger and popover |
+| Prop        | Type                           | Default    | Description                         |
+|:------------|:-------------------------------|:-----------|:------------------------------------|
+| `direction` | `"row" \| "col"`               | `"col"`    | Main axis of aligning popover       |
+| `position`  | `"start" \| "end"`             | `"end"`    | Position of popover                 |
+| `anchor`    | `"start" \| "middle" \| "end"` | `"middle"` | Reference point of aligning popover |
+| `align`     | `"start" \| "middle" \| "end"` | `"middle"` | Position of reference point         |
+| `offset`    | `"sm" \| "md" \| "lg"`         | `"md"`     | Gap between trigger and popover     |
 
 #### Special
 
