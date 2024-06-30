@@ -2,6 +2,7 @@ import { type AsChild, Slot, type VariantProps, vcn } from "@pswui-lib";
 import React, { useContext, useEffect, useRef } from "react";
 
 interface IPopoverContext {
+  controlled: boolean;
   opened: boolean;
 }
 
@@ -10,6 +11,7 @@ const PopoverContext = React.createContext<
 >([
   {
     opened: false,
+    controlled: false,
   },
   () => {
     if (process.env.NODE_ENV && process.env.NODE_ENV === "development") {
@@ -26,14 +28,23 @@ interface PopoverProps extends AsChild {
 }
 
 const Popover = ({ children, opened, asChild }: PopoverProps) => {
-  const state = React.useState<IPopoverContext>({
+  const [state, setState] = React.useState<IPopoverContext>({
     opened: opened ?? false,
+    controlled: opened !== undefined,
   });
+
+  useEffect(() => {
+    setState((p) => ({
+      ...p,
+      controlled: opened !== undefined,
+      opened: opened !== undefined ? opened : p.opened,
+    }));
+  }, [opened]);
 
   const Comp = asChild ? Slot : "div";
 
   return (
-    <PopoverContext.Provider value={state}>
+    <PopoverContext.Provider value={[state, setState]}>
       <Comp className="relative">{children}</Comp>
     </PopoverContext.Provider>
   );
@@ -54,7 +65,7 @@ const popoverColors = {
 };
 
 const [popoverContentVariant, resolvePopoverContentVariantProps] = vcn({
-  base: `absolute transition-all duration-150 border rounded-lg p-0.5 [&>*]:w-full ${popoverColors.background} ${popoverColors.border}`,
+  base: `absolute transition-all duration-150 border rounded-lg p-0.5 [&>*]:w-full z-10 ${popoverColors.background} ${popoverColors.border}`,
   variants: {
     direction: {
       row: "",
@@ -203,11 +214,12 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
           setState((prev) => ({ ...prev, opened: false }));
         }
       }
-      document.addEventListener("mousedown", handleOutsideClick);
+      !state.controlled &&
+        document.addEventListener("mousedown", handleOutsideClick);
       return () => {
         document.removeEventListener("mousedown", handleOutsideClick);
       };
-    }, [setState]);
+    }, [state.controlled, setState]);
 
     return (
       <div
