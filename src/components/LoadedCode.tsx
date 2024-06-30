@@ -1,6 +1,6 @@
 import { Button } from "@pswui/Button";
 import { useToast } from "@pswui/Toast";
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useEffect, useMemo, useState } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { gruvboxDark } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { twMerge } from "tailwind-merge";
@@ -16,12 +16,16 @@ export const GITHUB_COMP_PREVIEW = (componentName: string) =>
 export const GITHUB_STORY = (componentName: string, storyName: string) =>
   `${GITHUB_DOCS}/src/docs/components/${componentName}Blocks/Examples/${storyName}.tsx`;
 
+export type TEMPLATE = Record<string, Record<string, string | boolean>>;
+
 export const LoadedCode = ({
   from,
   className,
+  template,
 }: {
   from: string;
   className?: string;
+  template?: TEMPLATE;
 }) => {
   const [state, setState] = useState<string | undefined | null>();
   const { toast } = useToast();
@@ -33,6 +37,33 @@ export const LoadedCode = ({
       setState(text);
     })();
   }, [from]);
+
+  const postProcessedCode = useMemo(() => {
+    if (!state) return "";
+    if (!template) return state;
+
+    let templatedCode = state;
+
+    for (const [componentName, componentTemplateProps] of Object.entries(
+      template,
+    )) {
+      for (const [propName, propValue] of Object.entries(
+        componentTemplateProps,
+      )) {
+        const regex = new RegExp(
+          `(<${componentName}\s[^]*)\s${propName}=(\{(true|false|"[^"\n]*"|'[^'\n]*'|\`[^\`\n]*\`)\}|"[^"\n]*"|'[^'\n]*')`,
+        );
+        templatedCode = templatedCode.replace(
+          regex,
+          typeof propValue === "string"
+            ? `\$1 ${propName}="${propValue}"`
+            : `$1 ${propName}={${propValue}}`,
+        );
+      }
+    }
+
+    return templatedCode;
+  }, [state, template]);
 
   return (
     <div className={twMerge("relative", className)}>
@@ -76,7 +107,7 @@ export const LoadedCode = ({
         className={`w-full h-64 rounded-lg ${!state ? "animate-pulse" : ""} scrollbar-none`}
         customStyle={{ padding: "1rem" }}
       >
-        {state ?? ""}
+        {postProcessedCode}
       </SyntaxHighlighter>
     </div>
   );

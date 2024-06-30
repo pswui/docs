@@ -1,26 +1,15 @@
 import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
-import { LoadedCode, GITHUB_STORY, GITHUB_COMP, GITHUB_COMP_PREVIEW } from "@/components/LoadedCode";
-import { PopoverDemo } from "./PopoverBlocks/Preview";
+import { LoadedCode, GITHUB_STORY, GITHUB_COMP } from "@/components/LoadedCode";
 import Examples from "./PopoverBlocks/Examples";
+import PopoverPlayground from "./PopoverBlocks/Playground";
 
 # Popover
 Displays rich content in a portal, triggered by a button.
 
-<TabProvider defaultName="preview">
-    <TabList>
-        <TabTrigger name="preview">Preview</TabTrigger>
-        <TabTrigger name="code">Code</TabTrigger>
-    </TabList>
-    <TabContent name="preview">
-        <Story layout="centered">
-            <PopoverDemo />
-        </Story>
-    </TabContent>
-    <TabContent name="code">
-        <LoadedCode from={GITHUB_COMP_PREVIEW("Popover")} />
-    </TabContent>
-</TabProvider>
+## Playground
+
+<PopoverPlayground />
 
 ## Installation
 
@@ -60,10 +49,12 @@ import { Popover, PopoverTrigger, PopoverContent } from "@components/popover"
 
 #### Special
 
-| Prop      | Type      | Default | Description                                                       |
-|:----------|:----------|:--------|:------------------------------------------------------------------|
-| `opened`  | `boolean` | `false` | Initial open state                                                |
-| `asChild` | `boolean` | `false` | Whether the root of popover is rendered as a child of a component |
+| Prop      | Type                    | Default     | Description                                                       |
+|:----------|:------------------------|:------------|:------------------------------------------------------------------|
+| `opened`  | `boolean  \| undefined` | `undefined` | Opened state                                                      |
+| `asChild` | `boolean`               | `false`     | Whether the root of popover is rendered as a child of a component |
+
+Note that giving `opened` prop not undefined will also sets the internal state `controlled` which disables internal popover open/close handling, like close on outside click.
 
 ### PopoverContent
 
