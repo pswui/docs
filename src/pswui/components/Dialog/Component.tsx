@@ -1,12 +1,12 @@
+import { Slot, type VariantProps, vcn } from "@pswui-lib";
 import React, { useState } from "react";
-import { Slot, VariantProps, vcn } from "@pswui-lib";
 import ReactDOM from "react-dom";
 
 import {
   DialogContext,
+  type IDialogContext,
   initialDialogContext,
   useDialogContext,
-  IDialogContext,
 } from "./Context";
 
 /**
@@ -55,7 +55,7 @@ const DialogTrigger = ({ children }: DialogTriggerProps) => {
  */
 
 const [dialogOverlayVariant, resolveDialogOverlayVariant] = vcn({
-  base: "fixed inset-0 z-50 w-full h-full max-w-screen transition-all duration-300 flex flex-col justify-center items-center",
+  base: "fixed inset-0 z-50 w-full h-screen overflow-y-auto max-w-screen transition-all duration-300",
   variants: {
     opened: {
       true: "pointer-events-auto opacity-100",
@@ -72,9 +72,9 @@ const [dialogOverlayVariant, resolveDialogOverlayVariant] = vcn({
       lg: "backdrop-brightness-50",
     },
     padding: {
-      sm: "p-4",
-      md: "p-6",
-      lg: "p-8",
+      sm: "[&>div]:p-4",
+      md: "[&>div]:p-6",
+      lg: "[&>div]:p-8",
     },
   },
   defaults: {
@@ -114,7 +114,14 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlay>(
               onClick?.(e);
             }}
           >
-            {children}
+            <div
+              className={
+                "w-screen max-w-full min-h-screen flex flex-col justify-center items-center"
+              }
+            >
+              {/* Layer for overflow positioning */}
+              {children}
+            </div>
           </div>,
           document.body,
         )}
@@ -170,23 +177,27 @@ const [dialogContentVariant, resolveDialogContentVariant] = vcn({
   },
 });
 
-interface DialogContent
+interface DialogContentProps
   extends React.ComponentPropsWithoutRef<"div">,
     Omit<VariantProps<typeof dialogContentVariant>, "opened"> {}
 
-const DialogContent = React.forwardRef<HTMLDivElement, DialogContent>(
+const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
   (props, ref) => {
     const [{ opened }] = useDialogContext();
     const [variantProps, otherPropsCompressed] = resolveDialogContentVariant({
       ...props,
       opened,
     });
-    const { children, ...otherPropsExtracted } = otherPropsCompressed;
+    const { children, onClick, ...otherPropsExtracted } = otherPropsCompressed;
     return (
       <div
         {...otherPropsExtracted}
         ref={ref}
         className={dialogContentVariant(variantProps)}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick?.(e);
+        }}
       >
         {children}
       </div>

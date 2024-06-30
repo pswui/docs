@@ -58,6 +58,31 @@ type VariantKV<V extends VariantType> = {
 };
 
 /**
+ * Used for safely casting `Object.entries(<VariantKV>)`
+ */
+type VariantKVEntry<V extends VariantType> = [
+  keyof V,
+  BooleanString<keyof V[keyof V] & string>,
+][];
+
+/**
+ * Takes VariantKV as parameter, return className string.
+ *
+ * @example
+ * vcn({
+ *   /* ... *\/
+ *   dynamics: [
+ *     ({ a, b }) => {
+ *       return a === "something" ? "asdf" : b
+ *     },
+ *   ]
+ * })
+ */
+type DynamicClassName<V extends VariantType> = (
+  variantProps: VariantKV<V>,
+) => string;
+
+/**
  * Takes VariantType, and returns a type that represents the preset object.
  *
  * @example
@@ -94,6 +119,7 @@ export function vcn<V extends VariantType>(param: {
    */
   base?: string | undefined;
   variants: V;
+  dynamics?: DynamicClassName<V>[];
   defaults: VariantKV<V>;
   presets?: undefined;
 }): [
@@ -108,7 +134,7 @@ export function vcn<V extends VariantType>(param: {
   /**
    * Any Props -> Variant Props, Other Props
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: using unknown causes error `Index signature for type 'string' is missing in type --Props`.
   <AnyPropBeforeResolve extends Record<string, any>>(
     anyProps: AnyPropBeforeResolve,
   ) => [
@@ -124,6 +150,7 @@ export function vcn<V extends VariantType, P extends PresetType<V>>(param: {
    */
   base?: string | undefined;
   variants: V /* VariantType */;
+  dynamics?: DynamicClassName<V>[];
   defaults: VariantKV<V>;
   presets: P;
 }): [
@@ -139,7 +166,7 @@ export function vcn<V extends VariantType, P extends PresetType<V>>(param: {
   /**
    * Any Props -> Variant Props, Other Props
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: using unknown causes error `Index signature for type 'string' is missing in type --Props`.
   <AnyPropBeforeResolve extends Record<string, any>>(
     anyProps: AnyPropBeforeResolve,
   ) => [
@@ -159,18 +186,57 @@ export function vcn<
 >({
   base,
   variants,
+  dynamics = [],
   defaults,
   presets,
 }: {
   base?: string | undefined;
   variants: V;
+  dynamics?: DynamicClassName<V>[];
   defaults: VariantKV<V>;
   presets?: P;
 }) {
+  /**
+   * --Internal utility function--
+   * After transforming props to final version (which means "after overriding default, preset, and variant props sent via component props")
+   * It turns final version of variant props to className
+   */
+  function __transformer__(
+    final: VariantKV<V>,
+    dynamics: string[],
+    propClassName?: string,
+  ): string {
+    const classNames: string[] = [];
+
+    for (const [variantName, variantKey] of Object.entries(
+      final,
+    ) as VariantKVEntry<V>) {
+      classNames.push(variants[variantName][variantKey.toString()]);
+    }
+
+    return twMerge(base, ...classNames, ...dynamics, propClassName);
+  }
+
   return [
     /**
      * Takes any props (including className), and returns the class name.
      * If there is no variant specified in props, then it will fallback to preset, and then default.
+     *
+     *
+     * Process priority of variant will be:
+     *
+     * --- Processed as string
+     * 1. Base
+     *
+     * --- Processed as object (it will ignore rest of "not duplicated classname" in lower priority)
+     * 2. Default
+     * 3. Preset (overriding default)
+     * 4. Variant props via component (overriding preset)
+     *
+     * --- Processed as string
+     * 5. Dynamic classNames using variant props
+     * 6. User's className (overriding dynamic)
+     *
      *
      * @param variantProps - The variant props including className.
      * @returns The class name.
@@ -180,42 +246,42 @@ export function vcn<
         VariantKV<V>
       >,
     ) => {
-      const { className, preset, ...otherVariantProps } = variantProps;
+      const { className, preset, ..._otherVariantProps } = variantProps;
 
-      const currentPreset: P[keyof P] | null =
-        presets && preset ? (presets as NonNullable<P>)[preset] ?? null : null;
-      const presetVariantKeys: (keyof V)[] = Object.keys(currentPreset ?? {});
-      return twMerge(
-        base,
-        ...(
-          Object.entries(defaults) as [keyof V, keyof V[keyof V] & string][]
-        ).map<string>(([variantKey, defaultValue]) => {
-          // Omit<Partial<VariantKV<V>> & { className; preset; }, className | preset> = Partial<VariantKV<V>> (safe to cast)
-          // Partial<VariantKV<V>>[keyof V] => { [k in keyof V]?: BooleanString<keyof V[keyof V] & string> } => BooleanString<keyof V[keyof V]>
+      // Omit<Partial<VariantKV<V>> & { className; preset; }, className | preset> = Partial<VariantKV<V>> (safe to cast)
+      // We all know `keyof V` = string, right? (but typescript says it's not, so.. attacking typescript with unknown lol)
+      const otherVariantProps = _otherVariantProps as unknown as Partial<
+        VariantKV<V>
+      >;
 
-          const directVariantValue: (keyof V[keyof V] & string) | undefined = (
-            otherVariantProps as unknown as Partial<VariantKV<V>>
-          )[variantKey]?.toString?.(); // BooleanString<> -> string (safe to index V[keyof V])
+      const kv: VariantKV<V> = { ...defaults };
 
-          const currentPresetVariantValue:
-            | (keyof V[keyof V] & string)
-            | undefined =
-            !!currentPreset && presetVariantKeys.includes(variantKey)
-              ? (currentPreset as Partial<VariantKV<V>>)[
-                  variantKey
-                ]?.toString?.()
-              : undefined;
+      // Preset Processing
+      if (presets && preset && preset in presets) {
+        for (const [variantName, variantKey] of Object.entries(
+          // typescript bug (casting to NonNullable<P> required)
+          (presets as NonNullable<P>)[preset],
+        ) as VariantKVEntry<V>) {
+          kv[variantName] = variantKey;
+        }
+      }
 
-          const variantValue: keyof V[keyof V] & string =
-            directVariantValue ?? currentPresetVariantValue ?? defaultValue;
-          return variants[variantKey][variantValue];
-        }),
-        (
-          currentPreset as Partial<VariantKV<V>> | null
-        )?.className?.toString?.(), // preset's classname comes after user's variant props? huh..
-        className,
-      );
+      // VariantProps Processing
+      for (const [variantName, variantKey] of Object.entries(
+        otherVariantProps,
+      ) as VariantKVEntry<V>) {
+        kv[variantName] = variantKey;
+      }
+
+      // make dynamics result
+      const dynamicClasses: string[] = [];
+      for (const dynamicFunction of dynamics) {
+        dynamicClasses.push(dynamicFunction(kv));
+      }
+
+      return __transformer__(kv, dynamicClasses, className);
     },
+
     /**
      * Takes any props, parse variant props and other props.
      * If `options.excludeA` is true, then it will parse `A` as "other" props.
