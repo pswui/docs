@@ -18,6 +18,10 @@ export const GITHUB_STORY = (componentName: string, storyName: string) =>
 
 export type TEMPLATE = Record<string, Record<string, string | boolean>>;
 
+const TEMPLATE_REMOVE_REGEX = /\/\*\s*remove\s*\*\/(.|\n)*?\/\*\s*end\s*\*\//g;
+const TEMPLATE_REPLACE_REGEX =
+  /\/\*\s*replace\s*\*\/(.|\n)*?\/\*\s*with\s*\n((.|\n)+)\n\s*\*\//g;
+
 export const LoadedCode = forwardRef<
   HTMLDivElement,
   { from: string; className?: string; template?: TEMPLATE }
@@ -39,6 +43,10 @@ export const LoadedCode = forwardRef<
 
     let templatedCode = state;
 
+    templatedCode = templatedCode
+      .replaceAll(TEMPLATE_REMOVE_REGEX, "")
+      .replaceAll(TEMPLATE_REPLACE_REGEX, "$2");
+
     for (const [componentName, componentTemplateProps] of Object.entries(
       template,
     )) {
@@ -46,7 +54,7 @@ export const LoadedCode = forwardRef<
         componentTemplateProps,
       )) {
         const regex = new RegExp(
-          `(<${componentName}\s[^]*)\s${propName}=(\{(true|false|"[^"\n]*"|'[^'\n]*'|\`[^\`\n]*\`)\}|"[^"\n]*"|'[^'\n]*')`,
+          `(<${componentName.slice(0, componentName.length - 5)}\\b[^>]*)\\s${propName}={${componentName}.${propName}}`,
         );
         templatedCode = templatedCode.replace(
           regex,
