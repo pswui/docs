@@ -18,15 +18,10 @@ export const GITHUB_STORY = (componentName: string, storyName: string) =>
 
 export type TEMPLATE = Record<string, Record<string, string | boolean>>;
 
-export const LoadedCode = ({
-  from,
-  className,
-  template,
-}: {
-  from: string;
-  className?: string;
-  template?: TEMPLATE;
-}) => {
+export const LoadedCode = forwardRef<
+  HTMLDivElement,
+  { from: string; className?: string; template?: TEMPLATE }
+>(({ from, className, template }, ref) => {
   const [state, setState] = useState<string | undefined | null>();
   const { toast } = useToast();
 
@@ -66,7 +61,10 @@ export const LoadedCode = ({
   }, [state, template]);
 
   return (
-    <div className={twMerge("relative", className)}>
+    <div
+      className={twMerge("relative", className)}
+      ref={ref}
+    >
       <Button
         preset="default"
         size="icon"
@@ -111,7 +109,8 @@ export const LoadedCode = ({
       </SyntaxHighlighter>
     </div>
   );
-};
+});
+LoadedCode.displayName = "LoadedCode";
 
 export const Code = forwardRef<
   HTMLDivElement,
