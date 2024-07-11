@@ -65,7 +65,7 @@ const popoverColors = {
 };
 
 const [popoverContentVariant, resolvePopoverContentVariantProps] = vcn({
-  base: `absolute transition-all duration-150 border rounded-lg p-0.5 [&>*]:w-full z-10 ${popoverColors.background} ${popoverColors.border}`,
+  base: `absolute transition-all duration-150 border rounded-lg p-0.5 [&>*]:w-full ${popoverColors.background} ${popoverColors.border}`,
   variants: {
     direction: {
       row: "",
@@ -200,7 +200,7 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
   (props, ref) => {
     const [variantProps, otherPropsCompressed] =
       resolvePopoverContentVariantProps(props);
-    const { children, ...otherPropsExtracted } = otherPropsCompressed;
+    const { children, asChild, ...otherPropsExtracted } = otherPropsCompressed;
     const [state, setState] = useContext(PopoverContext);
 
     const internalRef = useRef<HTMLDivElement | null>(null);
@@ -221,14 +221,16 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
       };
     }, [state.controlled, setState]);
 
+    const Comp = asChild ? Slot : "div";
+
     return (
-      <div
+      <Comp
         {...otherPropsExtracted}
         className={popoverContentVariant({
           ...variantProps,
           opened: state.opened,
         })}
-        ref={(el) => {
+        ref={(el: HTMLDivElement) => {
           internalRef.current = el;
           if (typeof ref === "function") {
             ref(el);
@@ -238,9 +240,10 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
         }}
       >
         {children}
-      </div>
+      </Comp>
     );
   },
 );
+PopoverContent.displayName = "PopoverContent";
 
 export { Popover, PopoverTrigger, PopoverContent };

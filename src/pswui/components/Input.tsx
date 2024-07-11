@@ -1,4 +1,4 @@
-import { type VariantProps, vcn } from "@pswui-lib";
+import { type AsChild, Slot, type VariantProps, vcn } from "@pswui-lib";
 import React from "react";
 
 const inputColors = {
@@ -42,7 +42,8 @@ const [inputVariant, resolveInputVariantProps] = vcn({
 
 interface InputFrameProps
   extends VariantProps<typeof inputVariant>,
-    React.ComponentPropsWithoutRef<"label"> {
+    React.ComponentPropsWithoutRef<"label">,
+    AsChild {
   children?: React.ReactNode;
 }
 
@@ -50,19 +51,22 @@ const InputFrame = React.forwardRef<HTMLLabelElement, InputFrameProps>(
   (props, ref) => {
     const [variantProps, otherPropsCompressed] =
       resolveInputVariantProps(props);
-    const { children, ...otherPropsExtracted } = otherPropsCompressed;
+    const { children, asChild, ...otherPropsExtracted } = otherPropsCompressed;
+
+    const Comp = asChild ? Slot : "label";
 
     return (
-      <label
+      <Comp
         ref={ref}
         className={`group/input-frame ${inputVariant(variantProps)}`}
         {...otherPropsExtracted}
       >
         {children}
-      </label>
+      </Comp>
     );
   },
 );
+InputFrame.displayName = "InputFrame";
 
 interface InputProps
   extends VariantProps<typeof inputVariant>,
@@ -113,5 +117,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     />
   );
 });
+Input.displayName = "Input";
 
 export { InputFrame, Input };

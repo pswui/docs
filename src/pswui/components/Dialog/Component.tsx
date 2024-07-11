@@ -1,5 +1,10 @@
-import { Slot, type VariantProps, vcn } from "@pswui-lib";
-import React, { useState } from "react";
+import {
+  ServerSideDocumentFallback,
+  Slot,
+  type VariantProps,
+  vcn,
+} from "@pswui-lib";
+import React, { type ReactNode, useState } from "react";
 import ReactDOM from "react-dom";
 
 import {
@@ -100,8 +105,9 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlay>(
     });
     const { children, closeOnClick, onClick, ...otherPropsExtracted } =
       otherPropsCompressed;
+
     return (
-      <>
+      <ServerSideDocumentFallback>
         {ReactDOM.createPortal(
           <div
             {...otherPropsExtracted}
@@ -125,10 +131,11 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlay>(
           </div>,
           document.body,
         )}
-      </>
+      </ServerSideDocumentFallback>
     );
   },
 );
+DialogOverlay.displayName = "DialogOverlay";
 
 /**
  * =========================
@@ -204,6 +211,7 @@ const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
     );
   },
 );
+DialogContent.displayName = "DialogContent";
 
 /**
  * =========================
@@ -267,6 +275,8 @@ const DialogHeader = React.forwardRef<HTMLElement, DialogHeaderProps>(
     );
   },
 );
+
+DialogHeader.displayName = "DialogHeader";
 
 /**
  * =========================
@@ -342,6 +352,7 @@ const DialogTitle = React.forwardRef<HTMLHeadingElement, DialogTitleProps>(
     );
   },
 );
+DialogTitle.displayName = "DialogTitle";
 
 const DialogSubtitle = React.forwardRef<
   HTMLHeadingElement,
@@ -360,6 +371,7 @@ const DialogSubtitle = React.forwardRef<
     </h2>
   );
 });
+DialogSubtitle.displayName = "DialogSubtitle";
 
 /**
  * =========================
@@ -401,6 +413,34 @@ const DialogFooter = React.forwardRef<HTMLDivElement, DialogFooterProps>(
     );
   },
 );
+DialogFooter.displayName = "DialogFooter";
+
+interface DialogControllers {
+  context: IDialogContext;
+
+  setContext: React.Dispatch<React.SetStateAction<IDialogContext>>;
+  close: () => void;
+}
+
+interface DialogControllerProps {
+  children: (controllers: DialogControllers) => ReactNode;
+}
+
+const DialogController = (props: DialogControllerProps) => {
+  return (
+    <DialogContext.Consumer>
+      {([context, setContext]) =>
+        props.children({
+          context,
+          setContext,
+          close() {
+            setContext((p) => ({ ...p, opened: false }));
+          },
+        })
+      }
+    </DialogContext.Consumer>
+  );
+};
 
 export {
   DialogRoot,
@@ -412,4 +452,5 @@ export {
   DialogTitle,
   DialogSubtitle,
   DialogFooter,
+  DialogController,
 };
