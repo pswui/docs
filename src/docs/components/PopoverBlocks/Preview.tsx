@@ -1,5 +1,6 @@
 import { Button } from "@pswui/Button";
 import { Popover, PopoverContent, PopoverTrigger } from "@pswui/Popover";
+/* remove */
 
 export interface ControlledPopoverDemoProps {
   PopoverProps: {
@@ -15,12 +16,18 @@ export interface ControlledPopoverDemoProps {
   };
 }
 
+/* end */
+
+/* replace */
 export function PopoverDemo({
   PopoverProps,
   PopoverContentProps,
 }: ControlledPopoverDemoProps) {
+  /* with
+export function PopoverDemo() {
+  */
   return (
-    <Popover {...PopoverProps}>
+    <Popover opened={PopoverProps.opened}>
       <PopoverTrigger>
         <Button size="icon">
           <svg
@@ -37,7 +44,14 @@ export function PopoverDemo({
           </svg>
         </Button>
       </PopoverTrigger>
-      <PopoverContent {...PopoverContentProps}>
+      <PopoverContent
+        direction={PopoverContentProps.direction}
+        position={PopoverContentProps.position}
+        anchor={PopoverContentProps.anchor}
+        align={PopoverContentProps.align}
+        offset={PopoverContentProps.offset}
+        className={PopoverContentProps.className}
+      >
         <Button
           preset="ghost"
           className="gap-2"
