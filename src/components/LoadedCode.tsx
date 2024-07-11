@@ -110,7 +110,7 @@ export const LoadedCode = forwardRef<
       <SyntaxHighlighter
         language="typescript"
         style={gruvboxDark}
-        className={`w-full h-64 rounded-lg ${!state ? "animate-pulse" : ""} scrollbar-none`}
+        className={`w-full h-64 rounded-lg ${!state ? "animate-pulse" : ""} scrollbar-none resize-y`}
         customStyle={{ padding: "1rem" }}
       >
         {postProcessedCode}
