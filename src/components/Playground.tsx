@@ -3,7 +3,10 @@ import { Checkbox } from "@pswui/Checkbox";
 import { Input } from "@pswui/Input";
 import { Label } from "@pswui/Label";
 import { Popover, PopoverContent, PopoverTrigger } from "@pswui/Popover";
+import { TabContent, TabList, TabProvider, TabTrigger } from "@pswui/Tabs";
 import type { ReactNode } from "react";
+import { GITHUB_COMP_PREVIEW, LoadedCode, type TEMPLATE } from "./LoadedCode";
+import { Story } from "./Story";
 
 export type Template = Record<
   string,
@@ -116,6 +119,39 @@ export function PlaygroundControl<T extends ControlTemplate>(props: {
           </div>
         ))}
       </div>
+    </>
+  );
+}
+
+export function PlaygroundLayout<T extends ControlTemplate>({
+  children,
+  compName,
+  props,
+  control,
+}: {
+  children: ReactNode;
+  compName: string;
+  props: TEMPLATE;
+  control: T;
+}) {
+  return (
+    <>
+      <TabProvider defaultName="preview">
+        <TabList>
+          <TabTrigger name="preview">Preview</TabTrigger>
+          <TabTrigger name="code">Code</TabTrigger>
+        </TabList>
+        <TabContent name="preview">
+          <Story layout="centered">{children}</Story>
+        </TabContent>
+        <TabContent name="code">
+          <LoadedCode
+            from={GITHUB_COMP_PREVIEW(compName)}
+            template={props}
+          />
+        </TabContent>
+      </TabProvider>
+      <PlaygroundControl props={control} />
     </>
   );
 }
