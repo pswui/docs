@@ -1,12 +1,6 @@
-import {
-  GITHUB_COMP_PREVIEW,
-  LoadedCode,
-  type TEMPLATE,
-} from "@/components/LoadedCode.tsx";
+import type { TEMPLATE } from "@/components/LoadedCode.tsx";
 import { usePgProps } from "@/components/PgHooks.tsx";
-import { PlaygroundControl } from "@/components/Playground.tsx";
-import { Story } from "@/components/Story";
-import { TabContent, TabList, TabProvider, TabTrigger } from "@pswui/Tabs";
+import { PlaygroundLayout } from "@/components/Playground.tsx";
 import { type ControlledPopoverDemoProps, PopoverDemo } from "./Preview.tsx";
 
 interface TemplateProps extends TEMPLATE, ControlledPopoverDemoProps {}
@@ -53,25 +47,12 @@ export default function PopoverPlayground() {
   });
 
   return (
-    <>
-      <TabProvider defaultName="preview">
-        <TabList>
-          <TabTrigger name="preview">Preview</TabTrigger>
-          <TabTrigger name="code">Code</TabTrigger>
-        </TabList>
-        <TabContent name="preview">
-          <Story layout="centered">
-            <PopoverDemo {...props} />
-          </Story>
-        </TabContent>
-        <TabContent name="code">
-          <LoadedCode
-            from={GITHUB_COMP_PREVIEW("Popover")}
-            template={props}
-          />
-        </TabContent>
-      </TabProvider>
-      <PlaygroundControl props={control} />
-    </>
+    <PlaygroundLayout
+      compName="Popover"
+      props={props}
+      control={control}
+    >
+      <PopoverDemo {...props} />
+    </PlaygroundLayout>
   );
 }
