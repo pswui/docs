@@ -16,7 +16,10 @@ export const GITHUB_COMP_PREVIEW = (componentName: string) =>
 export const GITHUB_STORY = (componentName: string, storyName: string) =>
   `${GITHUB_DOCS}/src/docs/components/${componentName}Blocks/Examples/${storyName}.tsx`;
 
-export type TEMPLATE = Record<string, Record<string, string | boolean>>;
+export type TEMPLATE = Record<
+  string,
+  Record<string, string | boolean | undefined>
+>;
 
 const TEMPLATE_REMOVE_REGEX = /\/\*\s*remove\s*\*\/(.|\n)*?\/\*\s*end\s*\*\//g;
 const TEMPLATE_REPLACE_REGEX =
@@ -54,13 +57,15 @@ export const LoadedCode = forwardRef<
         componentTemplateProps,
       )) {
         const regex = new RegExp(
-          `(<${componentName.slice(0, componentName.length - 5)}\\b[^>]*)\\s${propName}={${componentName}.${propName}}`,
+          `(<${componentName.slice(0, componentName.length - 5)}\\b[^>]*?)(\n?\\s+)${propName}={${componentName}.${propName}}`,
         );
         templatedCode = templatedCode.replace(
           regex,
-          typeof propValue === "string"
-            ? `\$1 ${propName}="${propValue}"`
-            : `$1 ${propName}={${propValue}}`,
+          typeof propValue === "undefined"
+            ? "$1"
+            : typeof propValue === "string"
+              ? `\$1$2 ${propName}="${propValue}"`
+              : `$1$2 ${propName}={${propValue}}`,
         );
       }
     }

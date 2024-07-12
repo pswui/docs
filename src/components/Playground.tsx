@@ -9,9 +9,9 @@ export type Template = Record<
   string,
   Record<
     string,
-    | { type: "boolean"; value: boolean }
-    | { type: "select"; options: string[]; value: string }
-    | { type: "string"; value: string }
+    | { type: "boolean"; value: boolean; disabled?: boolean }
+    | { type: "select"; options: string[]; value: string; disabled?: boolean }
+    | { type: "string"; value: string; disabled?: boolean }
   >
 >;
 
@@ -22,15 +22,25 @@ export type ControlTemplate = Record<
     | {
         type: "boolean";
         value: boolean;
+        disabled?: boolean;
         onChange: (value: boolean) => void;
+        onToggle: (v: boolean) => void;
       }
     | {
         type: "select";
         options: string[];
         value: string;
+        disabled?: boolean;
         onChange: (value: string) => void;
+        onToggle: (v: boolean) => void;
       }
-    | { type: "string"; value: string; onChange: (value: string) => void }
+    | {
+        type: "string";
+        value: string;
+        disabled?: boolean;
+        onChange: (value: string) => void;
+        onToggle: (v: boolean) => void;
+      }
   >
 >;
 
@@ -52,12 +62,26 @@ export function PlaygroundControl<T extends ControlTemplate>(props: {
           >
             <b>&lt;{componentName.slice(0, componentName.length - 5)}&gt;</b>
             {Object.entries(propEntries).map(([propName, propMeta]) => (
-              <Label
+              <div
                 key={componentName + propName}
-                direction="horizontal"
                 className="flex flex-row justify-between items-center w-full gap-2"
               >
-                <span>{propName}</span>
+                <Label
+                  direction="horizontal"
+                  className="flex flex-row items-center gap-2"
+                >
+                  <Checkbox
+                    onChange={(e) => {
+                      propMeta.onToggle(e.currentTarget.checked);
+                    }}
+                    checked={propMeta.disabled}
+                  />
+                  {propMeta.disabled ? (
+                    <s className="opacity-50">{propName}</s>
+                  ) : (
+                    <span>{propName}</span>
+                  )}
+                </Label>
                 {propMeta.type === "boolean" ? (
                   <Checkbox
                     checked={propMeta.value}
@@ -87,7 +111,7 @@ export function PlaygroundControl<T extends ControlTemplate>(props: {
                     </PopoverContent>
                   </Popover>
                 ) : null}
-              </Label>
+              </div>
             ))}
           </div>
         ))}

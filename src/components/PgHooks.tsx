@@ -25,8 +25,14 @@ export function usePgProps<T extends TEMPLATE>(
               state[componentName][propKey].value = value;
             });
           },
+          onToggle(v: boolean) {
+            console.log(`toggling ${componentName}/${propKey}`);
+            mutate((state) => {
+              state[componentName][propKey].disabled = v;
+            });
+          },
         };
-        vals[propKey] = propMeta.value;
+        vals[propKey] = propMeta.disabled ? undefined : propMeta.value;
       }
 
       controlTemplate[componentName] = pre;
