@@ -60,33 +60,15 @@ const DialogTrigger = ({ children }: DialogTriggerProps) => {
  */
 
 const [dialogOverlayVariant, resolveDialogOverlayVariant] = vcn({
-  base: "fixed inset-0 z-50 w-full h-screen overflow-y-auto max-w-screen transition-all duration-300",
+  base: "fixed inset-0 z-50 w-full h-screen overflow-y-auto max-w-screen transition-all duration-300 backdrop-blur-md backdrop-brightness-75 [&>div]:p-6",
   variants: {
     opened: {
       true: "pointer-events-auto opacity-100",
       false: "pointer-events-none opacity-0",
     },
-    blur: {
-      sm: "backdrop-blur-sm",
-      md: "backdrop-blur-md",
-      lg: "backdrop-blur-lg",
-    },
-    darken: {
-      sm: "backdrop-brightness-90",
-      md: "backdrop-brightness-75",
-      lg: "backdrop-brightness-50",
-    },
-    padding: {
-      sm: "[&>div]:p-4",
-      md: "[&>div]:p-6",
-      lg: "[&>div]:p-8",
-    },
   },
   defaults: {
     opened: false,
-    blur: "md",
-    darken: "md",
-    padding: "md",
   },
 });
 
@@ -144,21 +126,15 @@ DialogOverlay.displayName = "DialogOverlay";
  */
 
 const [dialogContentVariant, resolveDialogContentVariant] = vcn({
-  base: "transition-transform duration-300 bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 p-6 w-full max-w-xl rounded-md space-y-6",
+  base: "transition-transform duration-300 bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 p-6 w-full max-w-xl rounded-md flex flex-col justify-start items-start gap-6",
   variants: {
     opened: {
       true: "scale-100",
       false: "scale-50",
     },
-    gap: {
-      sm: "space-y-4",
-      md: "space-y-6",
-      lg: "space-y-8",
-    },
   },
   defaults: {
     opened: false,
-    gap: "md",
   },
 });
 
@@ -220,17 +196,9 @@ const DialogClose = ({ children }: DialogCloseProps) => {
  */
 
 const [dialogHeaderVariant, resolveDialogHeaderVariant] = vcn({
-  base: "flex flex-col",
-  variants: {
-    gap: {
-      sm: "gap-2",
-      md: "gap-4",
-      lg: "gap-6",
-    },
-  },
-  defaults: {
-    gap: "sm",
-  },
+  base: "flex flex-col gap-2",
+  variants: {},
+  defaults: {},
 });
 
 interface DialogHeaderProps
@@ -263,22 +231,9 @@ DialogHeader.displayName = "DialogHeader";
  */
 
 const [dialogTitleVariant, resolveDialogTitleVariant] = vcn({
-  variants: {
-    size: {
-      sm: "text-lg",
-      md: "text-xl",
-      lg: "text-2xl",
-    },
-    weight: {
-      sm: "font-medium",
-      md: "font-semibold",
-      lg: "font-bold",
-    },
-  },
-  defaults: {
-    size: "md",
-    weight: "lg",
-  },
+  base: "text-xl font-bold",
+  variants: {},
+  defaults: {},
 });
 
 interface DialogTitleProps
@@ -286,28 +241,9 @@ interface DialogTitleProps
     VariantProps<typeof dialogTitleVariant> {}
 
 const [dialogSubtitleVariant, resolveDialogSubtitleVariant] = vcn({
-  variants: {
-    size: {
-      sm: "text-sm",
-      md: "text-base",
-      lg: "text-lg",
-    },
-    opacity: {
-      sm: "opacity-60",
-      md: "opacity-70",
-      lg: "opacity-80",
-    },
-    weight: {
-      sm: "font-light",
-      md: "font-normal",
-      lg: "font-medium",
-    },
-  },
-  defaults: {
-    size: "sm",
-    opacity: "sm",
-    weight: "md",
-  },
+  base: "text-sm opacity-60 font-normal",
+  variants: {},
+  defaults: {},
 });
 
 interface DialogSubtitleProps
@@ -358,17 +294,9 @@ DialogSubtitle.displayName = "DialogSubtitle";
  */
 
 const [dialogFooterVariant, resolveDialogFooterVariant] = vcn({
-  base: "flex flex-col items-end sm:flex-row sm:items-center sm:justify-end",
-  variants: {
-    gap: {
-      sm: "gap-2",
-      md: "gap-4",
-      lg: "gap-6",
-    },
-  },
-  defaults: {
-    gap: "md",
-  },
+  base: "flex w-full flex-col items-end sm:flex-row sm:items-center sm:justify-end gap-2",
+  variants: {},
+  defaults: {},
 });
 
 interface DialogFooterProps
