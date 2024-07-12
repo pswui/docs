@@ -1,12 +1,6 @@
-import {
-  GITHUB_COMP_PREVIEW,
-  LoadedCode,
-  type TEMPLATE,
-} from "@/components/LoadedCode";
+import type { TEMPLATE } from "@/components/LoadedCode";
 import { usePgProps } from "@/components/PgHooks";
-import { PlaygroundControl } from "@/components/Playground";
-import { Story } from "@/components/Story";
-import { TabContent, TabList, TabProvider, TabTrigger } from "@pswui/Tabs";
+import { PlaygroundLayout } from "@/components/Playground";
 import { ButtonDemo, type ControlledButtonDemoProps } from "./Preview";
 
 interface TemplateProps extends TEMPLATE, ControlledButtonDemoProps {}
@@ -59,25 +53,12 @@ export default function ButtonPlayground() {
   });
 
   return (
-    <>
-      <TabProvider defaultName="preview">
-        <TabList>
-          <TabTrigger name="preview">Preview</TabTrigger>
-          <TabTrigger name="code">Code</TabTrigger>
-        </TabList>
-        <TabContent name="preview">
-          <Story layout="centered">
-            <ButtonDemo {...props} />
-          </Story>
-        </TabContent>
-        <TabContent name="code">
-          <LoadedCode
-            from={GITHUB_COMP_PREVIEW("Button")}
-            template={props}
-          />
-        </TabContent>
-      </TabProvider>
-      <PlaygroundControl props={control} />
-    </>
+    <PlaygroundLayout
+      compName="Button"
+      props={props}
+      control={control}
+    >
+      <ButtonDemo {...props} />
+    </PlaygroundLayout>
   );
 }
