@@ -17,17 +17,19 @@ export default function ButtonPlayground() {
       preset: {
         type: "select",
         options: ["default", "ghost", "link", "success", "warning", "danger"],
-        value: "ghost",
+        value: "default",
       },
       size: {
         type: "select",
         options: ["link", "sm", "md", "lg", "icon"],
         value: "md",
+        disabled: true,
       },
       border: {
         type: "select",
         options: ["none", "solid", "success", "warning", "danger"],
         value: "solid",
+        disabled: true,
       },
       background: {
         type: "select",
@@ -40,15 +42,18 @@ export default function ButtonPlayground() {
           "transparent",
         ],
         value: "default",
+        disabled: true,
       },
       decoration: {
         type: "select",
         options: ["none", "link"],
         value: "none",
+        disabled: true,
       },
       disabled: {
         type: "boolean",
         value: false,
+        disabled: true,
       },
     },
   });
