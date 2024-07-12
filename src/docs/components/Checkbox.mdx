@@ -1,26 +1,19 @@
 import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
-import { LoadedCode, GITHUB_COMP, GITHUB_COMP_PREVIEW, GITHUB_STORY } from "@/components/LoadedCode";
-import { CheckboxDemo } from "./CheckboxBlocks/Preview";
+import {
+  LoadedCode,
+  GITHUB_COMP,
+  GITHUB_COMP_PREVIEW,
+  GITHUB_STORY,
+} from "@/components/LoadedCode";
 import Examples from "./CheckboxBlocks/Examples";
+import Playground from "./CheckboxBlocks/Playground";
 
 # Checkbox
+
 A control that allows the user to toggle between checked and not checked.
 
-<TabProvider defaultName="preview">
-    <TabList>
-        <TabTrigger name="preview">Preview</TabTrigger>
-        <TabTrigger name="code">Code</TabTrigger>
-    </TabList>
-    <TabContent name="preview">
-        <Story layout="centered">
-            <CheckboxDemo />
-        </Story>
-    </TabContent>
-    <TabContent name="code">
-        <LoadedCode from={GITHUB_COMP_PREVIEW("Checkbox")} />
-    </TabContent>
-</TabProvider>
+<Playground />
 
 ## Installation
 
@@ -44,7 +37,7 @@ import { Checkbox } from "@components/Checkbox";
 ### Variants
 
 | Prop   | Type                     | Default | Description              |
-|:-------|:-------------------------|:--------|:-------------------------|
+| :----- | :----------------------- | :------ | :----------------------- |
 | `size` | `"base" \| "md" \| "lg"` | `"md"`  | The size of the checkbox |
 
 ## Examples
@@ -52,33 +45,33 @@ import { Checkbox } from "@components/Checkbox";
 ### Text
 
 <TabProvider defaultName="preview">
-    <TabList>
-        <TabTrigger name="preview">Preview</TabTrigger>
-        <TabTrigger name="code">Code</TabTrigger>
-    </TabList>
-    <TabContent name="preview">
-        <Story layout="centered">
-            <Examples.Text />
-        </Story>
-    </TabContent>
-    <TabContent name="code">
-        <LoadedCode from={GITHUB_STORY("Checkbox", "Text")} />
-    </TabContent>
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Text />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Checkbox", "Text")} />
+  </TabContent>
 </TabProvider>
 
 ### Disabled
 
 <TabProvider defaultName="preview">
-    <TabList>
-        <TabTrigger name="preview">Preview</TabTrigger>
-        <TabTrigger name="code">Code</TabTrigger>
-    </TabList>
-    <TabContent name="preview">
-        <Story layout="centered">
-            <Examples.Disabled />
-        </Story>
-    </TabContent>
-    <TabContent name="code">
-        <LoadedCode from={GITHUB_STORY("Checkbox", "Disabled")} />
-    </TabContent>
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Disabled />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Checkbox", "Disabled")} />
+  </TabContent>
 </TabProvider>
