@@ -10,15 +10,25 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@pswui/Dialog";
-
+/* remove */
+export interface DialogDemoPlaygroundProps {
+  DialogOverlayProps: {
+    closeOnClick: boolean;
+  };
+}
+/* end */
+/* replace */
+export function DialogDemo({ DialogOverlayProps }: DialogDemoPlaygroundProps) {
+  /* with
 export function DialogDemo() {
+  */
   return (
     <DialogRoot>
       <DialogTrigger>
         <Button preset="default">Open Dialog</Button>
       </DialogTrigger>
-      <DialogOverlay>
-        <DialogContent size={"fullMd"}>
+      <DialogOverlay closeOnClick={DialogOverlayProps.closeOnClick}>
+        <DialogContent>
           <DialogHeader>
             <DialogTitle>Dialog Title</DialogTitle>
             <DialogSubtitle>Dialog Subtitle</DialogSubtitle>

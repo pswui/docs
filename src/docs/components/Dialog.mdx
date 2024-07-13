@@ -8,25 +8,13 @@ import {
 } from "@/components/LoadedCode";
 import { DialogDemo } from "./DialogBlocks/Preview";
 import Examples from "./DialogBlocks/Examples";
+import Playground from "./DialogBlocks/Playground";
 
 # Dialog
 
 A modal window that prompts the user to take an action or provides critical information.
 
-<TabProvider defaultName="preview">
-  <TabList>
-    <TabTrigger name="preview">Preview</TabTrigger>
-    <TabTrigger name="code">Code</TabTrigger>
-  </TabList>
-  <TabContent name="preview">
-    <Story layout="centered">
-      <DialogDemo />
-    </Story>
-  </TabContent>
-  <TabContent name="code">
-    <LoadedCode from={GITHUB_COMP_PREVIEW("Dialog")} />
-  </TabContent>
-</TabProvider>
+<Playground />
 
 ## Installation
 
