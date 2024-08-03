@@ -1,9 +1,22 @@
 import { Button } from "@pswui/Button";
 import { useToast } from "@pswui/Toast";
 import { forwardRef, useEffect, useMemo, useState } from "react";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { gruvboxDark } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import { duotoneSpace } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import css from "react-syntax-highlighter/dist/esm/languages/prism/css";
+import js from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
+import jsx from "react-syntax-highlighter/dist/esm/languages/prism/jsx";
+import markup from "react-syntax-highlighter/dist/esm/languages/prism/markup";
+import tsx from "react-syntax-highlighter/dist/esm/languages/prism/tsx";
+import ts from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
 import { twMerge } from "tailwind-merge";
+
+SyntaxHighlighter.registerLanguage("javascript", js);
+SyntaxHighlighter.registerLanguage("typescript", ts);
+SyntaxHighlighter.registerLanguage("tsx", tsx);
+SyntaxHighlighter.registerLanguage("jsx", jsx);
+SyntaxHighlighter.registerLanguage("markup", markup);
+SyntaxHighlighter.registerLanguage("css", css);
 
 export const GITHUB_UI = "https://raw.githubusercontent.com/pswui/ui/main";
 export const GITHUB_DOCS = "https://raw.githubusercontent.com/pswui/docs/main";
@@ -114,7 +127,7 @@ export const LoadedCode = forwardRef<
       </Button>
       <SyntaxHighlighter
         language="typescript"
-        style={gruvboxDark}
+        style={duotoneSpace}
         className={`w-full h-64 rounded-lg ${!state ? "animate-pulse" : ""} scrollbar-none resize-y`}
         customStyle={{ padding: "1rem" }}
       >
@@ -164,7 +177,7 @@ export const Code = forwardRef<
       </Button>
       <SyntaxHighlighter
         language={language}
-        style={gruvboxDark}
+        style={duotoneSpace}
         className={"w-full h-auto max-h-64 rounded-lg scrollbar-none"}
         customStyle={{ padding: "1rem" }}
       >
