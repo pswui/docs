@@ -9,15 +9,34 @@ import {
   DrawerRoot,
   DrawerTrigger,
 } from "@pswui/Drawer";
-
-export const DrawerDemo = () => {
+/* remove */
+export interface DrawerDemoPlaygroundProps {
+  DrawerRootProps: {
+    closeThreshold: number;
+  };
+  DrawerContentProps: {
+    position: "top" | "bottom" | "left" | "right";
+  };
+}
+/* end */
+/* replace */
+export function DrawerDemo({
+  DrawerRootProps,
+  DrawerContentProps,
+}: DrawerDemoPlaygroundProps) {
+  /* with
+export function DrawerDemo() {
+  */
   return (
-    <DrawerRoot>
+    <DrawerRoot closeThreshold={DrawerRootProps.closeThreshold}>
       <DrawerTrigger>
         <Button>Open Drawer</Button>
       </DrawerTrigger>
       <DrawerOverlay className="z-[99]">
-        <DrawerContent className="max-w-[320px]">
+        <DrawerContent
+          className="max-w-[320px]"
+          position={DrawerContentProps.position}
+        >
           <DrawerHeader>
             <h1 className="text-2xl font-bold">Drawer</h1>
           </DrawerHeader>
@@ -37,4 +56,4 @@ export const DrawerDemo = () => {
       </DrawerOverlay>
     </DrawerRoot>
   );
-};
+}
