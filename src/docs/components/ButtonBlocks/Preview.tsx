@@ -30,7 +30,6 @@ export function ButtonDemo() {
       background={ButtonProps.background}
       decoration={ButtonProps.decoration}
       disabled={ButtonProps.disabled}
-      className="asdf"
     >
       Button
     </Button>
