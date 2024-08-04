@@ -44,6 +44,13 @@ export type ControlTemplate = Record<
         onChange: (value: string) => void;
         onToggle: (v: boolean) => void;
       }
+    | {
+        type: "number";
+        value: number;
+        disabled?: boolean;
+        onChange: (value: number) => void;
+        onToggle: (v: boolean) => void;
+      }
   >
 >;
 
@@ -115,6 +122,14 @@ export function PlaygroundControl<T extends ControlTemplate>(props: {
                       ))}
                     </PopoverContent>
                   </Popover>
+                ) : propMeta.type === "number" ? (
+                  <Input
+                    type="number"
+                    value={propMeta.value}
+                    onChange={(e) =>
+                      propMeta.onChange(e.currentTarget.valueAsNumber)
+                    }
+                  />
                 ) : null}
               </div>
             ))}
