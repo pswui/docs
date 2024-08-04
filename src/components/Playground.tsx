@@ -3,6 +3,7 @@ import { Checkbox } from "@pswui/Checkbox";
 import { Input } from "@pswui/Input";
 import { Label } from "@pswui/Label";
 import { Popover, PopoverContent, PopoverTrigger } from "@pswui/Popover";
+import { Switch } from "@pswui/Switch";
 import { TabContent, TabList, TabProvider, TabTrigger } from "@pswui/Tabs";
 import type { ReactNode } from "react";
 import { GITHUB_COMP_PREVIEW, LoadedCode, type TEMPLATE } from "./LoadedCode";
@@ -83,11 +84,11 @@ export function PlaygroundControl<T extends ControlTemplate>(props: {
                   direction="horizontal"
                   className="flex flex-row items-center gap-2"
                 >
-                  <Checkbox
+                  <Switch
+                    checked={!propMeta.disabled}
                     onChange={(e) => {
                       propMeta.onToggle(!e.currentTarget.checked);
                     }}
-                    checked={!propMeta.disabled}
                   />
                   {propMeta.disabled ? (
                     <s className="opacity-50">{propName}</s>
