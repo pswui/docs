@@ -78,7 +78,7 @@ export function PlaygroundControl<T extends ControlTemplate>(props: {
             {Object.entries(propEntries).map(([propName, propMeta]) => (
               <div
                 key={componentName + propName}
-                className="flex flex-col md:flex-row justify-between md:items-center w-full *:w-full md:*:w-auto gap-2"
+                className={`flex gap-2 justify-between w-full ${propMeta.type === "boolean" ? "flex-row items-center" : "flex-col md:flex-row md:items-center"}`}
               >
                 <Label
                   direction="horizontal"
@@ -106,11 +106,17 @@ export function PlaygroundControl<T extends ControlTemplate>(props: {
                     type="text"
                     value={propMeta.value}
                     onChange={(e) => propMeta.onChange(e.currentTarget.value)}
+                    className="w-full md:w-fit"
                   />
                 ) : propMeta.type === "select" ? (
                   <Popover>
                     <PopoverTrigger>
-                      <Button preset="default">{propMeta.value}</Button>
+                      <Button
+                        preset="default"
+                        className="w-full md:w-fit"
+                      >
+                        {propMeta.value}
+                      </Button>
                     </PopoverTrigger>
                     <PopoverContent className="min-w-36">
                       {propMeta.options.map((value) => (
@@ -131,6 +137,7 @@ export function PlaygroundControl<T extends ControlTemplate>(props: {
                     onChange={(e) =>
                       propMeta.onChange(e.currentTarget.valueAsNumber)
                     }
+                    className="w-full md:w-fit"
                   />
                 ) : null}
               </div>
