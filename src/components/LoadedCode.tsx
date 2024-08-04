@@ -31,7 +31,7 @@ export const GITHUB_STORY = (componentName: string, storyName: string) =>
 
 export type TEMPLATE = Record<
   string,
-  Record<string, string | boolean | undefined>
+  Record<string, string | boolean | number | undefined>
 >;
 
 const TEMPLATE_REMOVE_REGEX = /\/\*\s*remove\s*\*\/(.|\n)*?\/\*\s*end\s*\*\//g;

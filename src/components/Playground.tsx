@@ -15,6 +15,7 @@ export type Template = Record<
     | { type: "boolean"; value: boolean; disabled?: boolean }
     | { type: "select"; options: string[]; value: string; disabled?: boolean }
     | { type: "string"; value: string; disabled?: boolean }
+    | { type: "number"; value: number; disabled?: boolean }
   >
 >;
 
@@ -76,7 +77,7 @@ export function PlaygroundControl<T extends ControlTemplate>(props: {
             {Object.entries(propEntries).map(([propName, propMeta]) => (
               <div
                 key={componentName + propName}
-                className="flex flex-row justify-between items-center w-full gap-2"
+                className="flex flex-col md:flex-row justify-between md:items-center w-full *:w-full md:*:w-auto gap-2"
               >
                 <Label
                   direction="horizontal"

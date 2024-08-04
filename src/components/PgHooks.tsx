@@ -19,7 +19,7 @@ export function usePgProps<T extends TEMPLATE>(
       for (const [propKey, propMeta] of Object.entries(prop)) {
         pre[propKey] = {
           ...propMeta,
-          onChange(value: string | boolean) {
+          onChange(value: string | number | boolean) {
             console.log(`mutating ${componentName}/${propKey}`);
             mutate((state) => {
               state[componentName][propKey].value = value;
