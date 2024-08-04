@@ -63,7 +63,9 @@ export function PlaygroundControl<T extends ControlTemplate>(props: {
             key={componentName}
             className="w-full flex flex-col justify-center items-start gap-4"
           >
-            <b>&lt;{componentName.slice(0, componentName.length - 5)}&gt;</b>
+            <span className="font-thin opacity-50 w-full border-b border-b-current pb-2">
+              &lt;{componentName.slice(0, componentName.length - 5)}&gt;
+            </span>
             {Object.entries(propEntries).map(([propName, propMeta]) => (
               <div
                 key={componentName + propName}
@@ -75,9 +77,9 @@ export function PlaygroundControl<T extends ControlTemplate>(props: {
                 >
                   <Checkbox
                     onChange={(e) => {
-                      propMeta.onToggle(e.currentTarget.checked);
+                      propMeta.onToggle(!e.currentTarget.checked);
                     }}
-                    checked={propMeta.disabled}
+                    checked={!propMeta.disabled}
                   />
                   {propMeta.disabled ? (
                     <s className="opacity-50">{propName}</s>
