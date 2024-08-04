@@ -16,6 +16,7 @@ export interface DrawerDemoPlaygroundProps {
   };
   DrawerContentProps: {
     position: "top" | "bottom" | "left" | "right";
+    maxSize: "sm" | "md" | "lg" | "xl";
   };
 }
 /* end */
@@ -34,8 +35,8 @@ export function DrawerDemo() {
       </DrawerTrigger>
       <DrawerOverlay className="z-[99]">
         <DrawerContent
-          className="max-w-[320px]"
           position={DrawerContentProps.position}
+          maxSize={DrawerContentProps.maxSize}
         >
           <DrawerHeader>
             <h1 className="text-2xl font-bold">Drawer</h1>

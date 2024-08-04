@@ -19,6 +19,11 @@ export default function DrawerPlayground() {
         options: ["top", "bottom", "left", "right"],
         value: "left",
       },
+      maxSize: {
+        type: "select",
+        options: ["sm", "md", "lg", "xl"],
+        value: "sm",
+      },
     },
   });
 
