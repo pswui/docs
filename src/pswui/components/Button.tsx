@@ -14,21 +14,18 @@ const colors = {
     danger: "border-red-400 dark:border-red-600",
   },
   background: {
-    default:
-      "bg-white dark:bg-black hover:bg-neutral-200 dark:hover:bg-neutral-800",
+    default: "bg-white dark:bg-black",
     ghost:
       "bg-black/0 dark:bg-white/0 hover:bg-black/20 dark:hover:bg-white/20",
-    success:
-      "bg-green-100 dark:bg-green-900 hover:bg-green-200 dark:hover:bg-green-800",
-    warning:
-      "bg-yellow-100 dark:bg-yellow-900 hover:bg-yellow-200 dark:hover:bg-yellow-800",
-    danger: "bg-red-100 dark:bg-red-900 hover:bg-red-200 dark:hover:bg-red-800",
+    success: "bg-green-100 dark:bg-green-900",
+    warning: "bg-yellow-100 dark:bg-yellow-900",
+    danger: "bg-red-100 dark:bg-red-900",
   },
   underline: "decoration-current",
 };
 
 const [buttonVariants, resolveVariants] = vcn({
-  base: `w-fit flex flex-row items-center justify-between rounded-md outline outline-1 outline-transparent outline-offset-2 ${colors.outline.focus} ${colors.disabled} transition-all cursor-pointer`,
+  base: `w-fit flex flex-row items-center justify-between rounded-md outline outline-1 outline-transparent outline-offset-2 hover:brightness-90 dark:hover:brightness-110 ${colors.outline.focus} ${colors.disabled} transition-all cursor-pointer`,
   variants: {
     size: {
       link: "p-0 text-base",
@@ -111,7 +108,8 @@ export interface ButtonProps
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const [variantProps, otherPropsCompressed] = resolveVariants(props);
-    const { asChild, type, ...otherPropsExtracted } = otherPropsCompressed;
+    const { asChild, type, role, ...otherPropsExtracted } =
+      otherPropsCompressed;
 
     const Comp = asChild ? Slot : "button";
 
@@ -120,6 +118,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type={type ?? "button"}
         className={buttonVariants(variantProps)}
+        role={role ?? "button"}
         {...otherPropsExtracted}
       />
     );

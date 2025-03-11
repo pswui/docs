@@ -16,7 +16,7 @@ export const Right = () => {
       <DrawerTrigger>
         <Button>Open Drawer</Button>
       </DrawerTrigger>
-      <DrawerOverlay className="z-[99]">
+      <DrawerOverlay className="z-99">
         <DrawerContent
           position="right"
           className="max-w-[320px]"

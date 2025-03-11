@@ -140,6 +140,7 @@ const TooltipContent = React.forwardRef<HTMLDivElement, TooltipContentProps>(
           ...variantProps,
           position: contextState.position,
         })}
+        role="tooltip"
         {...rest}
       />
     );

@@ -16,7 +16,7 @@ export const Top = () => {
       <DrawerTrigger>
         <Button>Open Drawer</Button>
       </DrawerTrigger>
-      <DrawerOverlay className="z-[99]">
+      <DrawerOverlay className="z-99">
         <DrawerContent position="top">
           <DrawerHeader>
             <h1 className="text-2xl font-bold">Drawer</h1>
