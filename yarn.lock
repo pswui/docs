@@ -1477,6 +1477,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/prismjs@npm:^1.26.0":
+  version: 1.26.5
+  resolution: "@types/prismjs@npm:1.26.5"
+  checksum: 10c0/5619cb449e0d8df098c8759d6f47bf8fdd510abf5dbdfa999e55c6a2545efbd1e209cc85a33d8d9f4ff2898089a1a6d9a70737c9baffaae635c46852c40d384a
+  languageName: node
+  linkType: hard
+
 "@types/prop-types@npm:*":
   version: 15.7.14
   resolution: "@types/prop-types@npm:15.7.14"
@@ -2115,6 +2122,13 @@ __metadata:
     slice-ansi: "npm:^5.0.0"
     string-width: "npm:^7.0.0"
   checksum: 10c0/d7f0b73e3d9b88cb496e6c086df7410b541b56a43d18ade6a573c9c18bd001b1c3fba1ad578f741a4218fdc794d042385f8ac02c25e1c295a2d8b9f3cb86eb4c
+  languageName: node
+  linkType: hard
+
+"clsx@npm:^2.0.0":
+  version: 2.1.1
+  resolution: "clsx@npm:2.1.1"
+  checksum: 10c0/c4c8eb865f8c82baab07e71bfa8897c73454881c4f99d6bc81585aecd7c441746c1399d08363dc096c550cceaf97bd4ce1e8854e1771e9998d9f94c4fe075839
   languageName: node
   linkType: hard
 
@@ -5303,6 +5317,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prism-react-renderer@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "prism-react-renderer@npm:2.4.1"
+  dependencies:
+    "@types/prismjs": "npm:^1.26.0"
+    clsx: "npm:^2.0.0"
+  peerDependencies:
+    react: ">=16.0.0"
+  checksum: 10c0/ebbe8feb975224344bbdd046b3a937d121592dbe4b8f22ba0be31f5af37b9a8219f441138ef6cab1c5b96f2aa6b529015200959f7e5e85b60ca69c81d35edcd4
+  languageName: node
+  linkType: hard
+
 "prismjs@npm:^1.27.0":
   version: 1.30.0
   resolution: "prismjs@npm:1.30.0"
@@ -6133,12 +6159,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwind-scrollbar@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "tailwind-scrollbar@npm:3.1.0"
+"tailwind-scrollbar@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "tailwind-scrollbar@npm:4.0.1"
+  dependencies:
+    prism-react-renderer: "npm:^2.4.1"
   peerDependencies:
-    tailwindcss: 3.x
-  checksum: 10c0/dad4d5dcc37f09806cb1b5380d7908d113d139638ac606644ba0c689dffb2d72250f6997c0091c2ba596346390b31742859a20933c2d8543f8103e2ddfc3fb82
+    tailwindcss: 4.x
+  checksum: 10c0/db092c0599cda3461b3ae6752f72691c1b824abd6ffeebc043ad98a67a4c083f1ccb29e6f633ac541b7817a5bb4c20ac12b7d664633078fc5f6ba5efb9ee6fe4
   languageName: node
   linkType: hard
 
@@ -6318,7 +6346,7 @@ __metadata:
     rehype-slug: "npm:^6.0.0"
     remark-gfm: "npm:^4.0.0"
     tailwind-merge: "npm:^2.3.0"
-    tailwind-scrollbar: "npm:^3.1.0"
+    tailwind-scrollbar: "npm:^4.0.1"
     tailwindcss: "npm:^4.0.12"
     typescript: "npm:^5.4.5"
     vite: "npm:^5.3.0"
