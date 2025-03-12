@@ -1,7 +1,16 @@
 import { Button } from "@pswui/Button";
 import { useToast } from "@pswui/Toast";
-import { forwardRef, useEffect, useMemo, useState } from "react";
-import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import {
+  type Component,
+  forwardRef,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import {
+  PrismLight,
+  type SyntaxHighlighterProps,
+} from "react-syntax-highlighter";
 import { duotoneSpace } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import css from "react-syntax-highlighter/dist/esm/languages/prism/css";
 import js from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
@@ -10,6 +19,13 @@ import markup from "react-syntax-highlighter/dist/esm/languages/prism/markup";
 import tsx from "react-syntax-highlighter/dist/esm/languages/prism/tsx";
 import ts from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
 import { twMerge } from "tailwind-merge";
+
+const SyntaxHighlighter =
+  PrismLight as unknown as typeof Component<SyntaxHighlighterProps> & {
+    registerLanguage<T>(name: string, func: T): void;
+    alias(name: string, alias: string | string[]): void;
+    alias(aliases: Record<string, string | string[]>): void;
+  };
 
 SyntaxHighlighter.registerLanguage("javascript", js);
 SyntaxHighlighter.registerLanguage("typescript", ts);
