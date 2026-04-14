@@ -1,0 +1,82 @@
+import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
+import { Story } from "@/components/Story";
+import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
+import Examples from "./RadioGroupBlocks/Examples";
+
+# RadioGroup
+
+A group of radio buttons for single selection.
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Default />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("RadioGroup", "Default")} />
+  </TabContent>
+</TabProvider>
+
+## Installation
+
+1. Create a new file `RadioGroup.tsx` in your component folder.
+2. Copy and paste the following code into the file.
+
+<LoadedCode from={GITHUB_COMP("RadioGroup")} />
+
+## Usage
+
+```tsx
+import { RadioGroup, RadioGroupItem } from "@components/RadioGroup";
+```
+
+```html
+<RadioGroup defaultValue="option-1">
+  <RadioGroupItem value="option-1">Option 1</RadioGroupItem>
+  <RadioGroupItem value="option-2">Option 2</RadioGroupItem>
+</RadioGroup>
+```
+
+## Props
+
+### RadioGroup
+
+| Prop              | Type                              | Default        | Description                  |
+| :--------------- | :------------------------------- | :------------- | :-------------------------- |
+| `orientation`     | `"horizontal" \| "vertical"`     | `"vertical"`   | Group orientation           |
+| `defaultValue`    | `string`                         | -              | Default selected value      |
+| `value`           | `string`                         | -              | Controlled selected value   |
+| `onValueChange`   | `(value: string) => void`        | -              | Callback when value changes |
+| `disabled`       | `boolean`                        | -              | Disables all items          |
+| `name`           | `string`                         | -              | Group name                  |
+
+### RadioGroupItem
+
+| Prop       | Type      | Default | Description          |
+| :-------- | :-------- | :------ | :------------------ |
+| `value`   | `string`  | -       | Unique value        |
+| `disabled` | `boolean` | -       | Disables the item   |
+
+## Examples
+
+### Horizontal
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Horizontal />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("RadioGroup", "Horizontal")} />
+  </TabContent>
+</TabProvider>

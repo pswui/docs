@@ -1,0 +1,49 @@
+import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
+import { Story } from "@/components/Story";
+import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
+import Examples from "./ToggleBlocks/Examples";
+
+# Toggle
+
+A button that toggles between pressed and unpressed states.
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Default />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Toggle", "Default")} />
+  </TabContent>
+</TabProvider>
+
+## Installation
+
+1. Create a new file `Toggle.tsx` in your component folder.
+2. Copy and paste the following code into the file.
+
+<LoadedCode from={GITHUB_COMP("Toggle")} />
+
+## Usage
+
+```tsx
+import { Toggle } from "@components/Toggle";
+```
+
+```html
+<Toggle>Toggle</Toggle>
+```
+
+## Props
+
+| Prop               | Type                              | Default      | Description                     |
+| :----------------- | :------------------------------- | :----------- | :------------------------------ |
+| `size`             | `"sm" \| "md" \| "lg"`          | `"md"`       | Size of the toggle               |
+| `pressed`          | `boolean`                        | -            | Controlled pressed state         |
+| `defaultPressed`   | `boolean`                        | `false`      | Default pressed state            |
+| `onPressedChange`  | `(pressed: boolean) => void`     | -            | Callback when pressed state changes |

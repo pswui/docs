@@ -1,0 +1,102 @@
+import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
+import { Story } from "@/components/Story";
+import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
+import Examples from "./SelectBlocks/Examples";
+
+# Select
+
+A dropdown select component.
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Default />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Select", "Default")} />
+  </TabContent>
+</TabProvider>
+
+## Installation
+
+1. Create a new file `Select.tsx` in your component folder.
+2. Copy and paste the following code into the file.
+
+<LoadedCode from={GITHUB_COMP("Select")} />
+
+## Usage
+
+```tsx
+import { Select } from "@components/Select";
+import type { SelectOption } from "@components/Select";
+```
+
+```tsx
+const options: SelectOption[] = [
+  { label: "Option 1", value: "1" },
+  { label: "Option 2", value: "2" },
+];
+<Select options={options} placeholder="Select an option" />
+```
+
+## Props
+
+| Prop         | Type                                | Default         | Description                    |
+| :---------- | :--------------------------------- | :-------------- | :----------------------------- |
+| `options`    | `SelectOption[]`                    | -               | List of selectable options     |
+| `value`      | `string`                            | -               | Controlled selected value      |
+| `defaultValue` | `string`                         | -               | Default selected value        |
+| `onValueChange` | `(value: string) => void`        | -               | Callback when value changes    |
+| `placeholder` | `React.ReactNode`                  | `"Select an option"` | Placeholder text           |
+| `full`       | `boolean`                           | `false`         | Full width                    |
+
+### SelectOption
+
+```ts
+interface SelectOption {
+  label: React.ReactNode;
+  value: string;
+  disabled?: boolean;
+}
+```
+
+## Examples
+
+### With Default Value
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.WithDefaultValue />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Select", "WithDefaultValue")} />
+  </TabContent>
+</TabProvider>
+
+### Full Width
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.FullWidth />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Select", "FullWidth")} />
+  </TabContent>
+</TabProvider>

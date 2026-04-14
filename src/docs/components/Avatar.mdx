@@ -1,0 +1,105 @@
+import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
+import { Story } from "@/components/Story";
+import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
+import Examples from "./AvatarBlocks/Examples";
+
+# Avatar
+
+Displays a user's profile picture or fallback initials.
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Default />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Avatar", "Default")} />
+  </TabContent>
+</TabProvider>
+
+## Installation
+
+1. Create a new file `Avatar.tsx` in your component folder.
+2. Copy and paste the following code into the file.
+
+<LoadedCode from={GITHUB_COMP("Avatar")} />
+
+## Usage
+
+```tsx
+import { Avatar } from "@components/Avatar";
+```
+
+```html
+<Avatar name="Shinwoo Park" />
+```
+
+## Props
+
+| Prop          | Type                                 | Default   | Description                         |
+| :------------ | :----------------------------------- | :-------- | :---------------------------------- |
+| `src`         | `string`                             | -         | Image URL                          |
+| `alt`         | `string`                             | -         | Alt text for the image              |
+| `name`        | `string`                             | -         | Name for generating initials        |
+| `fallback`    | `React.ReactNode`                    | -         | Custom fallback content             |
+| `imageProps`  | `AvatarImageProps`                   | -         | Props passed to the img element     |
+| `size`        | `"sm" \| "md" \| "lg"`               | `"md"`    | The size of the avatar              |
+| `shape`       | `"circle" \| "square"`               | `"circle"` | The shape of the avatar            |
+
+## Examples
+
+### With Image
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.WithImage />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Avatar", "WithImage")} />
+  </TabContent>
+</TabProvider>
+
+### Sizes
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Sizes />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Avatar", "Sizes")} />
+  </TabContent>
+</TabProvider>
+
+### Shapes
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Shapes />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Avatar", "Shapes")} />
+  </TabContent>
+</TabProvider>
