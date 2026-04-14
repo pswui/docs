@@ -2,25 +2,15 @@ import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
 import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
 import Examples from "./SelectBlocks/Examples";
+import Playground from "./SelectBlocks/Playground";
 
 # Select
 
-A dropdown select component.
+An accessible custom select with keyboard navigation and controlled or uncontrolled state.
 
-<TabProvider defaultName="preview">
-  <TabList>
-    <TabTrigger name="preview">Preview</TabTrigger>
-    <TabTrigger name="code">Code</TabTrigger>
-  </TabList>
-  <TabContent name="preview">
-    <Story layout="centered">
-      <Examples.Default />
-    </Story>
-  </TabContent>
-  <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Select", "Default")} />
-  </TabContent>
-</TabProvider>
+## Playground
+
+<Playground />
 
 ## Installation
 
@@ -32,36 +22,37 @@ A dropdown select component.
 ## Usage
 
 ```tsx
-import { Select } from "@components/Select";
-import type { SelectOption } from "@components/Select";
+import { Select, type SelectOption } from "@components/Select";
+
+const options: SelectOption[] = [
+  { label: "React", value: "react" },
+  { label: "Vue", value: "vue" },
+];
 ```
 
 ```tsx
-const options: SelectOption[] = [
-  { label: "Option 1", value: "1" },
-  { label: "Option 2", value: "2" },
-];
-<Select options={options} placeholder="Select an option" />
+<Select options={options} placeholder="Choose a framework" />
 ```
 
 ## Props
 
-| Prop         | Type                                | Default         | Description                    |
-| :---------- | :--------------------------------- | :-------------- | :----------------------------- |
-| `options`    | `SelectOption[]`                    | -               | List of selectable options     |
-| `value`      | `string`                            | -               | Controlled selected value      |
-| `defaultValue` | `string`                         | -               | Default selected value        |
-| `onValueChange` | `(value: string) => void`        | -               | Callback when value changes    |
-| `placeholder` | `React.ReactNode`                  | `"Select an option"` | Placeholder text           |
-| `full`       | `boolean`                           | `false`         | Full width                    |
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `options` | `SelectOption[]` | - | List of options rendered in the popup listbox. |
+| `value` | `string` | - | Controlled selected value. |
+| `defaultValue` | `string` | - | Initial value for uncontrolled usage. |
+| `onValueChange` | `(value: string) => void` | - | Called after a new option is committed. |
+| `placeholder` | `React.ReactNode` | `"Select an option"` | Content shown when no option is selected. |
+| `name` | `string` | - | Writes the selected value into a hidden input for form submission. |
+| `full` | `boolean` | `false` | Makes the trigger stretch to the width of its container. |
 
 ### SelectOption
 
 ```ts
 interface SelectOption {
+  disabled?: boolean;
   label: React.ReactNode;
   value: string;
-  disabled?: boolean;
 }
 ```
 
@@ -81,6 +72,23 @@ interface SelectOption {
   </TabContent>
   <TabContent name="code">
     <LoadedCode from={GITHUB_STORY("Select", "WithDefaultValue")} />
+  </TabContent>
+</TabProvider>
+
+### Disabled Options
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.DisabledOptions />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Select", "DisabledOptions")} />
   </TabContent>
 </TabProvider>
 

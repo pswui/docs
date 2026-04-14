@@ -1,7 +1,9 @@
-import { Default, Collapsible, DefaultExpanded } from "./Accordion";
+import { Collapsible } from "./Collapsible";
+import { Default } from "./Default";
+import { DisabledItem } from "./DisabledItem";
 
 export default {
-  Default,
   Collapsible,
-  DefaultExpanded,
+  Default,
+  DisabledItem,
 };

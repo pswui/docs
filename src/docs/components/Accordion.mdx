@@ -6,25 +6,16 @@ import {
   GITHUB_STORY,
 } from "@/components/LoadedCode";
 import Examples from "./AccordionBlocks/Examples";
+import Playground from "./AccordionBlocks/Playground";
 
 # Accordion
 
-A collapsible accordion component.
+Displays a set of stacked headings that reveal one section of content at a
+time.
 
-<TabProvider defaultName="preview">
-  <TabList>
-    <TabTrigger name="preview">Preview</TabTrigger>
-    <TabTrigger name="code">Code</TabTrigger>
-  </TabList>
-  <TabContent name="preview">
-    <Story layout="centered">
-      <Examples.Default />
-    </Story>
-  </TabContent>
-  <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Accordion", "Accordion")} />
-  </TabContent>
-</TabProvider>
+## Playground
+
+<Playground />
 
 ## Installation
 
@@ -41,11 +32,22 @@ A collapsible accordion component.
 ## Usage
 
 ```tsx
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@components/Accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@components/Accordion";
 ```
 
-```html
-<Accordion>
+```tsx
+<Accordion defaultValue="shipping">
+  <AccordionItem value="shipping">
+    <AccordionTrigger>Shipping</AccordionTrigger>
+    <AccordionContent>
+      Orders placed before 2pm ship the same day.
+    </AccordionContent>
+  </AccordionItem>
   <AccordionItem value="item-1">
     <AccordionTrigger>Item 1</AccordionTrigger>
     <AccordionContent>Content for item 1.</AccordionContent>
@@ -57,27 +59,27 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@c
 
 ### Accordion
 
-| Prop              | Type                              | Default     | Description                  |
-| :--------------- | :------------------------------- | :---------- | :-------------------------- |
-| `defaultValue`    | `string`                         | -           | Default expanded item value |
-| `value`           | `string`                         | -           | Controlled expanded value   |
-| `onValueChange`   | `(value: string \| null) => void` | -           | Callback when value changes |
-| `collapsible`     | `boolean`                        | `false`     | Allows collapsing all items |
+| Prop            | Type                              | Default | Description                                   |
+| :-------------- | :-------------------------------- | :------ | :-------------------------------------------- |
+| `defaultValue`  | `string`                          | -       | The value of the item that should start open. |
+| `value`         | `string \| null`                  | -       | Controls the open item externally.            |
+| `onValueChange` | `(value: string \| null) => void` | -       | Called whenever the open item changes.        |
+| `collapsible`   | `boolean`                         | `false` | Lets the current item close back to `null`.   |
 
 ### AccordionItem
 
-| Prop       | Type      | Default | Description                |
-| :-------- | :-------- | :------ | :------------------------ |
-| `value`    | `string`  | -       | Unique value for the item  |
-| `disabled` | `boolean` | -       | Disables the item         |
+| Prop       | Type      | Default | Description                          |
+| :--------- | :-------- | :------ | :----------------------------------- |
+| `value`    | `string`  | -       | Unique value used to identify the item. |
+| `disabled` | `boolean` | `false` | Prevents the item from being toggled. |
 
 ### AccordionTrigger
 
-Standard button props.
+Accepts standard button props.
 
 ### AccordionContent
 
-Standard div props.
+Accepts standard div props.
 
 ## Examples
 
@@ -94,11 +96,11 @@ Standard div props.
     </Story>
   </TabContent>
   <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Accordion", "Accordion")} />
+    <LoadedCode from={GITHUB_STORY("Accordion", "Collapsible")} />
   </TabContent>
 </TabProvider>
 
-### Default Expanded
+### Disabled Item
 
 <TabProvider defaultName="preview">
   <TabList>
@@ -107,10 +109,10 @@ Standard div props.
   </TabList>
   <TabContent name="preview">
     <Story layout="centered">
-      <Examples.DefaultExpanded />
+      <Examples.DisabledItem />
     </Story>
   </TabContent>
   <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Accordion", "Accordion")} />
+    <LoadedCode from={GITHUB_STORY("Accordion", "DisabledItem")} />
   </TabContent>
 </TabProvider>

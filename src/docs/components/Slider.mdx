@@ -2,25 +2,15 @@ import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
 import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
 import Examples from "./SliderBlocks/Examples";
+import Playground from "./SliderBlocks/Playground";
 
 # Slider
 
-A slider input for selecting a value within a range.
+Lets the user choose a numeric value from a range.
 
-<TabProvider defaultName="preview">
-  <TabList>
-    <TabTrigger name="preview">Preview</TabTrigger>
-    <TabTrigger name="code">Code</TabTrigger>
-  </TabList>
-  <TabContent name="preview">
-    <Story layout="centered">
-      <Examples.Default />
-    </Story>
-  </TabContent>
-  <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Slider", "Default")} />
-  </TabContent>
-</TabProvider>
+## Playground
+
+<Playground />
 
 ## Installation
 
@@ -35,17 +25,23 @@ A slider input for selecting a value within a range.
 import { Slider } from "@components/Slider";
 ```
 
-```html
-<Slider defaultValue={[50]} />
+```tsx
+<Slider
+  min={0}
+  max={100}
+  step={5}
+  defaultValue={50}
+/>
 ```
 
 ## Props
 
-| Prop    | Type                      | Default | Description             |
-| :------ | :------------------------ | :------ | :-------------------- |
-| `size`  | `"sm" \| "md" \| "lg"`   | `"md"`  | Size of the slider    |
+| Prop   | Type                    | Default | Description                                  |
+| :----- | :---------------------- | :------ | :------------------------------------------- |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"`  | Controls the rendered height of the slider. |
 
-Standard input range props apply.
+The component also accepts standard `input[type="range"]` props such as
+`min`, `max`, `step`, `value`, `defaultValue`, and `disabled`.
 
 ## Examples
 
@@ -63,5 +59,22 @@ Standard input range props apply.
   </TabContent>
   <TabContent name="code">
     <LoadedCode from={GITHUB_STORY("Slider", "Sizes")} />
+  </TabContent>
+</TabProvider>
+
+### Disabled
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Disabled />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Slider", "Disabled")} />
   </TabContent>
 </TabProvider>

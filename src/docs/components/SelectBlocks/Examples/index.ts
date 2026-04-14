@@ -1,7 +1,11 @@
-import { Default, WithDefaultValue, FullWidth } from "./Select";
+import { Default } from "./Default";
+import { DisabledOptions } from "./DisabledOptions";
+import { FullWidth } from "./FullWidth";
+import { WithDefaultValue } from "./WithDefaultValue";
 
 export default {
   Default,
-  WithDefaultValue,
+  DisabledOptions,
   FullWidth,
+  WithDefaultValue,
 };

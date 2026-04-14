@@ -2,25 +2,15 @@ import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
 import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
 import Examples from "./ToggleBlocks/Examples";
+import Playground from "./ToggleBlocks/Playground";
 
 # Toggle
 
-A button that toggles between pressed and unpressed states.
+A two-state button that toggles between pressed and not pressed.
 
-<TabProvider defaultName="preview">
-  <TabList>
-    <TabTrigger name="preview">Preview</TabTrigger>
-    <TabTrigger name="code">Code</TabTrigger>
-  </TabList>
-  <TabContent name="preview">
-    <Story layout="centered">
-      <Examples.Default />
-    </Story>
-  </TabContent>
-  <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Toggle", "Default")} />
-  </TabContent>
-</TabProvider>
+## Playground
+
+<Playground />
 
 ## Installation
 
@@ -35,15 +25,68 @@ A button that toggles between pressed and unpressed states.
 import { Toggle } from "@components/Toggle";
 ```
 
-```html
-<Toggle>Toggle</Toggle>
+```tsx
+<Toggle defaultPressed>Bold</Toggle>
 ```
 
 ## Props
 
-| Prop               | Type                              | Default      | Description                     |
-| :----------------- | :------------------------------- | :----------- | :------------------------------ |
-| `size`             | `"sm" \| "md" \| "lg"`          | `"md"`       | Size of the toggle               |
-| `pressed`          | `boolean`                        | -            | Controlled pressed state         |
-| `defaultPressed`   | `boolean`                        | `false`      | Default pressed state            |
-| `onPressedChange`  | `(pressed: boolean) => void`     | -            | Callback when pressed state changes |
+| Prop              | Type                          | Default | Description                                 |
+| :---------------- | :---------------------------- | :------ | :------------------------------------------ |
+| `size`            | `"sm" \| "md" \| "lg"`       | `"md"`  | Controls the toggle padding and text size.  |
+| `pressed`         | `boolean`                    | -       | Controls the pressed state externally.      |
+| `defaultPressed`  | `boolean`                    | `false` | Sets the initial uncontrolled pressed state. |
+| `onPressedChange` | `(pressed: boolean) => void` | -       | Called whenever the pressed state changes.  |
+
+## Examples
+
+### Sizes
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Sizes />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Toggle", "Sizes")} />
+  </TabContent>
+</TabProvider>
+
+### Default Pressed
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.DefaultPressed />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Toggle", "DefaultPressed")} />
+  </TabContent>
+</TabProvider>
+
+### Controlled
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Controlled />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Toggle", "Controlled")} />
+  </TabContent>
+</TabProvider>

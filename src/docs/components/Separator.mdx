@@ -2,25 +2,15 @@ import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
 import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
 import Examples from "./SeparatorBlocks/Examples";
+import Playground from "./SeparatorBlocks/Playground";
 
 # Separator
 
-Displays a visual divider.
+Displays a visual divider between related content.
 
-<TabProvider defaultName="preview">
-  <TabList>
-    <TabTrigger name="preview">Preview</TabTrigger>
-    <TabTrigger name="code">Code</TabTrigger>
-  </TabList>
-  <TabContent name="preview">
-    <Story layout="centered">
-      <Examples.Default />
-    </Story>
-  </TabContent>
-  <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Separator", "Default")} />
-  </TabContent>
-</TabProvider>
+## Playground
+
+<Playground />
 
 ## Installation
 
@@ -35,13 +25,49 @@ Displays a visual divider.
 import { Separator } from "@components/Separator";
 ```
 
-```html
-<Separator />
+```tsx
+<Separator orientation="horizontal" />
 ```
 
 ## Props
 
-| Prop         | Type                              | Default        | Description              |
-| :----------- | :------------------------------- | :------------- | :---------------------- |
-| `orientation` | `"horizontal" \| "vertical"`    | `"horizontal"` | Orientation of the separator |
-| `decorative`  | `boolean`                        | -              | Hides separator from accessibility tree |
+| Prop          | Type                         | Default        | Description                                          |
+| :------------ | :--------------------------- | :------------- | :--------------------------------------------------- |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Sets whether the separator is horizontal or vertical. |
+| `decorative`  | `boolean`                    | `false`        | Hides the separator from assistive technology.       |
+
+## Examples
+
+### Vertical
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Vertical />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Separator", "Vertical")} />
+  </TabContent>
+</TabProvider>
+
+### Decorative
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Decorative />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Separator", "Decorative")} />
+  </TabContent>
+</TabProvider>

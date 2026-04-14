@@ -2,25 +2,15 @@ import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
 import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
 import Examples from "./AlertBlocks/Examples";
+import Playground from "./AlertBlocks/Playground";
 
 # Alert
 
 Displays a callout for important information.
 
-<TabProvider defaultName="preview">
-  <TabList>
-    <TabTrigger name="preview">Preview</TabTrigger>
-    <TabTrigger name="code">Code</TabTrigger>
-  </TabList>
-  <TabContent name="preview">
-    <Story layout="centered">
-      <Examples.Default />
-    </Story>
-  </TabContent>
-  <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Alert", "Default")} />
-  </TabContent>
-</TabProvider>
+## Playground
+
+<Playground />
 
 ## Installation
 
@@ -32,13 +22,15 @@ Displays a callout for important information.
 ## Usage
 
 ```tsx
-import { Alert, AlertTitle, AlertDescription } from "@components/Alert";
+import { Alert, AlertDescription, AlertTitle } from "@components/Alert";
 ```
 
-```html
-<Alert status="default">
-  <AlertTitle>Alert Title</AlertTitle>
-  <AlertDescription>Alert description text.</AlertDescription>
+```tsx
+<Alert status="warning">
+  <AlertTitle>Review your changes</AlertTitle>
+  <AlertDescription>
+    This action updates data for everyone in the workspace.
+  </AlertDescription>
 </Alert>
 ```
 
@@ -46,22 +38,22 @@ import { Alert, AlertTitle, AlertDescription } from "@components/Alert";
 
 ### Alert
 
-| Prop      | Type                                                    | Default     | Description                    |
-| :-------- | :------------------------------------------------------ | :---------- | :------------------------------ |
-| `status`  | `"default" \| "success" \| "warning" \| "danger"`       | `"default"` | The status variant of the alert |
-| `asChild` | `boolean`                                              | `false`     | Render as child of a parent     |
+| Prop      | Type                                              | Default     | Description                             |
+| :-------- | :------------------------------------------------ | :---------- | :-------------------------------------- |
+| `status`  | `"default" \| "success" \| "warning" \| "danger"` | `"default"` | Applies the corresponding alert styles. |
+| `asChild` | `boolean`                                         | `false`     | Renders the alert through a child slot. |
 
 ### AlertTitle
 
-| Prop      | Type      | Default | Description                  |
-| :-------- | :-------- | :------ | :---------------------------- |
-| `asChild` | `boolean` | `false` | Render as child of a parent   |
+| Prop      | Type      | Default | Description                             |
+| :-------- | :-------- | :------ | :-------------------------------------- |
+| `asChild` | `boolean` | `false` | Renders the title through a child slot. |
 
 ### AlertDescription
 
-| Prop      | Type      | Default | Description                  |
-| :-------- | :-------- | :------ | :---------------------------- |
-| `asChild` | `boolean` | `false` | Render as child of a parent  |
+| Prop      | Type      | Default | Description                                   |
+| :-------- | :-------- | :------ | :-------------------------------------------- |
+| `asChild` | `boolean` | `false` | Renders the description through a child slot. |
 
 ## Examples
 
