@@ -1,26 +1,16 @@
 import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
-import { LoadedCode, GITHUB_COMP, GITHUB_COMP_PREVIEW, GITHUB_STORY } from "@/components/LoadedCode";
-import { ButtonDemo } from "./ButtonBlocks/Preview";
+import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
 import Examples from "./ButtonBlocks/Examples";
+import ButtonPlayground from "./ButtonBlocks/Playground";
 
 # Button
+
 Displays a button or a component that looks like a button.
 
-<TabProvider defaultName="preview">
-    <TabList>
-        <TabTrigger name="preview">Preview</TabTrigger>
-        <TabTrigger name="code">Code</TabTrigger>
-    </TabList>
-    <TabContent name="preview">
-        <Story layout="centered">
-            <ButtonDemo />
-        </Story>
-    </TabContent>
-    <TabContent name="code">
-        <LoadedCode from={GITHUB_COMP_PREVIEW("Button")} />
-    </TabContent>
-</TabProvider>
+## Playground
+
+<ButtonPlayground />
 
 ## Installation
 
@@ -36,7 +26,7 @@ import { Button } from "@components/Button";
 ```
 
 ```html
-<Button>Button</Button>
+<button>Button</button>
 ```
 
 ## Props
@@ -44,7 +34,7 @@ import { Button } from "@components/Button";
 ### Variants
 
 | Prop         | Type                                                                          | Default     | Description                             |
-|:-------------|:------------------------------------------------------------------------------|:------------|:----------------------------------------|
+| :----------- | :---------------------------------------------------------------------------- | :---------- | :-------------------------------------- |
 | `size`       | `"link" \| "sm" \| "md" \| "lg" \| "icon"`                                    | `"md"`      | The size of the button                  |
 | `border`     | `"none" \| "solid" \| "success" \| "warning" \| "danger"`                     | `"solid"`   | The border color of the button          |
 | `background` | `"default" \| "ghost" \| "success" \| "warning" \| "danger" \| "transparent"` | `"default"` | The background color of the button      |
@@ -54,7 +44,7 @@ import { Button } from "@components/Button";
 ### Special
 
 | Prop      | Type      | Default | Description                                              |
-|:----------|:----------|:--------|:---------------------------------------------------------|
+| :-------- | :-------- | :------ | :------------------------------------------------------- |
 | `asChild` | `boolean` | `false` | Whether the button is rendered as a child of a component |
 
 ## Examples
@@ -62,101 +52,101 @@ import { Button } from "@components/Button";
 ### Default
 
 <TabProvider defaultName="preview">
-    <TabList>
-        <TabTrigger name="preview">Preview</TabTrigger>
-        <TabTrigger name="code">Code</TabTrigger>
-    </TabList>
-    <TabContent name="preview">
-        <Story layout="centered">
-            <Examples.Default />
-        </Story>
-    </TabContent>
-    <TabContent name="code">
-        <LoadedCode from={GITHUB_STORY("Button", "Default")} />
-    </TabContent>
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Default />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Button", "Default")} />
+  </TabContent>
 </TabProvider>
 
 ### Ghost
 
 <TabProvider defaultName="preview">
-    <TabList>
-        <TabTrigger name="preview">Preview</TabTrigger>
-        <TabTrigger name="code">Code</TabTrigger>
-    </TabList>
-    <TabContent name="preview">
-        <Story layout="centered">
-            <Examples.Ghost />
-        </Story>
-    </TabContent>
-    <TabContent name="code">
-        <LoadedCode from={GITHUB_STORY("Button", "Ghost")} />
-    </TabContent>
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Ghost />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Button", "Ghost")} />
+  </TabContent>
 </TabProvider>
 
 ### Link
 
 <TabProvider defaultName="preview">
-    <TabList>
-        <TabTrigger name="preview">Preview</TabTrigger>
-        <TabTrigger name="code">Code</TabTrigger>
-    </TabList>
-    <TabContent name="preview">
-        <Story layout="centered">
-            <Examples.Link />
-        </Story>
-    </TabContent>
-    <TabContent name="code">
-        <LoadedCode from={GITHUB_STORY("Button", "Link")} />
-    </TabContent>
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Link />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Button", "Link")} />
+  </TabContent>
 </TabProvider>
 
 ### Success
 
 <TabProvider defaultName="preview">
-    <TabList>
-        <TabTrigger name="preview">Preview</TabTrigger>
-        <TabTrigger name="code">Code</TabTrigger>
-    </TabList>
-    <TabContent name="preview">
-        <Story layout="centered">
-            <Examples.Success />
-        </Story>
-    </TabContent>
-    <TabContent name="code">
-        <LoadedCode from={GITHUB_STORY("Button", "Success")} />
-    </TabContent>
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Success />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Button", "Success")} />
+  </TabContent>
 </TabProvider>
 
 ### Warning
 
 <TabProvider defaultName="preview">
-    <TabList>
-        <TabTrigger name="preview">Preview</TabTrigger>
-        <TabTrigger name="code">Code</TabTrigger>
-    </TabList>
-    <TabContent name="preview">
-        <Story layout="centered">
-            <Examples.Warning />
-        </Story>
-    </TabContent>
-    <TabContent name="code">
-        <LoadedCode from={GITHUB_STORY("Button", "Warning")} />
-    </TabContent>
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Warning />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Button", "Warning")} />
+  </TabContent>
 </TabProvider>
 
 ### Danger
 
 <TabProvider defaultName="preview">
-    <TabList>
-        <TabTrigger name="preview">Preview</TabTrigger>
-        <TabTrigger name="code">Code</TabTrigger>
-    </TabList>
-    <TabContent name="preview">
-        <Story layout="centered">
-            <Examples.Danger />
-        </Story>
-    </TabContent>
-    <TabContent name="code">
-        <LoadedCode from={GITHUB_STORY("Button", "Danger")} />
-    </TabContent>
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Danger />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Button", "Danger")} />
+  </TabContent>
 </TabProvider>

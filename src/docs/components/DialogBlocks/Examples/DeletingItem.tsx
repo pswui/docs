@@ -21,7 +21,7 @@ export function DeletingItem() {
         <Button preset="danger">Delete Item</Button>
       </DialogTrigger>
       <DialogOverlay>
-        <DialogContent size={"fullMd"}>
+        <DialogContent>
           <DialogHeader>
             <DialogTitle>Delete Item</DialogTitle>
             <DialogSubtitle>

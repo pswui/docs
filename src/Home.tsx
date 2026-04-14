@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <main className="flex-grow h-full flex flex-col p-4 justify-center items-center">
+    <main className="grow h-full flex flex-col p-4 justify-center items-center">
       <section className="h-full flex flex-col justify-center items-center text-center gap-8">
         <header className="flex flex-col justify-center items-center gap-2">
           <h1 className="text-4xl font-bold">

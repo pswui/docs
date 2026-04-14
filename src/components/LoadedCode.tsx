@@ -1,9 +1,38 @@
 import { Button } from "@pswui/Button";
 import { useToast } from "@pswui/Toast";
-import { forwardRef, useEffect, useMemo, useState } from "react";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { gruvboxDark } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import {
+  type Component,
+  forwardRef,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import {
+  PrismLight,
+  type SyntaxHighlighterProps,
+} from "react-syntax-highlighter";
+import { duotoneSpace } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import css from "react-syntax-highlighter/dist/esm/languages/prism/css";
+import js from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
+import jsx from "react-syntax-highlighter/dist/esm/languages/prism/jsx";
+import markup from "react-syntax-highlighter/dist/esm/languages/prism/markup";
+import tsx from "react-syntax-highlighter/dist/esm/languages/prism/tsx";
+import ts from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
 import { twMerge } from "tailwind-merge";
+
+const SyntaxHighlighter =
+  PrismLight as unknown as typeof Component<SyntaxHighlighterProps> & {
+    registerLanguage<T>(name: string, func: T): void;
+    alias(name: string, alias: string | string[]): void;
+    alias(aliases: Record<string, string | string[]>): void;
+  };
+
+SyntaxHighlighter.registerLanguage("javascript", js);
+SyntaxHighlighter.registerLanguage("typescript", ts);
+SyntaxHighlighter.registerLanguage("tsx", tsx);
+SyntaxHighlighter.registerLanguage("jsx", jsx);
+SyntaxHighlighter.registerLanguage("markup", markup);
+SyntaxHighlighter.registerLanguage("css", css);
 
 export const GITHUB_UI = "https://raw.githubusercontent.com/pswui/ui/main";
 export const GITHUB_DOCS = "https://raw.githubusercontent.com/pswui/docs/main";
@@ -16,17 +45,19 @@ export const GITHUB_COMP_PREVIEW = (componentName: string) =>
 export const GITHUB_STORY = (componentName: string, storyName: string) =>
   `${GITHUB_DOCS}/src/docs/components/${componentName}Blocks/Examples/${storyName}.tsx`;
 
-export type TEMPLATE = Record<string, Record<string, string | boolean>>;
+export type TEMPLATE = Record<
+  string,
+  Record<string, string | boolean | number | undefined>
+>;
 
-export const LoadedCode = ({
-  from,
-  className,
-  template,
-}: {
-  from: string;
-  className?: string;
-  template?: TEMPLATE;
-}) => {
+const TEMPLATE_REMOVE_REGEX = /\/\*\s*remove\s*\*\/(.|\n)*?\/\*\s*end\s*\*\//g;
+const TEMPLATE_REPLACE_REGEX =
+  /\/\*\s*replace\s*\*\/(.|\n)*?\/\*\s*with\s*\n((.|\n)+)\n\s*\*\//g;
+
+export const LoadedCode = forwardRef<
+  HTMLDivElement,
+  { from: string; className?: string; template?: TEMPLATE }
+>(({ from, className, template }, ref) => {
   const [state, setState] = useState<string | undefined | null>();
   const { toast } = useToast();
 
@@ -44,6 +75,10 @@ export const LoadedCode = ({
 
     let templatedCode = state;
 
+    templatedCode = templatedCode
+      .replaceAll(TEMPLATE_REMOVE_REGEX, "")
+      .replaceAll(TEMPLATE_REPLACE_REGEX, "$2");
+
     for (const [componentName, componentTemplateProps] of Object.entries(
       template,
     )) {
@@ -51,13 +86,15 @@ export const LoadedCode = ({
         componentTemplateProps,
       )) {
         const regex = new RegExp(
-          `(<${componentName}\s[^]*)\s${propName}=(\{(true|false|"[^"\n]*"|'[^'\n]*'|\`[^\`\n]*\`)\}|"[^"\n]*"|'[^'\n]*')`,
+          `(<${componentName.slice(0, componentName.length - 5)}\\b[^>]*?)(\n?\\s+)${propName}={${componentName}.${propName}}`,
         );
         templatedCode = templatedCode.replace(
           regex,
-          typeof propValue === "string"
-            ? `\$1 ${propName}="${propValue}"`
-            : `$1 ${propName}={${propValue}}`,
+          typeof propValue === "undefined"
+            ? "$1"
+            : typeof propValue === "string"
+              ? `\$1$2 ${propName}="${propValue}"`
+              : `$1$2 ${propName}={${propValue}}`,
         );
       }
     }
@@ -66,7 +103,10 @@ export const LoadedCode = ({
   }, [state, template]);
 
   return (
-    <div className={twMerge("relative", className)}>
+    <div
+      className={twMerge("relative", className)}
+      ref={ref}
+    >
       <Button
         preset="default"
         size="icon"
@@ -103,15 +143,16 @@ export const LoadedCode = ({
       </Button>
       <SyntaxHighlighter
         language="typescript"
-        style={gruvboxDark}
-        className={`w-full h-64 rounded-lg ${!state ? "animate-pulse" : ""} scrollbar-none`}
+        style={duotoneSpace}
+        className={`w-full h-64 rounded-lg ${!state ? "animate-pulse" : ""} scrollbar-none resize-y`}
         customStyle={{ padding: "1rem" }}
       >
         {postProcessedCode}
       </SyntaxHighlighter>
     </div>
   );
-};
+});
+LoadedCode.displayName = "LoadedCode";
 
 export const Code = forwardRef<
   HTMLDivElement,
@@ -152,7 +193,7 @@ export const Code = forwardRef<
       </Button>
       <SyntaxHighlighter
         language={language}
-        style={gruvboxDark}
+        style={duotoneSpace}
         className={"w-full h-auto max-h-64 rounded-lg scrollbar-none"}
         customStyle={{ padding: "1rem" }}
       >

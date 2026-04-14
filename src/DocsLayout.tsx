@@ -33,7 +33,7 @@ function SideNav() {
 
 function DocsLayout() {
   return (
-    <div className="flex-grow grid grid-cols-1 md:grid-cols-[12rem_1fr] lg:grid-cols-[12rem_1fr_10rem] w-full max-w-5xl mx-auto">
+    <div className="grow grid grid-cols-1 md:grid-cols-[12rem_1fr] lg:grid-cols-[12rem_1fr_10rem] w-full max-w-5xl mx-auto">
       <SideNav />
       <Outlet />
     </div>

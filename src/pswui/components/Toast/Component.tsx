@@ -1,4 +1,4 @@
-import { type VariantProps, vcn } from "@pswui-lib";
+import { type VariantProps, useDocument, vcn } from "@pswui-lib";
 import React, { useEffect, useId, useRef } from "react";
 import ReactDOM from "react-dom";
 
@@ -168,6 +168,10 @@ const Toaster = React.forwardRef<HTMLDivElement, ToasterProps>((props, ref) => {
     };
   }, [defaultOption]);
 
+  const document = useDocument();
+
+  if (!document) return null;
+
   const toasterInstance = document.querySelector("div[data-toaster-root]");
   if (toasterInstance && id !== toasterInstance.id) {
     if (process.env.NODE_ENV === "development" && !muteDuplicationWarning) {
@@ -208,5 +212,6 @@ const Toaster = React.forwardRef<HTMLDivElement, ToasterProps>((props, ref) => {
     </>
   );
 });
+Toaster.displayName = "Toaster";
 
 export { Toaster };

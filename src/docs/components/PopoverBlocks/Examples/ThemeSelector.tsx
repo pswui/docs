@@ -51,7 +51,12 @@ export const ThemeSelector = () => {
           {theme === "light" ? <LightIcon /> : <DarkIcon />}
         </Button>
       </PopoverTrigger>
-      <PopoverContent anchor={"bottomCenter"}>
+      <PopoverContent
+        direction={"col"}
+        position={"end"}
+        anchor={"middle"}
+        align={"middle"}
+      >
         <Button
           onClick={() => setTheme("dark")}
           preset={"ghost"}

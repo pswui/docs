@@ -9,18 +9,7 @@ import {
 import DocsLayout from "./DocsLayout";
 import DynamicLayout from "./DynamicLayout";
 import ErrorBoundary from "./ErrorHandler";
-import Home from "./Home";
 import MainLayout from "./MainLayout";
-
-import DocsConfiguration, {
-  tableOfContents as docsConfigurationToc,
-} from "./docs/configuration.mdx";
-import DocsInstallation, {
-  tableOfContents as docsInstallationToc,
-} from "./docs/installation.mdx";
-import DocsIntroduction, {
-  tableOfContents as docsIntroductionToc,
-} from "./docs/introduction.mdx";
 
 import { Tooltip, TooltipContent } from "@pswui/Tooltip";
 import React, {
@@ -225,12 +214,20 @@ const router = createBrowserRouter(
     >
       <Route
         index
-        loader={() =>
-          REDIRECTED_404.test(window.location.search)
-            ? redirect(REDIRECTED_404.exec(window.location.search)?.[1] ?? "/")
-            : true
-        }
-        element={<Home />}
+        lazy={async () => {
+          const { default: Component } = await import("./Home");
+
+          return {
+            Component,
+            loader() {
+              return REDIRECTED_404.test(window.location.search)
+                ? redirect(
+                    REDIRECTED_404.exec(window.location.search)?.[1] ?? "/",
+                  )
+                : true;
+            },
+          };
+        }}
       />
       <Route
         path="docs"
@@ -242,27 +239,50 @@ const router = createBrowserRouter(
         />
         <Route
           path="introduction"
-          element={
-            <DynamicLayout toc={docsIntroductionToc}>
-              <DocsIntroduction components={overrideComponents} />
-            </DynamicLayout>
-          }
+          lazy={async () => {
+            const { default: DocsIntroduction, tableOfContents } = await import(
+              "./docs/introduction.mdx"
+            );
+
+            return {
+              Component: () => (
+                <DynamicLayout toc={tableOfContents}>
+                  <DocsIntroduction components={overrideComponents} />
+                </DynamicLayout>
+              ),
+            };
+          }}
         />
         <Route
           path="installation"
-          element={
-            <DynamicLayout toc={docsInstallationToc}>
-              <DocsInstallation components={overrideComponents} />
-            </DynamicLayout>
-          }
+          lazy={async () => {
+            const { default: DocsInstallation, tableOfContents } = await import(
+              "./docs/installation.mdx"
+            );
+
+            return {
+              Component: () => (
+                <DynamicLayout toc={tableOfContents}>
+                  <DocsInstallation components={overrideComponents} />
+                </DynamicLayout>
+              ),
+            };
+          }}
         />
         <Route
           path="configuration"
-          element={
-            <DynamicLayout toc={docsConfigurationToc}>
-              <DocsConfiguration components={overrideComponents} />
-            </DynamicLayout>
-          }
+          lazy={async () => {
+            const { default: DocsConfiguration, tableOfContents } =
+              await import("./docs/configuration.mdx");
+
+            return {
+              Component: () => (
+                <DynamicLayout toc={tableOfContents}>
+                  <DocsConfiguration components={overrideComponents} />
+                </DynamicLayout>
+              ),
+            };
+          }}
         />
         <Route path="components">
           <Route

@@ -62,7 +62,8 @@ function ThemeButton() {
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        anchor="bottomLeft"
+        anchor={"end"}
+        align={"end"}
         className="w-32"
       >
         <Button
@@ -149,7 +150,7 @@ function TopNav() {
                   </svg>
                 </Button>
               </DrawerTrigger>
-              <DrawerOverlay className="z-[99]">
+              <DrawerOverlay className="z-99">
                 <DrawerContent className="w-[300px] overflow-auto">
                   <DrawerClose className="absolute top-4 right-4">
                     <Button

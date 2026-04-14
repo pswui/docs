@@ -1,37 +1,38 @@
-import { type VariantProps, vcn } from "@pswui-lib";
+import { type AsChild, Slot, type VariantProps, vcn } from "@pswui-lib";
 import React from "react";
 
 const inputColors = {
   background: {
     default: "bg-neutral-50 dark:bg-neutral-900",
-    hover: "hover:bg-neutral-100 dark:hover:bg-neutral-800",
+    hover:
+      "hover:bg-neutral-100 dark:hover:bg-neutral-800 has-[input:hover]:bg-neutral-100 dark:has-[input:hover]:bg-neutral-800",
     invalid:
-      "invalid:bg-red-100 invalid:dark:bg-red-900 has-[input:invalid]:bg-red-100 dark:has-[input:invalid]:bg-red-900",
+      "invalid:bg-red-100 dark:invalid:bg-red-900 has-[input:invalid]:bg-red-100 dark:has-[input:invalid]:bg-red-900",
     invalidHover:
       "hover:invalid:bg-red-200 dark:hover:invalid:bg-red-800 has-[input:invalid:hover]:bg-red-200 dark:has-[input:invalid:hover]:bg-red-800",
   },
   border: {
     default: "border-neutral-400 dark:border-neutral-600",
     invalid:
-      "invalid:border-red-400 invalid:dark:border-red-600 has-[input:invalid]:border-red-400 dark:has-[input:invalid]:border-red-600",
+      "invalid:border-red-400 dark:invalid:border-red-600 has-[input:invalid]:border-red-400 dark:has-[input:invalid]:border-red-600",
   },
   ring: {
     default: "ring-transparent focus-within:ring-current",
     invalid:
-      "invalid:focus-within:ring-red-400 invalid:focus-within:dark:ring-red-600 has-[input:invalid]:focus-within:ring-red-400 dark:has-[input:invalid]:focus-within:ring-red-600",
+      "invalid:focus-within:ring-red-400 dark:invalid:focus-within:ring-red-600 has-[input:invalid]:focus-within:ring-red-400 dark:has-[input:invalid]:focus-within:ring-red-600",
   },
 };
 
 const [inputVariant, resolveInputVariantProps] = vcn({
-  base: `rounded-md p-2 border ring-1 outline-none transition-all duration-200 [appearance:textfield] disabled:brightness-50 disabled:saturate-0 disabled:cursor-not-allowed ${inputColors.background.default} ${inputColors.background.hover} ${inputColors.border.default} ${inputColors.ring.default} ${inputColors.background.invalid} ${inputColors.background.invalidHover} ${inputColors.border.invalid} ${inputColors.ring.invalid} [&:has(input)]:flex [&:has(input)]:w-fit`,
+  base: `rounded-md p-2 border ring-1 outline-hidden transition-all duration-200 [appearance:textfield] disabled:brightness-50 disabled:saturate-0 disabled:cursor-not-allowed ${inputColors.background.default} ${inputColors.background.hover} ${inputColors.border.default} ${inputColors.ring.default} ${inputColors.background.invalid} ${inputColors.background.invalidHover} ${inputColors.border.invalid} ${inputColors.ring.invalid} [&:has(input)]:flex`,
   variants: {
     unstyled: {
       true: "bg-transparent border-none p-0 ring-0 hover:bg-transparent invalid:hover:bg-transparent invalid:focus-within:bg-transparent invalid:focus-within:ring-0",
       false: "",
     },
     full: {
-      true: "w-full",
-      false: "w-fit",
+      true: "[&:has(input)]:w-full w-full",
+      false: "[&:has(input)]:w-fit w-fit",
     },
   },
   defaults: {
@@ -42,7 +43,8 @@ const [inputVariant, resolveInputVariantProps] = vcn({
 
 interface InputFrameProps
   extends VariantProps<typeof inputVariant>,
-    React.ComponentPropsWithoutRef<"label"> {
+    React.ComponentPropsWithoutRef<"label">,
+    AsChild {
   children?: React.ReactNode;
 }
 
@@ -50,19 +52,22 @@ const InputFrame = React.forwardRef<HTMLLabelElement, InputFrameProps>(
   (props, ref) => {
     const [variantProps, otherPropsCompressed] =
       resolveInputVariantProps(props);
-    const { children, ...otherPropsExtracted } = otherPropsCompressed;
+    const { children, asChild, ...otherPropsExtracted } = otherPropsCompressed;
+
+    const Comp = asChild ? Slot : "label";
 
     return (
-      <label
+      <Comp
         ref={ref}
         className={`group/input-frame ${inputVariant(variantProps)}`}
         {...otherPropsExtracted}
       >
         {children}
-      </label>
+      </Comp>
     );
   },
 );
+InputFrame.displayName = "InputFrame";
 
 interface InputProps
   extends VariantProps<typeof inputVariant>,
@@ -113,5 +118,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     />
   );
 });
+Input.displayName = "Input";
 
 export { InputFrame, Input };

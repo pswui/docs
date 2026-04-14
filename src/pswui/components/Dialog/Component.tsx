@@ -1,5 +1,5 @@
-import { Slot, type VariantProps, vcn } from "@pswui-lib";
-import React, { useState } from "react";
+import { Slot, type VariantProps, useDocument, vcn } from "@pswui-lib";
+import React, { type ReactNode, useState } from "react";
 import ReactDOM from "react-dom";
 
 import {
@@ -55,33 +55,15 @@ const DialogTrigger = ({ children }: DialogTriggerProps) => {
  */
 
 const [dialogOverlayVariant, resolveDialogOverlayVariant] = vcn({
-  base: "fixed inset-0 z-50 w-full h-screen overflow-y-auto max-w-screen transition-all duration-300",
+  base: "fixed inset-0 z-50 w-full h-screen overflow-y-auto max-w-screen transition-all duration-300 backdrop-blur-md backdrop-brightness-75 [&>div]:p-6",
   variants: {
     opened: {
       true: "pointer-events-auto opacity-100",
       false: "pointer-events-none opacity-0",
     },
-    blur: {
-      sm: "backdrop-blur-sm",
-      md: "backdrop-blur-md",
-      lg: "backdrop-blur-lg",
-    },
-    darken: {
-      sm: "backdrop-brightness-90",
-      md: "backdrop-brightness-75",
-      lg: "backdrop-brightness-50",
-    },
-    padding: {
-      sm: "[&>div]:p-4",
-      md: "[&>div]:p-6",
-      lg: "[&>div]:p-8",
-    },
   },
   defaults: {
     opened: false,
-    blur: "md",
-    darken: "md",
-    padding: "md",
   },
 });
 
@@ -100,35 +82,36 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlay>(
     });
     const { children, closeOnClick, onClick, ...otherPropsExtracted } =
       otherPropsCompressed;
-    return (
-      <>
-        {ReactDOM.createPortal(
-          <div
-            {...otherPropsExtracted}
-            ref={ref}
-            className={dialogOverlayVariant(variantProps)}
-            onClick={(e) => {
-              if (closeOnClick) {
-                setContext((p) => ({ ...p, opened: false }));
-              }
-              onClick?.(e);
-            }}
-          >
-            <div
-              className={
-                "w-screen max-w-full min-h-screen flex flex-col justify-center items-center"
-              }
-            >
-              {/* Layer for overflow positioning */}
-              {children}
-            </div>
-          </div>,
-          document.body,
-        )}
-      </>
+
+    const document = useDocument();
+    if (!document) return null;
+
+    return ReactDOM.createPortal(
+      <div
+        {...otherPropsExtracted}
+        ref={ref}
+        className={dialogOverlayVariant(variantProps)}
+        onClick={(e) => {
+          if (closeOnClick) {
+            setContext((p) => ({ ...p, opened: false }));
+          }
+          onClick?.(e);
+        }}
+      >
+        <div
+          className={
+            "w-screen max-w-full min-h-screen flex flex-col justify-center items-center"
+          }
+        >
+          {/* Layer for overflow positioning */}
+          {children}
+        </div>
+      </div>,
+      document.body,
     );
   },
 );
+DialogOverlay.displayName = "DialogOverlay";
 
 /**
  * =========================
@@ -137,43 +120,15 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlay>(
  */
 
 const [dialogContentVariant, resolveDialogContentVariant] = vcn({
-  base: "transition-transform duration-300 bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800",
+  base: "transition-transform duration-300 bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 p-6 w-full max-w-xl rounded-md flex flex-col justify-start items-start gap-6",
   variants: {
     opened: {
       true: "scale-100",
       false: "scale-50",
     },
-    size: {
-      fit: "w-fit",
-      fullSm: "w-full max-w-sm",
-      fullMd: "w-full max-w-md",
-      fullLg: "w-full max-w-lg",
-      fullXl: "w-full max-w-xl",
-      full2xl: "w-full max-w-2xl",
-    },
-    rounded: {
-      sm: "rounded-sm",
-      md: "rounded-md",
-      lg: "rounded-lg",
-      xl: "rounded-xl",
-    },
-    padding: {
-      sm: "p-4",
-      md: "p-6",
-      lg: "p-8",
-    },
-    gap: {
-      sm: "space-y-4",
-      md: "space-y-6",
-      lg: "space-y-8",
-    },
   },
   defaults: {
     opened: false,
-    size: "fit",
-    rounded: "md",
-    padding: "md",
-    gap: "md",
   },
 });
 
@@ -204,6 +159,7 @@ const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
     );
   },
 );
+DialogContent.displayName = "DialogContent";
 
 /**
  * =========================
@@ -234,17 +190,9 @@ const DialogClose = ({ children }: DialogCloseProps) => {
  */
 
 const [dialogHeaderVariant, resolveDialogHeaderVariant] = vcn({
-  base: "flex flex-col",
-  variants: {
-    gap: {
-      sm: "gap-2",
-      md: "gap-4",
-      lg: "gap-6",
-    },
-  },
-  defaults: {
-    gap: "sm",
-  },
+  base: "flex flex-col gap-2",
+  variants: {},
+  defaults: {},
 });
 
 interface DialogHeaderProps
@@ -268,6 +216,8 @@ const DialogHeader = React.forwardRef<HTMLElement, DialogHeaderProps>(
   },
 );
 
+DialogHeader.displayName = "DialogHeader";
+
 /**
  * =========================
  * DialogTitle / DialogSubtitle
@@ -275,22 +225,9 @@ const DialogHeader = React.forwardRef<HTMLElement, DialogHeaderProps>(
  */
 
 const [dialogTitleVariant, resolveDialogTitleVariant] = vcn({
-  variants: {
-    size: {
-      sm: "text-lg",
-      md: "text-xl",
-      lg: "text-2xl",
-    },
-    weight: {
-      sm: "font-medium",
-      md: "font-semibold",
-      lg: "font-bold",
-    },
-  },
-  defaults: {
-    size: "md",
-    weight: "lg",
-  },
+  base: "text-xl font-bold",
+  variants: {},
+  defaults: {},
 });
 
 interface DialogTitleProps
@@ -298,28 +235,9 @@ interface DialogTitleProps
     VariantProps<typeof dialogTitleVariant> {}
 
 const [dialogSubtitleVariant, resolveDialogSubtitleVariant] = vcn({
-  variants: {
-    size: {
-      sm: "text-sm",
-      md: "text-base",
-      lg: "text-lg",
-    },
-    opacity: {
-      sm: "opacity-60",
-      md: "opacity-70",
-      lg: "opacity-80",
-    },
-    weight: {
-      sm: "font-light",
-      md: "font-normal",
-      lg: "font-medium",
-    },
-  },
-  defaults: {
-    size: "sm",
-    opacity: "sm",
-    weight: "md",
-  },
+  base: "text-sm opacity-60 font-normal",
+  variants: {},
+  defaults: {},
 });
 
 interface DialogSubtitleProps
@@ -342,6 +260,7 @@ const DialogTitle = React.forwardRef<HTMLHeadingElement, DialogTitleProps>(
     );
   },
 );
+DialogTitle.displayName = "DialogTitle";
 
 const DialogSubtitle = React.forwardRef<
   HTMLHeadingElement,
@@ -360,6 +279,7 @@ const DialogSubtitle = React.forwardRef<
     </h2>
   );
 });
+DialogSubtitle.displayName = "DialogSubtitle";
 
 /**
  * =========================
@@ -368,17 +288,9 @@ const DialogSubtitle = React.forwardRef<
  */
 
 const [dialogFooterVariant, resolveDialogFooterVariant] = vcn({
-  base: "flex flex-col items-end sm:flex-row sm:items-center sm:justify-end",
-  variants: {
-    gap: {
-      sm: "gap-2",
-      md: "gap-4",
-      lg: "gap-6",
-    },
-  },
-  defaults: {
-    gap: "md",
-  },
+  base: "flex w-full flex-col items-end sm:flex-row sm:items-center sm:justify-end gap-2",
+  variants: {},
+  defaults: {},
 });
 
 interface DialogFooterProps
@@ -401,6 +313,34 @@ const DialogFooter = React.forwardRef<HTMLDivElement, DialogFooterProps>(
     );
   },
 );
+DialogFooter.displayName = "DialogFooter";
+
+interface DialogControllers {
+  context: IDialogContext;
+
+  setContext: React.Dispatch<React.SetStateAction<IDialogContext>>;
+  close: () => void;
+}
+
+interface DialogControllerProps {
+  children: (controllers: DialogControllers) => ReactNode;
+}
+
+const DialogController = (props: DialogControllerProps) => {
+  return (
+    <DialogContext.Consumer>
+      {([context, setContext]) =>
+        props.children({
+          context,
+          setContext,
+          close() {
+            setContext((p) => ({ ...p, opened: false }));
+          },
+        })
+      }
+    </DialogContext.Consumer>
+  );
+};
 
 export {
   DialogRoot,
@@ -412,4 +352,5 @@ export {
   DialogTitle,
   DialogSubtitle,
   DialogFooter,
+  DialogController,
 };

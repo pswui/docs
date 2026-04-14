@@ -18,7 +18,7 @@ export function BasicInformationalDialog() {
         <Button preset="default">What is this?</Button>
       </DialogTrigger>
       <DialogOverlay>
-        <DialogContent size={"fullMd"}>
+        <DialogContent>
           <DialogHeader>
             <DialogTitle>Dialog Title</DialogTitle>
             <DialogSubtitle>Dialog Subtitle</DialogSubtitle>

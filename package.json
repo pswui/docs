@@ -7,7 +7,6 @@
   "author": "Shinwoo PARK <devpysweb@gmail.com>",
   "license": "MIT",
   "private": true,
-  "packageManager": "yarn@4.3.0+sha512.1606bef7c84bc7d83b8576063de2fd08f7d69f9939015bed800f9585a002390268ecc777e9feeba7e26e9556aef6beaad4806968db2182ab5dd3e955ab3b9a0b",
   "type": "module",
   "scripts": {
     "postinstall": "lefthook install",
@@ -19,14 +18,16 @@
   "dependencies": {
     "@mdx-js/react": "^3.0.1",
     "@stefanprobst/rehype-extract-toc": "^2.2.0",
+    "@tailwindcss/vite": "^4.0.12",
     "highlight.js": "^11.9.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.23.1",
-    "react-syntax-highlighter": "^15.5.0",
+    "react-syntax-highlighter": "^15.6.1",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.0",
-    "tailwind-merge": "^2.3.0"
+    "tailwind-merge": "^2.3.0",
+    "typescript": "^5.4.5"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
@@ -42,13 +43,11 @@
     "@typescript-eslint/eslint-plugin": "^7.13.0",
     "@typescript-eslint/parser": "^7.13.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "autoprefixer": "^10.4.19",
     "lefthook": "^1.6.18",
-    "postcss": "^8.4.38",
-    "tailwind-scrollbar": "^3.1.0",
-    "tailwindcss": "^3.4.4",
-    "typescript": "^5.4.5",
+    "tailwind-scrollbar": "^4.0.1",
+    "tailwindcss": "^4.0.12",
     "vite": "^5.3.0",
     "vite-plugin-dynamic-import": "^1.5.0"
-  }
+  },
+  "packageManager": "yarn@4.4.0+sha512.91d93b445d9284e7ed52931369bc89a663414e5582d00eea45c67ddc459a2582919eece27c412d6ffd1bd0793ff35399381cb229326b961798ce4f4cc60ddfdb"
 }
