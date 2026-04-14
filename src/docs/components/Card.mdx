@@ -1,0 +1,60 @@
+import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
+import { Story } from "@/components/Story";
+import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
+import Examples from "./CardBlocks/Examples";
+
+# Card
+
+Displays a card container with header, content, and footer sections.
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Default />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Card", "Default")} />
+  </TabContent>
+</TabProvider>
+
+## Installation
+
+1. Create a new file `Card.tsx` in your component folder.
+2. Copy and paste the following code into the file.
+
+<LoadedCode from={GITHUB_COMP("Card")} />
+
+## Usage
+
+```tsx
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@components/Card";
+```
+
+```html
+<Card>
+  <CardHeader>
+    <CardTitle>Title</CardTitle>
+    <CardDescription>Description</CardDescription>
+  </CardHeader>
+  <CardContent>Content</CardContent>
+  <CardFooter>Footer</CardFooter>
+</Card>
+```
+
+## Props
+
+Exports: `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`
+
+| Component          | Props          |
+| :----------------- | :------------- |
+| `Card`            | `asChild`     |
+| `CardHeader`       | `asChild`     |
+| `CardTitle`        | `asChild`     |
+| `CardDescription`  | `asChild`     |
+| `CardContent`      | `asChild`     |
+| `CardFooter`       | `asChild`     |

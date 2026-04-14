@@ -1,0 +1,100 @@
+import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
+import { Story } from "@/components/Story";
+import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
+import Examples from "./ToggleGroupBlocks/Examples";
+
+# ToggleGroup
+
+A group of toggle buttons that can be controlled individually or as a single selection.
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Default />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("ToggleGroup", "Default")} />
+  </TabContent>
+</TabProvider>
+
+## Installation
+
+1. Create a new file `ToggleGroup.tsx` in your component folder.
+2. Copy and paste the following code into the file.
+
+<LoadedCode from={GITHUB_COMP("ToggleGroup")} />
+
+## Usage
+
+```tsx
+import { ToggleGroup, ToggleGroupItem } from "@components/ToggleGroup";
+```
+
+```html
+<ToggleGroup>
+  <ToggleGroupItem value="bold">B</ToggleGroupItem>
+  <ToggleGroupItem value="italic">I</ToggleGroupItem>
+</ToggleGroup>
+```
+
+## Props
+
+### ToggleGroup
+
+| Prop        | Type                                        | Default      | Description                        |
+| :--------- | :----------------------------------------- | :----------- | :-------------------------------- |
+| `type`      | `"single" \| "multiple"`                   | `"single"`   | Selection type                    |
+| `value`     | `string \| string[]`                       | -            | Controlled selection value        |
+| `defaultValue` | `string \| string[]`                   | -            | Default selection value           |
+| `onValueChange` | `(value: string \| string[]) => void`  | -            | Callback when selection changes   |
+| `disabled`  | `boolean`                                  | -            | Disables all items                |
+| `size`      | `"sm" \| "md" \| "lg"`                     | -            | Size of all items                 |
+| `orientation` | `"horizontal" \| "vertical"`             | `"horizontal"` | Group orientation               |
+
+### ToggleGroupItem
+
+| Prop       | Type      | Default | Description                |
+| :--------- | :-------- | :------ | :------------------------ |
+| `value`    | `string`  | -       | Unique value for the item  |
+| `disabled` | `boolean` | -       | Disables the item         |
+
+## Examples
+
+### Multiple Selection
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Multiple />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("ToggleGroup", "Multiple")} />
+  </TabContent>
+</TabProvider>
+
+### Vertical
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Vertical />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("ToggleGroup", "Vertical")} />
+  </TabContent>
+</TabProvider>

@@ -1,0 +1,67 @@
+import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
+import { Story } from "@/components/Story";
+import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
+import Examples from "./SliderBlocks/Examples";
+
+# Slider
+
+A slider input for selecting a value within a range.
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Default />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Slider", "Default")} />
+  </TabContent>
+</TabProvider>
+
+## Installation
+
+1. Create a new file `Slider.tsx` in your component folder.
+2. Copy and paste the following code into the file.
+
+<LoadedCode from={GITHUB_COMP("Slider")} />
+
+## Usage
+
+```tsx
+import { Slider } from "@components/Slider";
+```
+
+```html
+<Slider defaultValue={[50]} />
+```
+
+## Props
+
+| Prop    | Type                      | Default | Description             |
+| :------ | :------------------------ | :------ | :-------------------- |
+| `size`  | `"sm" \| "md" \| "lg"`   | `"md"`  | Size of the slider    |
+
+Standard input range props apply.
+
+## Examples
+
+### Sizes
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Sizes />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Slider", "Sizes")} />
+  </TabContent>
+</TabProvider>
