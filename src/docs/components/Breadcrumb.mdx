@@ -5,7 +5,7 @@ import Examples from "./BreadcrumbBlocks/Examples";
 
 # Breadcrumb
 
-Displays a navigation path with links.
+Displays the current location within a hierarchy of links.
 
 <TabProvider defaultName="preview">
   <TabList>
@@ -32,21 +32,73 @@ Displays a navigation path with links.
 ## Usage
 
 ```tsx
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@components/Breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@components/Breadcrumb";
 ```
 
-```html
+```tsx
 <Breadcrumb>
   <BreadcrumbList>
-    <BreadcrumbItem><BreadcrumbLink href="#">Home</BreadcrumbLink></BreadcrumbItem>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="#">Home</BreadcrumbLink>
+    </BreadcrumbItem>
     <BreadcrumbSeparator />
-    <BreadcrumbItem><BreadcrumbPage>Current</BreadcrumbPage></BreadcrumbItem>
+    <BreadcrumbItem>
+      <BreadcrumbPage>Current</BreadcrumbPage>
+    </BreadcrumbItem>
   </BreadcrumbList>
 </Breadcrumb>
 ```
 
 ## Props
 
-Exports: `Breadcrumb`, `BreadcrumbItem`, `BreadcrumbLink`, `BreadcrumbList`, `BreadcrumbPage`, `BreadcrumbSeparator`
+### Breadcrumb
 
-All components accept standard HTML props.
+Accepts standard `nav` props. The component sets `aria-label="Breadcrumb"` by
+default.
+
+### BreadcrumbList
+
+Accepts standard ordered list props.
+
+### BreadcrumbItem
+
+Accepts standard list item props.
+
+### BreadcrumbLink
+
+Accepts standard anchor props plus `asChild`.
+
+### BreadcrumbPage
+
+Accepts standard span props plus `asChild`. It sets `aria-current="page"` by
+default.
+
+### BreadcrumbSeparator
+
+Accepts standard list item props. When no children are provided it renders `/`.
+
+## Examples
+
+### Custom Separator
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.CustomSeparator />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Breadcrumb", "CustomSeparator")} />
+  </TabContent>
+</TabProvider>

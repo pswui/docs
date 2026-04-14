@@ -1,4 +1,5 @@
-import { Default, WithError } from "./Form";
+import { Default } from "./Default";
+import { WithError } from "./WithError";
 
 export default {
   Default,

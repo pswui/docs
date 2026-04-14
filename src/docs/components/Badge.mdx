@@ -5,7 +5,7 @@ import Examples from "./BadgeBlocks/Examples";
 
 # Badge
 
-Displays a badge or label.
+Displays a compact status label.
 
 <TabProvider defaultName="preview">
   <TabList>
@@ -35,17 +35,17 @@ Displays a badge or label.
 import { Badge } from "@components/Badge";
 ```
 
-```html
-<Badge status="default">Badge</Badge>
+```tsx
+<Badge status="success">Paid</Badge>
 ```
 
 ## Props
 
-| Prop      | Type                                           | Default   | Description                    |
-| :-------- | :-------------------------------------------- | :-------- | :----------------------------- |
-| `size`    | `"sm" \| "md"`                                | `"md"`    | The size of the badge          |
-| `status`  | `"default" \| "success" \| "warning" \| "danger"` | `"default"` | The status variant of the badge |
-| `asChild` | `boolean`                                     | `false`   | Render as child of a parent    |
+| Prop      | Type                                              | Default     | Description                               |
+| :-------- | :------------------------------------------------ | :---------- | :---------------------------------------- |
+| `size`    | `"sm" \| "md"`                                    | `"md"`      | Controls the badge padding and text size. |
+| `status`  | `"default" \| "success" \| "warning" \| "danger"` | `"default"` | Applies the matching status colors.       |
+| `asChild` | `boolean`                                         | `false`     | Renders the badge through a child slot.   |
 
 ## Examples
 
@@ -80,5 +80,22 @@ import { Badge } from "@components/Badge";
   </TabContent>
   <TabContent name="code">
     <LoadedCode from={GITHUB_STORY("Badge", "Sizes")} />
+  </TabContent>
+</TabProvider>
+
+### As Child
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.AsChild />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Badge", "AsChild")} />
   </TabContent>
 </TabProvider>

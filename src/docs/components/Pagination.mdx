@@ -5,7 +5,7 @@ import Examples from "./PaginationBlocks/Examples";
 
 # Pagination
 
-Displays a pagination control for navigating pages.
+Navigation primitives for moving between paged sets of content.
 
 <TabProvider defaultName="preview">
   <TabList>
@@ -32,20 +32,83 @@ Displays a pagination control for navigating pages.
 ## Usage
 
 ```tsx
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis } from "@components/Pagination";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@components/Pagination";
 ```
 
-```html
+```tsx
 <Pagination>
   <PaginationContent>
-    <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
-    <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
-    <PaginationItem><PaginationEllipsis /></PaginationItem>
-    <PaginationItem><PaginationNext href="#" /></PaginationItem>
+    <PaginationItem>
+      <PaginationPrevious href="#previous" />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#page-1" active>
+        1
+      </PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationEllipsis />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationNext href="#next" />
+    </PaginationItem>
   </PaginationContent>
 </Pagination>
 ```
 
 ## Props
 
-Exports: `Pagination`, `PaginationContent`, `PaginationItem`, `PaginationLink`, `PaginationPrevious`, `PaginationNext`, `PaginationEllipsis`
+### Pagination
+
+Standard `nav` props plus `asChild`. `aria-label` defaults to `"Pagination"`.
+
+### PaginationContent
+
+Standard `ul` props plus `asChild`.
+
+### PaginationItem
+
+Standard `li` props plus `asChild`.
+
+### PaginationLink
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `active` | `boolean` | `false` | Marks the current page and sets `aria-current="page"` by default. |
+| `disabled` | `boolean` | `false` | Disables interaction, removes `href`, and prevents clicks. |
+| `asChild` | `boolean` | `false` | Render the link through `Slot`. |
+
+### PaginationPrevious / PaginationNext
+
+Both components inherit `PaginationLink` props and accept optional `children` to replace the default labels.
+
+### PaginationEllipsis
+
+Standard `span` props plus `asChild`. It renders `"..."` by default.
+
+## Examples
+
+### Disabled
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Disabled />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Pagination", "Disabled")} />
+  </TabContent>
+</TabProvider>

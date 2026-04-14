@@ -5,7 +5,7 @@ import Examples from "./SkeletonBlocks/Examples";
 
 # Skeleton
 
-Displays a loading placeholder.
+Displays a loading placeholder while content is still being fetched.
 
 <TabProvider defaultName="preview">
   <TabList>
@@ -35,16 +35,16 @@ Displays a loading placeholder.
 import { Skeleton } from "@components/Skeleton";
 ```
 
-```html
-<Skeleton />
+```tsx
+<Skeleton className="h-24 w-full" />
 ```
 
 ## Props
 
-| Prop    | Type                                 | Default    | Description                    |
-| :------ | :---------------------------------- | :--------- | :----------------------------- |
-| `shape` | `"rectangle" \| "circle" \| "text"` | `"rectangle"` | Shape of the skeleton       |
-| `size`  | `"sm" \| "md" \| "lg" \| "icon"`    | `"md"`     | Size of the skeleton           |
+| Prop    | Type                                 | Default       | Description                                     |
+| :------ | :---------------------------------- | :------------ | :---------------------------------------------- |
+| `shape` | `"rectangle" \| "circle" \| "text"` | `"rectangle"` | Changes the silhouette of the placeholder.      |
+| `size`  | `"sm" \| "md" \| "lg" \| "icon"`    | `"md"`        | Sets the default dimensions of the skeleton.    |
 
 ## Examples
 

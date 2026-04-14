@@ -32,13 +32,15 @@ Displays a callout for important information.
 ## Usage
 
 ```tsx
-import { Alert, AlertTitle, AlertDescription } from "@components/Alert";
+import { Alert, AlertDescription, AlertTitle } from "@components/Alert";
 ```
 
-```html
-<Alert status="default">
-  <AlertTitle>Alert Title</AlertTitle>
-  <AlertDescription>Alert description text.</AlertDescription>
+```tsx
+<Alert status="warning">
+  <AlertTitle>Review your changes</AlertTitle>
+  <AlertDescription>
+    This action updates data for everyone in the workspace.
+  </AlertDescription>
 </Alert>
 ```
 
@@ -46,22 +48,22 @@ import { Alert, AlertTitle, AlertDescription } from "@components/Alert";
 
 ### Alert
 
-| Prop      | Type                                                    | Default     | Description                    |
-| :-------- | :------------------------------------------------------ | :---------- | :------------------------------ |
-| `status`  | `"default" \| "success" \| "warning" \| "danger"`       | `"default"` | The status variant of the alert |
-| `asChild` | `boolean`                                              | `false`     | Render as child of a parent     |
+| Prop      | Type                                              | Default     | Description                             |
+| :-------- | :------------------------------------------------ | :---------- | :-------------------------------------- |
+| `status`  | `"default" \| "success" \| "warning" \| "danger"` | `"default"` | Applies the corresponding alert styles. |
+| `asChild` | `boolean`                                         | `false`     | Renders the alert through a child slot. |
 
 ### AlertTitle
 
-| Prop      | Type      | Default | Description                  |
-| :-------- | :-------- | :------ | :---------------------------- |
-| `asChild` | `boolean` | `false` | Render as child of a parent   |
+| Prop      | Type      | Default | Description                             |
+| :-------- | :-------- | :------ | :-------------------------------------- |
+| `asChild` | `boolean` | `false` | Renders the title through a child slot. |
 
 ### AlertDescription
 
-| Prop      | Type      | Default | Description                  |
-| :-------- | :-------- | :------ | :---------------------------- |
-| `asChild` | `boolean` | `false` | Render as child of a parent  |
+| Prop      | Type      | Default | Description                                   |
+| :-------- | :-------- | :------ | :-------------------------------------------- |
+| `asChild` | `boolean` | `false` | Renders the description through a child slot. |
 
 ## Examples
 

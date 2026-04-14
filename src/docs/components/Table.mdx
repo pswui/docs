@@ -5,7 +5,7 @@ import Examples from "./TableBlocks/Examples";
 
 # Table
 
-Displays data in a structured table.
+Displays structured data in rows and columns.
 
 <TabProvider defaultName="preview">
   <TabList>
@@ -13,7 +13,7 @@ Displays data in a structured table.
     <TabTrigger name="code">Code</TabTrigger>
   </TabList>
   <TabContent name="preview">
-    <Story layout="centered">
+    <Story layout="default">
       <Examples.Default />
     </Story>
   </TabContent>
@@ -32,18 +32,101 @@ Displays data in a structured table.
 ## Usage
 
 ```tsx
-import { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption } from "@components/Table";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@components/Table";
 ```
 
-```html
+```tsx
 <Table>
   <TableCaption>Caption</TableCaption>
-  <TableHeader><TableRow><TableHead>Header</TableHead></TableRow></TableHeader>
-  <TableBody><TableRow><TableCell>Cell</TableCell></TableRow></TableBody>
-  <TableFooter><TableRow><TableCell>Footer</TableCell></TableRow></TableFooter>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Header</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Cell</TableCell>
+    </TableRow>
+  </TableBody>
 </Table>
 ```
 
 ## Props
 
-Exports: `Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableHead`, `TableRow`, `TableCell`, `TableCaption`
+### Table
+
+Accepts standard table props.
+
+### TableHeader
+
+Accepts standard `thead` props.
+
+### TableBody
+
+Accepts standard `tbody` props.
+
+### TableFooter
+
+Accepts standard `tfoot` props.
+
+### TableRow
+
+Accepts standard `tr` props. Set `data-state="selected"` to apply the selected
+row styling.
+
+### TableHead
+
+Accepts standard `th` props.
+
+### TableCell
+
+Accepts standard `td` props.
+
+### TableCaption
+
+Accepts standard `caption` props.
+
+## Examples
+
+### Selected Row
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="default">
+      <Examples.SelectedRow />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Table", "SelectedRow")} />
+  </TabContent>
+</TabProvider>
+
+### With Footer
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="default">
+      <Examples.WithFooter />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Table", "WithFooter")} />
+  </TabContent>
+</TabProvider>

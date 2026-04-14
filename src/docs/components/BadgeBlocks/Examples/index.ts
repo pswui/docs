@@ -1,7 +1,11 @@
-import { Default, StatusVariants, Sizes } from "./Badge";
+import { AsChild } from "./AsChild";
+import { Default } from "./Default";
+import { Sizes } from "./Sizes";
+import { StatusVariants } from "./StatusVariants";
 
 export default {
+  AsChild,
   Default,
-  StatusVariants,
   Sizes,
+  StatusVariants,
 };

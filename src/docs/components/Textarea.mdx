@@ -5,7 +5,7 @@ import Examples from "./TextareaBlocks/Examples";
 
 # Textarea
 
-A multi-line text input component.
+A multi-line text input for longer responses and notes.
 
 <TabProvider defaultName="preview">
   <TabList>
@@ -32,24 +32,30 @@ A multi-line text input component.
 ## Usage
 
 ```tsx
-import { Textarea } from "@components/Textarea";
+import { Textarea, TextareaFrame } from "@components/Textarea";
 ```
 
-```html
-<Textarea placeholder="Type your message..." />
+```tsx
+<Textarea
+  className="min-h-28"
+  placeholder="Type your message..."
+/>
 ```
 
 ## Props
 
-| Prop      | Type                              | Default   | Description                   |
-| :------- | :------------------------------- | :-------- | :---------------------------- |
-| `invalid` | `string`                         | -         | Error message for invalid state |
-| `unstyled` | `boolean`                       | `false`   | Remove default styling         |
-| `full`    | `boolean`                        | `false`   | Full width                    |
+### Textarea
+
+| Prop       | Type      | Default | Description                                          |
+| :--------- | :-------- | :------ | :--------------------------------------------------- |
+| `invalid`  | `string`  | -       | Sets the browser validity message and `aria-invalid`. |
+| `unstyled` | `boolean` | `false` | Removes the default field styling.                   |
+| `full`     | `boolean` | `false` | Makes the textarea take the full available width.    |
 
 ### TextareaFrame
 
-Wraps textarea in a styled label frame. Same props as Textarea plus `asChild`.
+Accepts the same `unstyled` and `full` variants as `Textarea`, plus standard
+label props and `asChild`.
 
 ## Examples
 
@@ -84,5 +90,22 @@ Wraps textarea in a styled label frame. Same props as Textarea plus `asChild`.
   </TabContent>
   <TabContent name="code">
     <LoadedCode from={GITHUB_STORY("Textarea", "FullWidth")} />
+  </TabContent>
+</TabProvider>
+
+### With Frame
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.WithFrame />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Textarea", "WithFrame")} />
   </TabContent>
 </TabProvider>

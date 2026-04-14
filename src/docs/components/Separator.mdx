@@ -5,7 +5,7 @@ import Examples from "./SeparatorBlocks/Examples";
 
 # Separator
 
-Displays a visual divider.
+Displays a visual divider between related content.
 
 <TabProvider defaultName="preview">
   <TabList>
@@ -35,13 +35,49 @@ Displays a visual divider.
 import { Separator } from "@components/Separator";
 ```
 
-```html
-<Separator />
+```tsx
+<Separator orientation="horizontal" />
 ```
 
 ## Props
 
-| Prop         | Type                              | Default        | Description              |
-| :----------- | :------------------------------- | :------------- | :---------------------- |
-| `orientation` | `"horizontal" \| "vertical"`    | `"horizontal"` | Orientation of the separator |
-| `decorative`  | `boolean`                        | -              | Hides separator from accessibility tree |
+| Prop          | Type                         | Default        | Description                                          |
+| :------------ | :--------------------------- | :------------- | :--------------------------------------------------- |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Sets whether the separator is horizontal or vertical. |
+| `decorative`  | `boolean`                    | `false`        | Hides the separator from assistive technology.       |
+
+## Examples
+
+### Vertical
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Vertical />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Separator", "Vertical")} />
+  </TabContent>
+</TabProvider>
+
+### Decorative
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Decorative />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Separator", "Decorative")} />
+  </TabContent>
+</TabProvider>

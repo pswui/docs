@@ -5,7 +5,7 @@ import Examples from "./FormBlocks/Examples";
 
 # Form
 
-Form layout components with built-in validation support.
+Composable form primitives for labels, helper text, and validation messages.
 
 <TabProvider defaultName="preview">
   <TabList>
@@ -32,14 +32,15 @@ Form layout components with built-in validation support.
 ## Usage
 
 ```tsx
-import { FormItem, FormLabel, FormHelper, FormError } from "@components/Form";
+import { FormError, FormHelper, FormItem, FormLabel } from "@components/Form";
+import { Input } from "@components/Input";
 ```
 
-```html
-<FormItem invalid={errorMessage}>
-  <FormLabel>Label</FormLabel>
-  <Input placeholder="Input" />
-  <FormHelper>Helper text</FormHelper>
+```tsx
+<FormItem invalid="Email is required.">
+  <FormLabel>Email</FormLabel>
+  <Input type="email" placeholder="name@example.com" />
+  <FormHelper hiddenOnInvalid>Use the address you check every day.</FormHelper>
   <FormError />
 </FormItem>
 ```
@@ -48,25 +49,31 @@ import { FormItem, FormLabel, FormHelper, FormError } from "@components/Form";
 
 ### FormItem
 
-| Prop     | Type                    | Default | Description                |
-| :------ | :---------------------- | :------ | :------------------------ |
-| `invalid` | `string \| null`        | -       | Error message              |
-| `asChild` | `boolean`              | -       | Render as child            |
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `invalid` | `string \| null \| undefined` | - | Validation message shared with `FormError` and applied to the nested input element. |
+| `asChild` | `boolean` | `false` | Render the wrapper through `Slot` instead of the default `label` element. |
 
 ### FormLabel
 
-Standard span props plus `asChild`.
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `asChild` | `boolean` | `false` | Render the label text through `Slot`. |
 
 ### FormHelper
 
-| Prop           | Type      | Default | Description                   |
-| :------------ | :-------- | :------ | :--------------------------- |
-| `hiddenOnInvalid` | `boolean` | -   | Hide when FormItem is invalid |
-| `asChild`       | `boolean` | -       | Render as child               |
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `hiddenOnInvalid` | `boolean` | `false` | Hide helper text while the parent `FormItem` is invalid. |
+| `asChild` | `boolean` | `false` | Render the helper through `Slot`. |
 
 ### FormError
 
-Standard span props.
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `asChild` | `boolean` | `false` | Render the error container through `Slot`. |
+
+`FormError` reads the `invalid` value from the closest `FormItem` and renders nothing when no message is present.
 
 ## Examples
 

@@ -5,7 +5,7 @@ import Examples from "./AvatarBlocks/Examples";
 
 # Avatar
 
-Displays a user's profile picture or fallback initials.
+Displays a user's profile picture, initials, or custom fallback.
 
 <TabProvider defaultName="preview">
   <TabList>
@@ -35,21 +35,25 @@ Displays a user's profile picture or fallback initials.
 import { Avatar } from "@components/Avatar";
 ```
 
-```html
-<Avatar name="Shinwoo Park" />
+```tsx
+<Avatar
+  src="https://example.com/profile.png"
+  alt="Shinwoo Park"
+  name="Shinwoo Park"
+/>
 ```
 
 ## Props
 
-| Prop          | Type                                 | Default   | Description                         |
-| :------------ | :----------------------------------- | :-------- | :---------------------------------- |
-| `src`         | `string`                             | -         | Image URL                          |
-| `alt`         | `string`                             | -         | Alt text for the image              |
-| `name`        | `string`                             | -         | Name for generating initials        |
-| `fallback`    | `React.ReactNode`                    | -         | Custom fallback content             |
-| `imageProps`  | `AvatarImageProps`                   | -         | Props passed to the img element     |
-| `size`        | `"sm" \| "md" \| "lg"`               | `"md"`    | The size of the avatar              |
-| `shape`       | `"circle" \| "square"`               | `"circle"` | The shape of the avatar            |
+| Prop         | Type                   | Default      | Description                                        |
+| :----------- | :--------------------- | :----------- | :------------------------------------------------- |
+| `src`        | `string`               | -            | Image source for the avatar.                       |
+| `alt`        | `string`               | -            | Alternative text passed to the image.              |
+| `name`       | `string`               | -            | Used to generate initials when no image is shown.  |
+| `fallback`   | `React.ReactNode`      | -            | Overrides the default initials fallback.           |
+| `imageProps` | `AvatarImageProps`     | -            | Additional props forwarded to the inner `img`.     |
+| `size`       | `"sm" \| "md" \| "lg"` | `"md"`       | Controls the avatar dimensions.                    |
+| `shape`      | `"circle" \| "square"` | `"circle"`   | Chooses between a circular or rounded square shape. |
 
 ## Examples
 
@@ -62,11 +66,11 @@ import { Avatar } from "@components/Avatar";
   </TabList>
   <TabContent name="preview">
     <Story layout="centered">
-      <Examples.WithImage />
+      <Examples.Image />
     </Story>
   </TabContent>
   <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Avatar", "WithImage")} />
+    <LoadedCode from={GITHUB_STORY("Avatar", "Image")} />
   </TabContent>
 </TabProvider>
 
@@ -87,7 +91,7 @@ import { Avatar } from "@components/Avatar";
   </TabContent>
 </TabProvider>
 
-### Shapes
+### Custom Fallback
 
 <TabProvider defaultName="preview">
   <TabList>
@@ -96,10 +100,10 @@ import { Avatar } from "@components/Avatar";
   </TabList>
   <TabContent name="preview">
     <Story layout="centered">
-      <Examples.Shapes />
+      <Examples.CustomFallback />
     </Story>
   </TabContent>
   <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Avatar", "Shapes")} />
+    <LoadedCode from={GITHUB_STORY("Avatar", "CustomFallback")} />
   </TabContent>
 </TabProvider>

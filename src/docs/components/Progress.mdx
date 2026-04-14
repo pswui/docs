@@ -5,7 +5,7 @@ import Examples from "./ProgressBlocks/Examples";
 
 # Progress
 
-Displays a progress bar.
+Shows the completion state of a task with a native progress element.
 
 <TabProvider defaultName="preview">
   <TabList>
@@ -35,14 +35,50 @@ Displays a progress bar.
 import { Progress } from "@components/Progress";
 ```
 
-```html
-<Progress value={50} />
+```tsx
+<Progress value={64} max={100} aria-label="Upload progress" />
 ```
 
 ## Props
 
-| Prop    | Type              | Default | Description              |
-| :------ | :--------------- | :------ | :---------------------- |
-| `max`   | `number`         | `100`   | Maximum value           |
-| `value` | `number \| null` | -       | Current value           |
-| `size`  | `"sm" \| "md" \| "lg"` | `"md"` | Size of the progress bar |
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Controls the height of the progress bar. |
+| `max` | `number` | `100` | Upper bound for the progress value. Invalid or non-positive values fall back to `100`. |
+| `value` | `number \| null` | - | Current progress value. Leave it unset to render an indeterminate state. |
+
+## Examples
+
+### Indeterminate
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Indeterminate />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Progress", "Indeterminate")} />
+  </TabContent>
+</TabProvider>
+
+### Sizes
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Sizes />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Progress", "Sizes")} />
+  </TabContent>
+</TabProvider>

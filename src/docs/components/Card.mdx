@@ -5,7 +5,7 @@ import Examples from "./CardBlocks/Examples";
 
 # Card
 
-Displays a card container with header, content, and footer sections.
+Displays content and actions inside a bordered container.
 
 <TabProvider defaultName="preview">
   <TabList>
@@ -32,29 +32,85 @@ Displays a card container with header, content, and footer sections.
 ## Usage
 
 ```tsx
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@components/Card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@components/Card";
 ```
 
-```html
+```tsx
 <Card>
   <CardHeader>
-    <CardTitle>Title</CardTitle>
-    <CardDescription>Description</CardDescription>
+    <CardTitle>Team plan</CardTitle>
+    <CardDescription>For growing product teams</CardDescription>
   </CardHeader>
-  <CardContent>Content</CardContent>
-  <CardFooter>Footer</CardFooter>
+  <CardContent>Shared projects, analytics, and billing controls.</CardContent>
+  <CardFooter>Footer actions</CardFooter>
 </Card>
 ```
 
 ## Props
 
-Exports: `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`
+### Card
 
-| Component          | Props          |
-| :----------------- | :------------- |
-| `Card`            | `asChild`     |
-| `CardHeader`       | `asChild`     |
-| `CardTitle`        | `asChild`     |
-| `CardDescription`  | `asChild`     |
-| `CardContent`      | `asChild`     |
-| `CardFooter`       | `asChild`     |
+Accepts standard `article` props plus `asChild`.
+
+### CardHeader
+
+Accepts standard `header` props plus `asChild`.
+
+### CardTitle
+
+Accepts standard heading props plus `asChild`.
+
+### CardDescription
+
+Accepts standard paragraph props plus `asChild`.
+
+### CardContent
+
+Accepts standard div props plus `asChild`.
+
+### CardFooter
+
+Accepts standard `footer` props plus `asChild`.
+
+## Examples
+
+### Account Summary
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.AccountSummary />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Card", "AccountSummary")} />
+  </TabContent>
+</TabProvider>
+
+### Actions
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Actions />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Card", "Actions")} />
+  </TabContent>
+</TabProvider>

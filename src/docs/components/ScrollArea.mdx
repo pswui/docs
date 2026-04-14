@@ -5,7 +5,7 @@ import Examples from "./ScrollAreaBlocks/Examples";
 
 # ScrollArea
 
-A container with styled scrollbars.
+A scrollable container with subtle, styled scrollbars.
 
 <TabProvider defaultName="preview">
   <TabList>
@@ -35,7 +35,7 @@ A container with styled scrollbars.
 import { ScrollArea } from "@components/ScrollArea";
 ```
 
-```html
+```tsx
 <ScrollArea className="h-40 w-80">
   <p>Scrollable content...</p>
 </ScrollArea>
@@ -43,6 +43,27 @@ import { ScrollArea } from "@components/ScrollArea";
 
 ## Props
 
-| Prop         | Type                                   | Default      | Description                |
-| :----------- | :------------------------------------ | :----------- | :------------------------ |
-| `orientation` | `"vertical" \| "horizontal" \| "both"` | `"vertical"` | Scroll orientation        |
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `orientation` | `"vertical" \| "horizontal" \| "both"` | `"vertical"` | Controls which axis can scroll. |
+
+`ScrollArea` also defaults `tabIndex` to `0`, so keyboard users can focus it and scroll with the keyboard.
+
+## Examples
+
+### Horizontal
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Horizontal />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("ScrollArea", "Horizontal")} />
+  </TabContent>
+</TabProvider>
