@@ -1,6 +1,7 @@
 import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
 import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
+import { ProgressDemo } from "./ProgressBlocks/Preview";
 import Examples from "./ProgressBlocks/Examples";
 
 # Progress
@@ -14,11 +15,11 @@ Displays a progress bar.
   </TabList>
   <TabContent name="preview">
     <Story layout="centered">
-      <Examples.Default />
+      <ProgressDemo />
     </Story>
   </TabContent>
   <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Progress", "Default")} />
+    <LoadedCode from={GITHUB_COMP("Progress")} />
   </TabContent>
 </TabProvider>
 
@@ -46,3 +47,22 @@ import { Progress } from "@components/Progress";
 | `max`   | `number`         | `100`   | Maximum value           |
 | `value` | `number \| null` | -       | Current value           |
 | `size`  | `"sm" \| "md" \| "lg"` | `"md"` | Size of the progress bar |
+
+## Examples
+
+### Sizes
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Sizes />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("Progress", "Sizes")} />
+  </TabContent>
+</TabProvider>

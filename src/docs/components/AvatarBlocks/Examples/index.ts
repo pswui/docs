@@ -1,4 +1,7 @@
-import { Default, WithImage, Sizes, Shapes } from "./Avatar";
+import { Default } from "./Default";
+import { Shapes } from "./Shapes";
+import { Sizes } from "./Sizes";
+import { WithImage } from "./WithImage";
 
 export default {
   Default,

@@ -1,4 +1,6 @@
-import { Default, StatusVariants, Sizes } from "./Badge";
+import { Default } from "./Default";
+import { Sizes } from "./Sizes";
+import { StatusVariants } from "./StatusVariants";
 
 export default {
   Default,

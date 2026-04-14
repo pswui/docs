@@ -1,10 +1,7 @@
 import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
-import {
-  LoadedCode,
-  GITHUB_DIR_COMP,
-  GITHUB_STORY,
-} from "@/components/LoadedCode";
+import { LoadedCode, GITHUB_DIR_COMP, GITHUB_STORY } from "@/components/LoadedCode";
+import { AccordionDemo } from "./AccordionBlocks/Preview";
 import Examples from "./AccordionBlocks/Examples";
 
 # Accordion
@@ -18,11 +15,11 @@ A collapsible accordion component.
   </TabList>
   <TabContent name="preview">
     <Story layout="centered">
-      <Examples.Default />
+      <AccordionDemo />
     </Story>
   </TabContent>
   <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Accordion", "Accordion")} />
+    <LoadedCode from={GITHUB_DIR_COMP("Accordion", "Component.tsx")} />
   </TabContent>
 </TabProvider>
 
@@ -94,7 +91,7 @@ Standard div props.
     </Story>
   </TabContent>
   <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Accordion", "Accordion")} />
+    <LoadedCode from={GITHUB_STORY("Accordion", "Collapsible")} />
   </TabContent>
 </TabProvider>
 
@@ -111,6 +108,6 @@ Standard div props.
     </Story>
   </TabContent>
   <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Accordion", "Accordion")} />
+    <LoadedCode from={GITHUB_STORY("Accordion", "DefaultExpanded")} />
   </TabContent>
 </TabProvider>

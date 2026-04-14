@@ -1,6 +1,7 @@
 import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
 import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
+import { SliderDemo } from "./SliderBlocks/Preview";
 import Examples from "./SliderBlocks/Examples";
 
 # Slider
@@ -14,11 +15,11 @@ A slider input for selecting a value within a range.
   </TabList>
   <TabContent name="preview">
     <Story layout="centered">
-      <Examples.Default />
+      <SliderDemo />
     </Story>
   </TabContent>
   <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Slider", "Default")} />
+    <LoadedCode from={GITHUB_COMP("Slider")} />
   </TabContent>
 </TabProvider>
 
@@ -36,7 +37,7 @@ import { Slider } from "@components/Slider";
 ```
 
 ```html
-<Slider defaultValue={[50]} />
+<Slider defaultValue={["50"]} />
 ```
 
 ## Props

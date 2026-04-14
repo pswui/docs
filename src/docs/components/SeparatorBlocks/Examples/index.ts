@@ -1,6 +1,4 @@
-import { Default, Vertical } from "./Separator";
+import { Default } from "./Default";
+import { Vertical } from "./Vertical";
 
-export default {
-  Default,
-  Vertical,
-};
+export default { Default, Vertical };

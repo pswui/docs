@@ -1,6 +1,7 @@
 import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
 import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
+import { TableDemo } from "./TableBlocks/Preview";
 import Examples from "./TableBlocks/Examples";
 
 # Table
@@ -14,11 +15,11 @@ Displays data in a structured table.
   </TabList>
   <TabContent name="preview">
     <Story layout="centered">
-      <Examples.Default />
+      <TableDemo />
     </Story>
   </TabContent>
   <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Table", "Default")} />
+    <LoadedCode from={GITHUB_COMP("Table")} />
   </TabContent>
 </TabProvider>
 

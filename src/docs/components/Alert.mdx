@@ -1,6 +1,7 @@
 import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
 import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
+import { AlertDemo } from "./AlertBlocks/Preview";
 import Examples from "./AlertBlocks/Examples";
 
 # Alert
@@ -14,11 +15,11 @@ Displays a callout for important information.
   </TabList>
   <TabContent name="preview">
     <Story layout="centered">
-      <Examples.Default />
+      <AlertDemo />
     </Story>
   </TabContent>
   <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Alert", "Default")} />
+    <LoadedCode from={GITHUB_COMP("Alert")} />
   </TabContent>
 </TabProvider>
 
@@ -36,7 +37,7 @@ import { Alert, AlertTitle, AlertDescription } from "@components/Alert";
 ```
 
 ```html
-<Alert status="default">
+<Alert>
   <AlertTitle>Alert Title</AlertTitle>
   <AlertDescription>Alert description text.</AlertDescription>
 </Alert>

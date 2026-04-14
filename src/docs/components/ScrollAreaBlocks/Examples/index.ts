@@ -1,5 +1,3 @@
-import { Default } from "./ScrollArea";
+import { Default } from "./Default";
 
-export default {
-  Default,
-};
+export default { Default };

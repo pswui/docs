@@ -1,6 +1,4 @@
-import { Default, Horizontal } from "./RadioGroup";
+import { Default } from "./Default";
+import { Horizontal } from "./Horizontal";
 
-export default {
-  Default,
-  Horizontal,
-};
+export default { Default, Horizontal };

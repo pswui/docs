@@ -1,7 +1,5 @@
-import { Default, Sizes, DefaultPressed } from "./Toggle";
+import { Default } from "./Default";
+import { DefaultPressed } from "./DefaultPressed";
+import { Sizes } from "./Sizes";
 
-export default {
-  Default,
-  Sizes,
-  DefaultPressed,
-};
+export default { Default, Sizes, DefaultPressed };

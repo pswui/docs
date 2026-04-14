@@ -1,6 +1,4 @@
-import { Default, Sizes } from "./Progress";
+import { Default } from "./Default";
+import { Sizes } from "./Sizes";
 
-export default {
-  Default,
-  Sizes,
-};
+export default { Default, Sizes };
