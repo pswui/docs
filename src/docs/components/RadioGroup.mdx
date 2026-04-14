@@ -2,6 +2,7 @@ import { TabProvider, TabTrigger, TabContent, TabList } from "@pswui/Tabs";
 import { Story } from "@/components/Story";
 import { LoadedCode, GITHUB_COMP, GITHUB_STORY } from "@/components/LoadedCode";
 import Examples from "./RadioGroupBlocks/Examples";
+import Playground from "./RadioGroupBlocks/Playground";
 
 # RadioGroup
 
@@ -9,20 +10,7 @@ Groups related radio inputs and manages a single selected value.
 
 ## Playground
 
-<TabProvider defaultName="preview">
-  <TabList>
-    <TabTrigger name="preview">Preview</TabTrigger>
-    <TabTrigger name="code">Code</TabTrigger>
-  </TabList>
-  <TabContent name="preview">
-    <Story layout="centered">
-      <Examples.Default />
-    </Story>
-  </TabContent>
-  <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("RadioGroup", "Default")} />
-  </TabContent>
-</TabProvider>
+<Playground />
 
 ## Installation
 

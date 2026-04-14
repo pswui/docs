@@ -6,6 +6,7 @@ import {
   GITHUB_STORY,
 } from "@/components/LoadedCode";
 import Examples from "./AccordionBlocks/Examples";
+import Playground from "./AccordionBlocks/Playground";
 
 # Accordion
 
@@ -14,20 +15,7 @@ time.
 
 ## Playground
 
-<TabProvider defaultName="preview">
-  <TabList>
-    <TabTrigger name="preview">Preview</TabTrigger>
-    <TabTrigger name="code">Code</TabTrigger>
-  </TabList>
-  <TabContent name="preview">
-    <Story layout="centered">
-      <Examples.Default />
-    </Story>
-  </TabContent>
-  <TabContent name="code">
-    <LoadedCode from={GITHUB_STORY("Accordion", "Default")} />
-  </TabContent>
-</TabProvider>
+<Playground />
 
 ## Installation
 
