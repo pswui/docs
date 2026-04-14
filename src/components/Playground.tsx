@@ -1,8 +1,7 @@
-import { Button } from "@pswui/Button";
 import { Checkbox } from "@pswui/Checkbox";
 import { Input } from "@pswui/Input";
 import { Label } from "@pswui/Label";
-import { Popover, PopoverContent, PopoverTrigger } from "@pswui/Popover";
+import { Select } from "@pswui/Select";
 import { Switch } from "@pswui/Switch";
 import { TabContent, TabList, TabProvider, TabTrigger } from "@pswui/Tabs";
 import type { ReactNode } from "react";
@@ -109,27 +108,17 @@ export function PlaygroundControl<T extends ControlTemplate>(props: {
                     className="w-full md:w-fit"
                   />
                 ) : propMeta.type === "select" ? (
-                  <Popover>
-                    <PopoverTrigger>
-                      <Button
-                        preset="default"
-                        className="w-full md:w-fit"
-                      >
-                        {propMeta.value}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="min-w-36">
-                      {propMeta.options.map((value) => (
-                        <Button
-                          preset="ghost"
-                          key={value}
-                          onClick={() => propMeta.onChange(value)}
-                        >
-                          {value}
-                        </Button>
-                      ))}
-                    </PopoverContent>
-                  </Popover>
+                  <Select
+                    full
+                    value={propMeta.value}
+                    onValueChange={propMeta.onChange}
+                    disabled={propMeta.disabled}
+                    options={propMeta.options.map((value) => ({
+                      label: value,
+                      value,
+                    }))}
+                    placeholder={propName}
+                  />
                 ) : propMeta.type === "number" ? (
                   <Input
                     type="number"
