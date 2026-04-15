@@ -1,4 +1,5 @@
 import { Button } from "@pswui/Button";
+import { ScrollArea } from "@pswui/ScrollArea";
 import { useToast } from "@pswui/Toast";
 import {
   type Component,
@@ -141,14 +142,22 @@ export const LoadedCode = forwardRef<
           />
         </svg>
       </Button>
-      <SyntaxHighlighter
-        language="typescript"
-        style={duotoneSpace}
-        className={`w-full h-64 rounded-lg ${!state ? "animate-pulse" : ""} scrollbar-none resize-y`}
-        customStyle={{ padding: "1rem" }}
+      <ScrollArea
+        orientation="both"
+        className={twMerge(
+          "h-64 w-full resize-y rounded-lg",
+          !state && "animate-pulse",
+        )}
       >
-        {postProcessedCode}
-      </SyntaxHighlighter>
+        <SyntaxHighlighter
+          language="typescript"
+          style={duotoneSpace}
+          className="min-h-full w-full rounded-lg"
+          customStyle={{ margin: 0, padding: "1rem" }}
+        >
+          {postProcessedCode}
+        </SyntaxHighlighter>
+      </ScrollArea>
     </div>
   );
 });
@@ -191,14 +200,19 @@ export const Code = forwardRef<
           />
         </svg>
       </Button>
-      <SyntaxHighlighter
-        language={language}
-        style={duotoneSpace}
-        className={"w-full h-auto max-h-64 rounded-lg scrollbar-none"}
-        customStyle={{ padding: "1rem" }}
+      <ScrollArea
+        orientation="both"
+        className="w-full max-h-64 rounded-lg"
       >
-        {children}
-      </SyntaxHighlighter>
+        <SyntaxHighlighter
+          language={language}
+          style={duotoneSpace}
+          className="h-auto w-full rounded-lg"
+          customStyle={{ margin: 0, padding: "1rem" }}
+        >
+          {children}
+        </SyntaxHighlighter>
+      </ScrollArea>
     </div>
   );
 });
