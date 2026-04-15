@@ -11,6 +11,7 @@ import DynamicLayout from "./DynamicLayout";
 import ErrorBoundary from "./ErrorHandler";
 import MainLayout from "./MainLayout";
 
+import { ScrollArea } from "@pswui/ScrollArea";
 import { Tooltip, TooltipContent } from "@pswui/Tooltip";
 import React, {
   type ForwardedRef,
@@ -162,13 +163,16 @@ const overrideComponents = {
     />
   )),
   table: forwardRef<HTMLTableElement, { className?: string }>((props, ref) => (
-    <div className="overflow-auto">
+    <ScrollArea
+      orientation="horizontal"
+      className="w-full"
+    >
       <table
         ref={ref}
         {...props}
         className={`${props.className}`}
       />
-    </div>
+    </ScrollArea>
   )),
   h1: forwardRef<HTMLHeadingElement, HashedHeaderProps>(HashedHeaders("h1")),
   h2: forwardRef<HTMLHeadingElement, HashedHeaderProps>(HashedHeaders("h2")),
