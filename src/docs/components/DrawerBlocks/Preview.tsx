@@ -11,9 +11,6 @@ import {
 } from "@pswui/Drawer";
 /* remove */
 export interface DrawerDemoPlaygroundProps {
-  DrawerRootProps: {
-    closeThreshold: number;
-  };
   DrawerContentProps: {
     position: "top" | "bottom" | "left" | "right";
     maxSize: "sm" | "md" | "lg" | "xl";
@@ -21,15 +18,12 @@ export interface DrawerDemoPlaygroundProps {
 }
 /* end */
 /* replace */
-export function DrawerDemo({
-  DrawerRootProps,
-  DrawerContentProps,
-}: DrawerDemoPlaygroundProps) {
+export function DrawerDemo({ DrawerContentProps }: DrawerDemoPlaygroundProps) {
   /* with
 export function DrawerDemo() {
   */
   return (
-    <DrawerRoot closeThreshold={DrawerRootProps.closeThreshold}>
+    <DrawerRoot>
       <DrawerTrigger>
         <Button>Open Drawer</Button>
       </DrawerTrigger>
