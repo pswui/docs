@@ -6,7 +6,7 @@ import Playground from "./ScrollAreaBlocks/Playground";
 
 # ScrollArea
 
-A scrollable container with subtle, styled scrollbars.
+A keyboard-focusable scroll container with hidden native scrollbars and custom thumb-only overlay chrome.
 
 ## Playground
 
@@ -26,20 +26,45 @@ import { ScrollArea } from "@components/ScrollArea";
 ```
 
 ```tsx
-<ScrollArea className="h-40 w-80">
-  <p>Scrollable content...</p>
+<ScrollArea
+  role="region"
+  aria-label="Activity feed"
+  className="h-56 rounded-lg border border-neutral-200 p-3 pr-5"
+>
+  <div className="flex flex-col gap-3 pr-2">
+    <p>Scrollable content...</p>
+  </div>
 </ScrollArea>
 ```
+
+The overlay thumb fades after a short idle delay, reappears on focus, scroll, hover, or pointer movement, and can be dragged directly. Because the chrome sits on top of the content edge, add inner padding on the scrolling edge when needed.
 
 ## Props
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `orientation` | `"vertical" \| "horizontal" \| "both"` | `"vertical"` | Controls which axis can scroll. |
+| `orientation` | `"vertical" \| "horizontal" \| "both"` | `"vertical"` | Controls which axis can scroll and which overlay thumb is rendered. |
 
 `ScrollArea` also defaults `tabIndex` to `0`, so keyboard users can focus it and scroll with the keyboard.
 
 ## Examples
+
+### Vertical
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Default />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("ScrollArea", "Default")} />
+  </TabContent>
+</TabProvider>
 
 ### Horizontal
 
@@ -55,5 +80,22 @@ import { ScrollArea } from "@components/ScrollArea";
   </TabContent>
   <TabContent name="code">
     <LoadedCode from={GITHUB_STORY("ScrollArea", "Horizontal")} />
+  </TabContent>
+</TabProvider>
+
+### Both Directions
+
+<TabProvider defaultName="preview">
+  <TabList>
+    <TabTrigger name="preview">Preview</TabTrigger>
+    <TabTrigger name="code">Code</TabTrigger>
+  </TabList>
+  <TabContent name="preview">
+    <Story layout="centered">
+      <Examples.Both />
+    </Story>
+  </TabContent>
+  <TabContent name="code">
+    <LoadedCode from={GITHUB_STORY("ScrollArea", "Both")} />
   </TabContent>
 </TabProvider>

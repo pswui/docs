@@ -1,25 +1,32 @@
 import { ScrollArea } from "@pswui/ScrollArea";
 
-const updates = [
-  "New Accordion docs now include collapsible and disabled item examples.",
-  "Select gained keyboard navigation for Home, End, and arrow keys.",
-  "Textarea now exposes a matching TextareaFrame wrapper for composed layouts.",
-  "Pagination ships dedicated previous, next, and ellipsis helpers.",
-  "Table primitives now cover header, body, footer, and caption elements.",
+const activityItems = [
+  "Roadmap issue triaged",
+  "Design tokens reviewed",
+  "Keyboard navigation verified",
+  "Playwright harness updated",
+  "Component API narrowed",
+  "Release notes drafted",
+  "Focus ring checked",
+  "Build queued for review",
 ];
 
 export const Default = () => {
   return (
-    <ScrollArea className="h-48 w-full max-w-md rounded-md border border-neutral-200 p-4 dark:border-neutral-800">
-      <div className="space-y-4">
-        <h4 className="text-sm font-semibold">Release notes</h4>
-        {updates.map((update) => (
-          <p
-            key={update}
-            className="text-sm text-neutral-600 dark:text-neutral-300"
+    <ScrollArea
+      role="region"
+      aria-label="Activity feed"
+      className="h-56 w-full max-w-xl rounded-lg border border-neutral-200 p-3 pr-5 dark:border-neutral-800"
+    >
+      <div className="flex flex-col gap-3 pr-2">
+        {activityItems.map((item, index) => (
+          <div
+            key={item}
+            className="rounded-md border border-neutral-200 bg-neutral-50 p-3 text-sm dark:border-neutral-800 dark:bg-neutral-950"
           >
-            {update}
-          </p>
+            <p className="font-medium">Entry {index + 1}</p>
+            <p className="text-neutral-600 dark:text-neutral-400">{item}</p>
+          </div>
         ))}
       </div>
     </ScrollArea>
