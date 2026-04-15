@@ -1,3 +1,4 @@
+import { ScrollArea } from "@pswui/ScrollArea";
 import type { Toc } from "@stefanprobst/rehype-extract-toc";
 import { Fragment, type ReactNode, useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -53,10 +54,15 @@ export default function DynamicLayout({
           {children}
         </main>
       </div>
-      <nav className="hidden lg:flex flex-col gap-2 py-8 px-4 sticky top-16 overflow-auto max-h-[calc(100vh-4rem)]">
-        <span className="font-bold text-sm">On This Page</span>
+      <nav
+        aria-label="On this page"
+        className="sticky top-16 hidden lg:block"
+      >
+        <ScrollArea className="flex max-h-[calc(100vh-4rem)] w-full flex-col gap-2 px-4 py-8">
+          <span className="font-bold text-sm">On This Page</span>
 
-        <RecursivelyToc toc={toc} />
+          <RecursivelyToc toc={toc} />
+        </ScrollArea>
       </nav>
     </HeadingContext.Provider>
   );

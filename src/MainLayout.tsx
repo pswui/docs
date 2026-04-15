@@ -7,6 +7,7 @@ import {
   DrawerTrigger,
 } from "@pswui/Drawer";
 import { Popover, PopoverContent, PopoverTrigger } from "@pswui/Popover";
+import { ScrollArea } from "@pswui/ScrollArea";
 import { Toaster } from "@pswui/Toast";
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
@@ -151,7 +152,7 @@ function TopNav() {
                 </Button>
               </DrawerTrigger>
               <DrawerOverlay className="z-99">
-                <DrawerContent className="w-[300px] overflow-auto">
+                <DrawerContent className="w-[300px] overflow-hidden">
                   <DrawerClose className="absolute top-4 right-4">
                     <Button
                       preset="ghost"
@@ -172,49 +173,54 @@ function TopNav() {
                       </svg>
                     </Button>
                   </DrawerClose>
-                  <div className="flex flex-col justify-start items-start gap-6 text-lg">
-                    <div className="flex flex-col justify-start items-start gap-3">
-                      <DrawerClose>
-                        <Link
-                          to="/"
-                          className="font-extrabold"
-                        >
-                          PSW/UI
-                        </Link>
-                      </DrawerClose>
-                      {RouteObject.mainNav.map((link) => {
-                        return (
-                          <DrawerClose key={link.path}>
-                            <Link to={link.path}>{link.name}</Link>
-                          </DrawerClose>
-                        );
-                      })}
-                    </div>
-                    {Object.entries(RouteObject.sideNav).map(
-                      ([categoryName, links]) => {
-                        return (
-                          <div
-                            className="flex flex-col justify-start items-start gap-3"
-                            key={categoryName}
+                  <ScrollArea
+                    aria-label="Documentation links"
+                    className="min-h-0 flex-1 pr-10"
+                  >
+                    <div className="flex flex-col justify-start items-start gap-6 text-lg">
+                      <div className="flex flex-col justify-start items-start gap-3">
+                        <DrawerClose>
+                          <Link
+                            to="/"
+                            className="font-extrabold"
                           >
-                            <h2 className="font-bold">{categoryName}</h2>
-                            {links.map((link) => {
-                              return (
-                                <DrawerClose key={link.path}>
-                                  <Link
-                                    to={link.path}
-                                    className="text-base opacity-75"
-                                  >
-                                    {link.name}
-                                  </Link>
-                                </DrawerClose>
-                              );
-                            })}
-                          </div>
-                        );
-                      },
-                    )}
-                  </div>
+                            PSW/UI
+                          </Link>
+                        </DrawerClose>
+                        {RouteObject.mainNav.map((link) => {
+                          return (
+                            <DrawerClose key={link.path}>
+                              <Link to={link.path}>{link.name}</Link>
+                            </DrawerClose>
+                          );
+                        })}
+                      </div>
+                      {Object.entries(RouteObject.sideNav).map(
+                        ([categoryName, links]) => {
+                          return (
+                            <div
+                              className="flex flex-col justify-start items-start gap-3"
+                              key={categoryName}
+                            >
+                              <h2 className="font-bold">{categoryName}</h2>
+                              {links.map((link) => {
+                                return (
+                                  <DrawerClose key={link.path}>
+                                    <Link
+                                      to={link.path}
+                                      className="text-base opacity-75"
+                                    >
+                                      {link.name}
+                                    </Link>
+                                  </DrawerClose>
+                                );
+                              })}
+                            </div>
+                          );
+                        },
+                      )}
+                    </div>
+                  </ScrollArea>
                 </DrawerContent>
               </DrawerOverlay>
             </DrawerRoot>
